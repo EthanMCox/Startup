@@ -1,3 +1,3 @@
-Testing Git functionality
+#Testing Git functionality
 Another change to test pull functionality. 
-I'm supposed to put something here.
+This change will be to test the process of merging conflicting lines of code.
