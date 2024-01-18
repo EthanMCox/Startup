@@ -25,6 +25,7 @@ Images:
 * Have first line item, then put either \- or \* to begin the nested list on the next line, directly below the first letter on the top line 
 * To create a task list, preface list items with a hyphen and space followed by \[ ]
 To mark a task as complete, use \[x]
+
 Add footnotes to text using bracket syntax:
 * Here is a simple footnote\[^1].
 \[^1]: My reference. 
@@ -32,3 +33,20 @@ Add footnotes to text using bracket syntax:
 * Hide comments with HTML comments: \<!--     \-->
 Escape markdown formatting using \\
 
+
+# Lecture 1/17/24: History
+
+* Tim Burners-Lee = Father of the Internet
+  * HTTP, HTML, URL
+* Hakon Wium Lie
+  * CSS
+  * Gave control to the browswer for determining what things like bold looks lie
+  * Super powerful
+* Brendan Eich
+  * JavaScript
+  * "Always bet on JS"
+  * Most common language in the world, runs on just about everything
+  * All about interactivity
+Using a web framework automatically does some functionality like making sure 
+  
+  
