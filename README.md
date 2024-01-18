@@ -9,7 +9,7 @@ Do you ever get bored standing in line, waiting for food at a restaurant, or eve
 
 ### Design
 
-Placeholder image
+![Rough Design](RoughDesign.jpg)
 
 ### Key Features
 
