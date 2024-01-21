@@ -47,6 +47,15 @@ Escape markdown formatting using \\
   * "Always bet on JS"
   * Most common language in the world, runs on just about everything
   * All about interactivity
-Using a web framework automatically does some functionality like making sure 
+Using a web framework automatically does some functionality like making sure
+
+# EC2 Notes
+
+* My web server: http://34.202.72.116/
+* ssh commands
+  * ssh -i [key pair file] ubuntu@34.202.72.116
+  * chmod 600 [key pair file]
+  * ls -l once in to see what is in there. 
+  * Once done on the server, exit by running the exit command
   
   
