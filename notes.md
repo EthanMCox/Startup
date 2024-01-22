@@ -57,5 +57,13 @@ Using a web framework automatically does some functionality like making sure
   * chmod 600 [key pair file]
   * ls -l once in to see what is in there. 
   * Once done on the server, exit by running the exit command
+ 
+# 1/22/2024: Caddy, HTTPS, TLS, and Certificates
+* Caddy: manages security certificates
+* Ability to route requests is called a gateway or reverse proxy: allows you to expose multiple web services as a single external web service
+* Caddy handles the creation and rotation of web certificates, allowing easy support of HTTPS
+* Caddy serves up all static HTML, CSS, and JavaScript files. All early application work will be hosted as static files
+* Caddy acts as a gateway for subdomain requests to your Simon and startup application services. For example, when a request is made to simon.yourdomain, Caddy will proxy the request to the Simon application running with node.js as an internal web service.
+* Curl: A command line browser
   
   
