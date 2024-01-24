@@ -65,5 +65,56 @@ Using a web framework automatically does some functionality like making sure
 * Caddy serves up all static HTML, CSS, and JavaScript files. All early application work will be hosted as static files
 * Caddy acts as a gateway for subdomain requests to your Simon and startup application services. For example, when a request is made to simon.yourdomain, Caddy will proxy the request to the Simon application running with node.js as an internal web service.
 * Curl: A command line browser
-  
-  
+
+# 1/24/2024 Lecture: The Console
+* Common commands
+  * ls: list of files and directories in present working directory
+  * ls -l: list one file or directory on each line, more information shown
+  * echo: output the parameters of the command
+  * curl: command line client URL browser
+  * cd: change directory
+  * grep: regular expression search
+  * mkdir: make a new directory
+  * rmdir: remove directory
+  * rm: remove file(s)
+  * find: find files
+  * Top: view running processes with CPU and memory usage
+  * df: view disk statistics
+  * cat: output the contents of a file
+  * less: interactively output the contents of a file
+  * wc: count the words in a file
+  * ps: view the currently running processes (similar to top)
+  * kill: kill a currently running process
+  * sudo: execute a command as a super user (admin)
+  * ssh: create a secure shell on a remote computer
+  * scp: securely copy files to a remote computer
+  * history: show the history of commands
+  * ping: check if a website is up
+  * tracert: trace the connections to a website
+  * dig: show the DNS information for a domain
+  * man: look up a command in the manual
+Chaining commands
+  * |: take the output from the command on the left and pipe, or pass it, to the command on the right
+  * >: redirect output to a file and overwrite the file if it exists
+    >>: redirect output to a file. Appends if the file exists
+Control keys:
+* Ctrl c: cancel command
+* ctrl r: recall command
+* Types of operating systems
+  * Linux: the web runs on linux
+  * Mac
+  * Windows
+  * WSL: essentially emulating linux
+  * Whatever one I choose, I need to own it. Make sure I really understand the tools available to me.
+  * **Important**: When doing anything in this class, use git bash or ubuntu
+  * Mac Terminal: Warp is really good
+For this class:
+* Install live server(VSCode)
+* Install GitLens (VSCode)
+The more I play with VSCode, the more I will understand the power of the tools
+
+Vi = vim. Use vi
+* Use i for insert mode (vi will tell me I'm in insert mode)
+* escape to get out of insert mode, back in command mode
+* To save: :wq. This writes (saves) and then quits the program
+* :w will write
