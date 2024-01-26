@@ -118,3 +118,40 @@ Vi = vim. Use vi
 * escape to get out of insert mode, back in command mode
 * To save: :wq. This writes (saves) and then quits the program
 * :w will write
+
+# Lecture 1/26/24: HTML
+* Index.html: This is what you load by default if you don't say what resource you want
+  * **Make sure to use this for the default html I want to load for my page**
+* All HTML elements work like a tree
+  * html -> head -> title -> First HTML (appears in tab)
+  * html -> body -> Hello World
+HTML components:
+* \<!DOCTYPE html>: optional, but tells you what version of html you are using
+  * This is the declaration for html 5 specifically
+* <html lang="en"> tells html to run in english—lang is an attribute
+* html is borken into start tag and end tag
+  * \<head> and \</head>
+* Document object model: in memory version of html
+* \<p> tag
+* \<img> tag
+* \<h1> through \<h9>: how this is represented is nonstandard: this should be done with html
+* div: a block division of content
+* span: an inline span of content within a block
+* header: put nav elements here with menu, etc.
+* Footer
+* table: lots of associated tags
+* ol, ul: ordered and unordered lists
+* a: anchor tag
+* img: graphical image reference
+* h1-9
+* Reserved characters: &, <, >, ", ;, smiley face; entity tags
+  * 
+
+html 5 will autofill html in my code
+
+* Link references:
+  * Absolute : \<a href = "https://cs260.click/profile.png" /a>
+  * Relative: href = "profile.png", href = "../images/profile.png": "These are generally better to use because it gives you more flexibility in moving stuff around
+ 
+Codepen: make sure to fork so I can save my personal version. 
+
