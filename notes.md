@@ -155,3 +155,15 @@ html 5 will autofill html in my code
  
 Codepen: make sure to fork so I can save my personal version. 
 
+# Codepen Notes
+* Can make a free account
+* Allows you to experiment with HTML, CSS, JavaScript, and React; these experiments are saved in a "pen." Every pen has a unique URL.
+* CodePen immediately renders your code in the preview window, so you can reduce a problem to something small, quickly iterate ideas, and immediately see the impact.
+* Serves as a portfolio of what you have learned.
+* When working with assignments involving CodePen to submit work, do the following:
+  1. Either create a new pen, or fork an existing example pen.
+  2. Conduct the experiment as defined by the assignment
+  3. Save assignment periodically so I don't lose any work. Consider using pen collections for different technologies.
+  4. Submit the pen's URL in Canvas along with a description of some interesting thing that I learned.
+* Codepen is also useful to find coding examples, not just to complete assignments. 
+
