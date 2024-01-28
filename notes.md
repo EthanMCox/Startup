@@ -167,3 +167,63 @@ Codepen: make sure to fork so I can save my personal version.
   4. Submit the pen's URL in Canvas along with a description of some interesting thing that I learned.
 * Codepen is also useful to find coding examples, not just to complete assignments. 
 
+# HTML Notes:
+* HTML elements are enclosed in tags
+* head element includes metadata about a page and page title.
+* Body element represents main content and structure, as opposed to things like headers, footers, asides, and navigation content
+* Attributes: every HTML element may have attributes. For example, id attribute can give a unique ID to an element to distinguish it. Class attribute is another common attribute that designates the element as being classified into a named group of elements.
+* Attributes are written inside an element tag with a name followed by an optional value.  Use sigle quotes or double quotes to delimit attribute values.
+* Hyperlinks: one of the core features that made the web so successful. Represented with anchor element and hyplerlink (href) reference.
+* Common elements:
+  * html: page container
+  * head: header information
+  * title: Title of the page
+  * meta: metadata for the page such as character set or viewport settings
+  * script: JavaScript reference. Either an external reference, or inline
+  * include: external content reference
+  * body: entire content body of the page
+  * header: header of the main content
+  * footer: footer of the main content
+  * nav: Navigational inputs
+  * main: main content of the page
+  * section: a section of the main content
+  * aside: aside content from the main content
+  * div: a block division of content
+  * span: an inline span of content
+  * h1-h9: text heading
+  * p: a paragraph of text
+  * b: bring attendion
+  * table: table
+  * tr: table row:
+  * th: table header
+  * td: table data
+  * ol,ul, ordered or unordered list
+  * li: list item
+  * a: anchor the text to a hyperlink
+  * img: graphical image reference
+  * dialog: interactive component such as a confirmation
+  * form: a collection of user input
+  * input: user input field
+  * audio: audio content
+  * video: video content
+  * svg: scalable vector graphic content
+  * iframe: inline frame of another HTML page
+  * comments: \<!-- comment text -->
+ 
+* Special characters:
+  * &: &amp;
+  *  <: &lt;
+  *  >: &gt
+  * ": &quot;
+  * ': &apos;
+
+* html versions introduced different things:
+  * html1: format tags
+  * html2: tables, internationalization
+  * html3: mathML, CSS, frame tags
+  * html4: external CSS
+  * html5: email, password, media, semantic tags
+ 
+  * by default, a web server will display the HTML file named index.html when a broswer makes a request without asking for a specific html file. Thus, main html is commonly named index.html
+ 
+  * Renering html: use live server extention or codepen
