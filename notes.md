@@ -226,4 +226,12 @@ Codepen: make sure to fork so I can save my personal version.
  
   * by default, a web server will display the HTML file named index.html when a broswer makes a request without asking for a specific html file. Thus, main html is commonly named index.html
  
-  * Renering html: use live server extention or codepen
+  * Rendering html: use live server extention or codepen
+
+# HTML Structure Elements:
+* Two major purposes of HTML is to provide structure and content to web application
+* Common structural elements: body, header, footer, main, section, aside, p, table, ol/ul, div, and span.
+* Header contains a paragraph with a span and a navigation containing multiple divisions of sub-content.
+* Main can contain multiple sections.
+* Proper structure is important so that it makes logical sense to a programmer and so that automated tools like search indexing crawlwers and accessibility screen readers can correctly interpret the document.
+* block vs. inline structure: block is a distinct block in the flow of content structure, while an inline element is meant to be inline with the content flow of a block element. So inline flows do not disrupt the flow of a block element's content. 
