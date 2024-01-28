@@ -234,4 +234,48 @@ Codepen: make sure to fork so I can save my personal version.
 * Header contains a paragraph with a span and a navigation containing multiple divisions of sub-content.
 * Main can contain multiple sections.
 * Proper structure is important so that it makes logical sense to a programmer and so that automated tools like search indexing crawlwers and accessibility screen readers can correctly interpret the document.
-* block vs. inline structure: block is a distinct block in the flow of content structure, while an inline element is meant to be inline with the content flow of a block element. So inline flows do not disrupt the flow of a block element's content. 
+* block vs. inline structure: block is a distinct block in the flow of content structure, while an inline element is meant to be inline with the content flow of a block element. So inline flows do not disrupt the flow of a block element's content.
+
+# HTML Input Elements:
+
+* Input elements accept input of user data
+Input elements:
+* form: input container and submission
+  * Main purpose is to submit values of the inputs it contains. JavaScript has more sophisticated methods and control though
+  *  Not as useful now because of JavaScript, but is often still used simply as a container
+  *  Not required to use this to use input elements. 
+* fieldset: labeled input grouping
+* input: multiple types of user input
+  * many different input types, which you can choose from.
+  * types include different flavors of textual, numeric, date, and color inputs
+    * text: single line textual value
+    * password: obscured password
+    * email: email address
+    * tel: telephone number
+    * url: URL address
+    * number: numerical value
+    * checkbox: inclusive selection
+    * radio: exclusive selection
+    * range: range limited number
+    * date: year, month, day
+    * datetime-local: date and time
+    * month: year, month
+    * week: week of year
+    * color: color
+    * file: local file
+    * submit: button to trigger form submission
+  * most input elements share common attributes
+    * name: submitted as the name of the input if used in a form
+    * disabled: disables the ability for the user to interact with the input
+    * value: initial value of the input
+    * required: signifies that a value is required in order to be valid   
+* select: selection dropdown
+* optgroup: grouped selection dropdown
+* option: selection option
+* textarea:multi-liine text input
+* label: individual input label
+* output: output of input
+* meter: display value with a known range
+
+* Validating input: several elements have validation built in and won't accept a value that is not a number, URL, outside of range, etc. You can also specify the required attribute on an input element before it can be submitted. 
+* Pattern attribute exists on text, search, url, tel, email, and password inputs and when present, provides a regular expression that must match for the input to be considered as valid. JavaScript should also use validation before submission. It is critical to provide sufficient user feedback early in the input process.  A good design will provide feedback as, or before, the user begins to input. 
