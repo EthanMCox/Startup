@@ -278,4 +278,27 @@ Input elements:
 * meter: display value with a known range
 
 * Validating input: several elements have validation built in and won't accept a value that is not a number, URL, outside of range, etc. You can also specify the required attribute on an input element before it can be submitted. 
-* Pattern attribute exists on text, search, url, tel, email, and password inputs and when present, provides a regular expression that must match for the input to be considered as valid. JavaScript should also use validation before submission. It is critical to provide sufficient user feedback early in the input process.  A good design will provide feedback as, or before, the user begins to input. 
+* Pattern attribute exists on text, search, url, tel, email, and password inputs and when present, provides a regular expression that must match for the input to be considered as valid. JavaScript should also use validation before submission. It is critical to provide sufficient user feedback early in the input process.  A good design will provide feedback as, or before, the user begins to input.
+
+# HTML Media:
+* HTML elements that represent media include img, audio, video, svg, and canvas. img, audio, and video elements are all simple references to an external file, but svg and canvas both contain the code to render a visual image that can even be animated.
+* Media tags that reference external media all take a URL as an attribute. The path represented by the URL can be either relative or full.
+  * A relative path references a file that is served from the same location as the HTML page rendering the element. You want to make the path as relativea s possible so you can move your code around without having to actually adjust all of the external page references. You want to make a patha s relative as possible so that you can move your code around without having to actually adjust all of the external page references.
+  * Img element: specify src attribute with URL to source image, and for full accessibility also include an alt attribute describing the image.
+  * Audio: use audio element and specify src attribute with URL to source audio file. Can also include controls attribute if you want user to be able to control audio playback.
+    * Autoplay attribute starts the audio playing as soon as the audio file is loaded, and the loop attribute keeps it playing over and over. Auto-playing audio is discouraged unless there is a way for user to opt-in to that behavior.
+   
+  * Video: use video element. Also has controls and autoplay attributes
+    * May need to include the crossorigin="anonymous" attribute if requesting files from a different domain than the one serving your content.
+  * Svg: powerful and widely supported way to rener graphics inline in HTML.
+  * Canvas: introduced to facilitate 2d drawing and animation. HTML for canvas element is simple, but actually drawing on it requires JavaScript support. 
+
+
+# Lecture 1/29/2024: HTML Continued
+* Possible to get around having to rewrite the same html code every time
+* With react, I'll only have one page, and dynamically rewrite everything with JavaScript.
+* Get the header and footer right the first time and then just rewrite the code
+* &reg is an entity tag used for Simon
+* method get: and action: play.html: allows me to go to play.html when I login
+* Scores.html will have a table of scores
+* Need to use a shall script to deploy stuff
