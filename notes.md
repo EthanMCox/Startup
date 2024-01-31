@@ -302,3 +302,41 @@ Input elements:
 * method get: and action: play.html: allows me to go to play.html when I login
 * Scores.html will have a table of scores
 * Need to use a shall script to deploy stuff
+
+# Lecture 1/31/2024: CSS
+* HTML doesn't care about spaces.
+* &nbsp can be used in html to actually have spaces. Or just use CSS, which is much better
+* Way to add style: add attributes
+  *style="color:red;margin-left: 3in"
+  Use <style> html element and put it in head. Use selector like \<p>
+* CSS is all about developing rulesets, or rules.
+* Cascading in cascading style sheets refers to how you can inherit styles from above and still have style in nested elements. Like body can have a style and p(paragraph) can have style
+* More specific = overriding anything that it inherits. More local is more specific.
+* Use \<link rel="stylesheet" href="styles.css" /> and put that in head
+* when specificity is equal, whatever is declared last takes precedence.
+* Some attributes:
+  * font-family: font type
+  * font-size: 3em = width of 3 ems
+  * font-weight: bold:
+  * text-align: center;
+  * padding: 1em: padding puts space around it
+  * transform: rotate(-45deg): rotate
+* Selectors: applying style to a particular kind of tag
+  * Id and class selectors
+  * Id: the element with the given id: use #name
+  * class: all elements with the given tag: use .name
+  * element class: any elements with the specific name and class
+  * id takes precedence over
+* You can use .hover functionality, apply features when you hover over it
+* display: block, contents, flex, flexbox, lots of other options. Ie. display, inline, none makes everything disappear
+* border: yellow solid thin: this is a composite type, there are three separate border-attributes that describe this.
+* border-radius
+* know avaiable properties: there are probably around 100-150 out there.
+* Units:
+  * px
+  * pt
+  * %
+  * Add more to this
+* Be familiar with box outline. 
+* Content, padding, border, margin in that order going out: (pals before marriage)
+*  background: linear-gradient(to bottom, green) adds a gradient on background. 
