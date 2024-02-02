@@ -433,3 +433,24 @@ Common units:
 
 Multiple ways of describing color: keyword, RGB hex, RGB function, HSL
   
+# Lecture 2/2/2024: More CSS: Fonts/animation
+* Use fonts: google fonts is super cool
+* font-family property defines what fonts should be used. First font in the list that is available will be used. Ability to select from a list is important because different operating systems have different default fonts and first choice may not be available.
+* four major font families: Serif, sans-serif, fixed, and symbol.
+  * Sefif fonts have small strokes attached to the ends of character's major strokes. Sans serif fonts don't have this.
+  * Fixed fonts have characters of all the same size. Useful when doing things like coding or displaying tabular data.
+  * Import fonts.
+  * meta charset="UTF-8" specifies what kind of characters are allowed. 
+* unicode and UTF-8
+
+Animations:
+* animation-name property
+  * animation-name: demo;
+  * animation-duration: 3s;
+  * animation: 0.01s infinite alternate: alternates infinitely at intervals of 0.01s
+  * Use @keyframes to define animation
+  * @keyframes demo { from { font-size: 0vh;}
+  * 95% { font-size: 21vh;}
+  * to {font-size:20vh
+ 
+* 
