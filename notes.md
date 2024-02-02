@@ -344,3 +344,92 @@ Input elements:
 # Startup HTML Important Notes:
 * Deployment steps: ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s startup
   * ./deployFiles.sh -k ~/keys/production.pem -h yourdomain.click -s startup
+
+# Cascading Style Sheets Reading
+* Three ways to associate CSS with HTML:
+  * Use HTML style attribute of an HTML elelment and explicitly assign one or more declarations
+  * Use style element to define CSS rules within the HTML document, appears in the head element so that all rules apply
+  * Use link element to reference an external file containing CSS rules: this is generally preferred.
+* any rule defined earlier in a tree will be overwritten by a more specific rule
+* Box model: CSS defines everything as boxes. When you apply styles, you apply them to a region of the display that is a rectangular box.
+* Box model: content, padding, border, and margin\
+  * Padding inherits thing like background color
+  * Border has properties like color, thickness, and line style
+  * margin is considered external to actual styling of the box and therefore only represents whitespace.
+  * By default, width and height of an element is defined by width and height of the contet box. You can change the box-sizing property from content-box to border-box to redefine width and height to also include padding and the border. This can make it much easier to style elements because visual size matches their actual size.
+ 
+CSS rule selector:
+* element type selector: *, body, etc.
+
+Combinators:
+* Essentially using two selectors at once.
+  * section h2: chacing color of second level headings but only second level headings.
+  * Descendant: list of descendants: body section (doesn't have to be direct child of the body)
+  * Child: a list of direct children: section > p: applies to any p that is a direct child of a section
+  * General sibling: p ~ div: applies to any p that has a div sibling
+  * Adjacent sibling: p + div: any p that has an adjacent div sibling.
+ 
+Class selectors:
+* Any element can have zero or more calssifications applied to it.
+* use .attribute or p.attribute if you want to only apply attributes that are of type p: latter would be combining element and class selectors
+
+ID selectors: similar to class selectors:
+* Use #idname
+
+Attribute selectors:
+* select elements based upon their attributes.
+* Select any element with a given attribute and applies particular characteristics to it. 
+* e.g. p[class='summary'] { color: red; } will apply the color red to any paragraph tag of class summary
+
+Pseudo selector:
+* selectors based on positional relationships, mouse interactions, hyperlink visitation states, and attributes
+* Example: purple highlight bar appears only when mouse hovers over the text. Then:
+  * section-hover { border-left: solid 1em purple; }
+ 
+Declarations:
+* specify a property and a value to assign when the rule selector matches one or more elements:
+  * background-color: color
+  * border: color width style
+  * border-radius: unit
+  * box-shadow: x-offset y-offset blu-radius color: creates a shadow
+  * Columns: number
+  * column-rule: color width style: sets border used between columns using border shorthand
+  * color: color: rgb(128, 0, 0)
+  * cursor: type: grab: sets cursor to display when hovering over the element
+  * display: type: non: defines how to display the element and its children
+  * filter: filter-function: applies a visual filter
+  * float: direction: right: places element to the left or right in the flow
+  * flex: flex layout used for responsive design
+  * font: family size style
+  * grid: grid layout used for responsive design
+  * height: unit: sets height of the box
+  * maring: unit: sets margin spacing
+  * max-[width/height]: restricts width or height to no more than the unit
+  * min-[width/height]: unit: restricts the width or hieght to no less than the unit
+  * opacity: number: sets how opaque the elment is
+  * overflow scroll: defines what happens when the content does not fit in the box: [visible/hidden/scroll/auto]
+  * position: [static/relatrive/absolute/sticky]: dfines how the element is positioned in the document
+  * padding
+  * left: horizontal value of a positioned element: 10rem ex.
+  * text-align: [start/end/center/justify]: defines how text is aligned
+  * top: unit: vertical value of a positioned element
+  * transform: applies a transformation to the element
+  * width: sets width of the box
+  * z-indez: controls positioning of element on the z-axis.
+ 
+Common units:
+* px: num of pixels
+* pt: number of points (1/72 of an inch)
+* in
+* cm
+* %: percent of parent element
+* em
+* rem: multiplier of the width of the letter m in the root's font
+* ex: multiplier of the height of the element's font
+* vw: percentage of viewport's width
+* vh: percentage of the viewport's height
+* vmin: percentage of the viewport's smaller dimension
+* vmax: percentage of the viewport's larger deminesion
+
+Multiple ways of describing color: keyword, RGB hex, RGB function, HSL
+  
