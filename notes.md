@@ -339,4 +339,8 @@ Input elements:
   * Add more to this
 * Be familiar with box outline. 
 * Content, padding, border, margin in that order going out: (pals before marriage)
-*  background: linear-gradient(to bottom, green) adds a gradient on background. 
+*  background: linear-gradient(to bottom, green) adds a gradient on background.
+
+# Startup HTML Important Notes:
+* Deployment steps: ./deployFiles.sh -k <yourpemkey> -h <yourdomain> -s startup
+  * ./deployFiles.sh -k ~/keys/production.pem -h yourdomain.click -s startup
