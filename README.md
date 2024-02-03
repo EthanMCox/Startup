@@ -32,4 +32,14 @@ I am going to use the required technologies in the following ways.
 - **WebSocket** - As other players play the game and get a score, those scores are displayed to other players in the game.
 - **React** - Application ported to use the React framework. 
 
- 
+ # HTML Deliverable:
+For this dlieverable I built out the struccture of my application using HTML.
+
+* HTML Pages: Four HTML pages that represent the ability to login, play, view scores, and view info about the game.
+* Links: Each of the pages link to each other.
+* Text: The about section contains text about the game
+* 3rd Party Service Calls: Image on the about section will call an api to get an image.
+* Images: There is an image located on the about page. Images of cards are also being used on the play page.
+* Login: Name, password box, and login box are all represented on index.html.
+* Database: scores page will pull scores from a database.
+* Websocket placeholder: Live games and scores posted on the play page. 
