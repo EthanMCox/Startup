@@ -1,0 +1,30 @@
+body {
+display: flex;
+flex-direction: column;
+}
+
+header {
+flex: 0 80px;
+}
+
+main {
+display: flex;
+flex: 1;
+flex-direction: column;
+}
+
+footer {
+flex: 0 30px;
+} 
+
+menu {
+  display: flex;
+  flex: 1;
+  list-style: none;
+  flex-direction: row;
+}
+
+menu li {
+  padding: 0 0.3em;
+}
+
