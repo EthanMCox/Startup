@@ -7,6 +7,12 @@ header {
 flex: 0 80px;
 }
 
+nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 main {
 display: flex;
 flex: 1;
@@ -22,6 +28,7 @@ menu {
   flex: 1;
   list-style: none;
   flex-direction: row;
+  justify-content: left;
 }
 
 menu li {
