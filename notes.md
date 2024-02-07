@@ -482,7 +482,7 @@ Display:
   * can make flex elements within other flex elements.
   * overflow-y: clip; or scroll. defines what to do if there isn't enough space.
  
-* @media (orieentation: protrait)
+* @media (orientation: protrait)
   * transform: rotate(270 deg):
   * Based on if the orientation is portrait vs landscape, it will render differently.
   * also option to change display: none 
@@ -490,3 +490,33 @@ Display:
 Note: some attributes don't inherit
 * width won't inherit for example
 * color will inherit
+
+# CSS Animation Notes
+* Within the element: animation-name: name
+* animation-duration: 3s;
+* Then create @keyframes name
+
+# CSS Responsive Design
+* display attribute:
+  * None: don't display the element
+  * block: display the elment with a width that fills its parent alement. A p or div element has block dispaly by default
+  * inline: dispaly this element with a width that is only as big as its content. A b or span element has inline display by default
+  * flex: display this element children in a flexible orientation
+  * grid: display this element's children in a grid orientation.
+* viewport meta tag: tells browser not to scale the page.
+* float: float css property moves an element to the left or right of its container elemeent and allows inline elements to wrap around it.  
+* media queries:
+  * Use @media selector to tell which side of the screen is the longest. A media query takes one or more predicates separated by boolean operators.
+ 
+# CSS Grid:
+* display option
+* grid-template-columns: repeat(auto-fill, minmax (300px, 1fr))
+* grid-auto-rows: 300px;
+* grid-gap: 13m;
+
+# CSS Flexbox:
+* header: flex: 0 80px: 0 means it will not grow and 80px means it has a starting basis height of 80 pixels, creating a fixed size box
+* footer: flex: 0 30px
+* main: flex: 1: one means it will get one fractional unit of growth, and since it is the only child with a non-zero growth value it will get all the remaining space. Main also gets some additional properties because we want it to also be a flexbox container for the controls and content area. So we set its display to be flex and specify flex-direction to be row so that the children are oriented side by side.
+* Media query: handle small screen sizes. to do this, add media queries to drop header and footer if the viewport gets too short, and orient the main sections as rows if it gets too narrow. Detect when in portrait orientation.
+* trigger media query when viewport height has max value of 700 pixels, then change display so that header and footer are obth none. 
