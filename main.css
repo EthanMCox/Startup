@@ -5,6 +5,11 @@ flex-direction: column;
 
 header {
 flex: 0 80px;
+background-color: rgb(172, 4, 4);
+h1 {
+  color: black;
+  padding: 0.5em;
+}
 }
 
 nav {
@@ -21,6 +26,7 @@ flex-direction: column;
 
 footer {
 flex: 0 30px;
+background-color: rgb(172, 4, 4);
 } 
 
 menu {
@@ -32,6 +38,17 @@ menu {
 }
 
 menu li {
+  padding: 0 0.3em;
+}
+
+.stat-bar {
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  list-style: none;
+}
+
+.stat-bar li {
   padding: 0 0.3em;
 }
 
