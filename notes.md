@@ -519,4 +519,16 @@ Note: some attributes don't inherit
 * footer: flex: 0 30px
 * main: flex: 1: one means it will get one fractional unit of growth, and since it is the only child with a non-zero growth value it will get all the remaining space. Main also gets some additional properties because we want it to also be a flexbox container for the controls and content area. So we set its display to be flex and specify flex-direction to be row so that the children are oriented side by side.
 * Media query: handle small screen sizes. to do this, add media queries to drop header and footer if the viewport gets too short, and orient the main sections as rows if it gets too narrow. Detect when in portrait orientation.
-* trigger media query when viewport height has max value of 700 pixels, then change display so that header and footer are obth none. 
+* trigger media query when viewport height has max value of 700 pixels, then change display so that header and footer are obth none.
+
+# Lecture 2/7/2024:
+* \* selector selects everything
+* root selector: root element of all parent elements.
+* Use MDN as a reference for how things work in CSS
+* CSS framework just means that it's a selection of prebuilt code
+
+Bootstrap:
+* Common CSS framework
+* How to use it: link bootstrap
+* class="btn btn-primary"
+* Put javascript elements towards the bottom or use defer on \<script> elements. 
