@@ -29,10 +29,10 @@ flex: 0 30px;
 } 
 
 menu {
-  display: flex;
   flex: 1;
+  display: flex;
   list-style: none;
-  flex-direction: row;
+  flex-direction: row !important;
   justify-content: left;
 }
 
