@@ -519,4 +519,31 @@ Note: some attributes don't inherit
 * footer: flex: 0 30px
 * main: flex: 1: one means it will get one fractional unit of growth, and since it is the only child with a non-zero growth value it will get all the remaining space. Main also gets some additional properties because we want it to also be a flexbox container for the controls and content area. So we set its display to be flex and specify flex-direction to be row so that the children are oriented side by side.
 * Media query: handle small screen sizes. to do this, add media queries to drop header and footer if the viewport gets too short, and orient the main sections as rows if it gets too narrow. Detect when in portrait orientation.
-* trigger media query when viewport height has max value of 700 pixels, then change display so that header and footer are obth none. 
+* trigger media query when viewport height has max value of 700 pixels, then change display so that header and footer are obth none.
+
+# Lecture 2/7/2024:
+* \* selector selects everything
+* root selector: root element of all parent elements.
+* Use MDN as a reference for how things work in CSS
+* CSS framework just means that it's a selection of prebuilt code
+
+Bootstrap:
+* Common CSS framework
+* How to use it: link bootstrap
+* class="btn btn-primary"
+* Put javascript elements towards the bottom or use defer on \<script> elements.
+
+# Bootstrap Notes:
+* Just insert the bootstrap link and I have all the bootstrap classes/functionality out of the box. 
+* CSS h1,h2, etc. classes that override html
+* display-1, display-2, etc. classes that are cleaner headings
+* lead class: slightly bigger text to lead off a paragraph and make it more noticable.
+* text-decoration-underline, text-decoration-line-through, etc.
+* There are default theme colors in bootstrap that I can use
+* use text-primary, text-secondary, info, warning, success, danger, muted to change text color
+* Use bg-primary, bg-secondary, etc. for background colors
+* button components: lots of options, check out bootstrap: always use btn class, can also use btn-primary/secondary, etc. to change the button color, btn-lg, btn-sm respectively for large and small buttons, etc. btn-outline-primary, secondary, etc.
+* btn-group class within a div, groups button so there is no space between them, then can change each one's colors, background, etc.
+* containers: different kinds, container-fluid is most useful. Different containers essentially just control dynamic resizing. fluid is the most dynamic.
+* img-fluid class as well
+* Accordion: Use div class="accordiion with nested divs with accordion-items
