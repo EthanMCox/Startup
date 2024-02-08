@@ -531,4 +531,19 @@ Bootstrap:
 * Common CSS framework
 * How to use it: link bootstrap
 * class="btn btn-primary"
-* Put javascript elements towards the bottom or use defer on \<script> elements. 
+* Put javascript elements towards the bottom or use defer on \<script> elements.
+
+# Bootstrap Notes:
+* Just insert the bootstrap link and I have all the bootstrap classes/functionality out of the box. 
+* CSS h1,h2, etc. classes that override html
+* display-1, display-2, etc. classes that are cleaner headings
+* lead class: slightly bigger text to lead off a paragraph and make it more noticable.
+* text-decoration-underline, text-decoration-line-through, etc.
+* There are default theme colors in bootstrap that I can use
+* use text-primary, text-secondary, info, warning, success, danger, muted to change text color
+* Use bg-primary, bg-secondary, etc. for background colors
+* button components: lots of options, check out bootstrap: always use btn class, can also use btn-primary/secondary, etc. to change the button color, btn-lg, btn-sm respectively for large and small buttons, etc. btn-outline-primary, secondary, etc.
+* btn-group class within a div, groups button so there is no space between them, then can change each one's colors, background, etc.
+* containers: different kinds, container-fluid is most useful. Different containers essentially just control dynamic resizing. fluid is the most dynamic.
+* img-fluid class as well
+* Accordion: Use div class="accordiion with nested divs with accordion-items
