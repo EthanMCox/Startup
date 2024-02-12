@@ -581,3 +581,14 @@ Bootstrap:
   * function type; function f(x) has type function and value f
   * NaN primitive type in js
 * json = javascript object notation 
+
+# Lecture 2/12/2024 More JavaScript
+* Truthy/false value in JavaScript
+  * Falsy: false, 0, -0, '', NaN, null, undefined
+  * while statements in javascript
+  * switch case statements
+  * Higher order function
+  * arrow functions (very similar to lambda functions)
+    * const arrow = () => 1;
+    * const arrowWithBlock = (a) => { a; }; (when done this way, you need to specify what you are returning)
+  * dup() function (kind of like higher order function 
