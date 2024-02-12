@@ -67,6 +67,10 @@ menu li {
   text-decoration: none;
 }
 
+form div {
+  padding: .3em;
+}
+
 .right-align {
   float: right;
 }
