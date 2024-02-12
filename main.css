@@ -47,7 +47,32 @@ menu li {
   list-style: none;
 }
 
+.logo {
+  padding-top: .3em;
+  border-bottom: solid white thin;
+}
+
+.navPaddingLeft {
+  padding-left: 1.5em;
+  }
+
 .stat-bar li {
   padding: 0 0.3em;
+}
+
+.removeLinkStyle {
+  text-decoration: none;
+}
+
+@media (max-height: 600px) {
+  header {
+    display: none;
+  }
+  footer {
+    display: none;
+  }
+  main {
+    flex: 1 100vh;
+  }
 }
 
