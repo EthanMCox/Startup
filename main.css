@@ -8,12 +8,7 @@ header {
 flex: 0 80px;
 }
 
-/* nav {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-} */
+
 
 main {
 flex: 1 calc(100vh - 110px);
@@ -62,6 +57,10 @@ menu li {
 
 .removeLinkStyle {
   text-decoration: none;
+}
+
+.right-align {
+  float: right;
 }
 
 @media (max-height: 600px) {
