@@ -547,3 +547,37 @@ Bootstrap:
 * containers: different kinds, container-fluid is most useful. Different containers essentially just control dynamic resizing. fluid is the most dynamic.
 * img-fluid class as well
 * Accordion: Use div class="accordiion with nested divs with accordion-items
+
+# Lecture 2/9/2024 JavaScript intro
+* Brandon Eich invented JavaScript
+* JavaScript: Inspired by Scheme, interpreted language, dynamically typed, so it will help you get to the right type you want.
+* JavaScript has nothing to do with Java
+* Interpreted at runtime
+* Lots of just on time code
+* JavaScript is the most popular language in the world.
+* console in inspect element is a javascript interpreter
+* Node.js allows you to run javaScript directly from terminal
+* console class, log operation. logs it out to the debug output
+* main.js file
+* Three ways to include JavaScript in html
+  * Script attribute
+  * \<script>
+  * Put it in head
+* defer on script will make sure it loads after everything else
+* Declare a function with function
+* Debugger function in javascript functions like a break point.
+* var x = 1; dynamic typing (don't use this)
+* Instead use let y = 1;
+* const z = 'tacos'; makes z a constant.
+* functions are first order objects like ints and booleans in javascript
+* Types:
+  * Null = empty value. This is type object, value null
+  * undefined = primitive value. This is an undefined class, value undefined.
+  * string type
+  * number type
+  * object type (also primitive type in javascript): dictionaries/maps are objects in js
+  * array is type object
+  * instance of operator
+  * function type; function f(x) has type function and value f
+  * NaN primitive type in js
+* json = javascript object notation 
