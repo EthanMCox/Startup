@@ -25,3 +25,29 @@
 .system-event { 
   color: rgb(221, 148, 40);
 }
+
+.stat-bar {
+  display: flex;
+  flex: 0 30px;;
+  flex-direction: row;
+  width:100vw;
+  justify-content: center;
+  margin: 0.5em;
+  padding: 0.5em;
+  border-top: thin solid white;
+  border-bottom: thin solid white;
+
+}
+
+.stat-bar input[type="text"] {
+  width: 35px;
+}
+
+.stat-bar div  {
+  align-content: right;
+  padding-left: 0.5em;
+}
+
+.stat-bar .stat-bar-input {
+  padding-right: 1em;
+}

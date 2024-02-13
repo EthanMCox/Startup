@@ -23,7 +23,7 @@ flex: 1 1 calc(100vh - 110px);
 display: flex;
 flex-direction: column;
 align-items: center;
-justify-content: space-around;
+justify-content: center;
 }
 
 footer {
@@ -42,12 +42,7 @@ menu li {
   padding: 0 0.3em;
 }
 
-.stat-bar {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  list-style: none;
-}
+
 
 .logo {
   padding-top: .3em;
@@ -57,10 +52,6 @@ menu li {
 .navPaddingLeft {
   padding-left: 1.5em;
   }
-
-.stat-bar li {
-  padding: 0 0.3em;
-}
 
 .removeLinkStyle {
   text-decoration: none;
