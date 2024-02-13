@@ -41,6 +41,8 @@
 
 .stat-bar input[type="text"] {
   width: 35px;
+  text-align: center;
+  /* border-radius: 7 px;  troubleshoot this later */
 }
 
 .stat-bar div  {
