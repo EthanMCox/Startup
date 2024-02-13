@@ -1,0 +1,14 @@
+.text-box {
+  margin-top: 1em;
+  padding: 0.5em;
+  border-radius: 5px;
+  border: 1px solid black
+}
+
+.picture-box {
+  margin-bottom: 1em;
+  padding: 0.2em;
+  background: rgb(86, 89, 93);
+  border-radius: 5px;
+}
+
