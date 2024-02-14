@@ -33,7 +33,7 @@ I am going to use the required technologies in the following ways.
 - **React** - Application ported to use the React framework. 
 
  # HTML Deliverable:
-For this dlieverable I built out the struccture of my application using HTML.
+For this deliverable I built out the structure of my application using HTML.
 
 * HTML Pages: Four HTML pages that represent the ability to login, play, view scores, and view info about the game.
 * Links: Each of the pages link to each other.
@@ -42,4 +42,14 @@ For this dlieverable I built out the struccture of my application using HTML.
 * Images: There is an image located on the about page. Images of cards are also being used on the play page.
 * Login: Name, password box, and login box are all represented on index.html.
 * Database: scores page will pull scores from a database.
-* Websocket placeholder: Live games and scores posted on the play page. 
+* Websocket placeholder: Live games and scores posted on the play page.
+
+# CSS Deliverable:
+For this deliverable I added styling elements to my application using CSS. 
+
+* Header, footer, and main content body present
+* Navigation elements: Dropped underlines and changed color for anchor elements.
+* Responsive to window resizing: My app resizes appropriately to fit on various screen sizes and devices.
+* Application elements: Uses good contrast and whitespace. 
+* Application text content: consistent fonts
+* Application images: Styling added to the about page image to have slight shadow around it. Also changed the base image. Styling also aded to cards on play page using grid and card class from bootstrap. 
