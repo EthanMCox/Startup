@@ -591,4 +591,43 @@ Bootstrap:
   * arrow functions (very similar to lambda functions)
     * const arrow = () => 1;
     * const arrowWithBlock = (a) => { a; }; (when done this way, you need to specify what you are returning)
-  * dup() function (kind of like higher order function 
+  * dup() function (kind of like higher order function
+ 
+# Lecture 2/14/2024 More JavaScript
+* let s = "Cats Dogs Rats Mice';
+  * is equivalent to:
+  * s = new String('Cats Dogs Rats Mice');
+* console.log('casefold ', .toUpperCase(), s.toLowerCase());
+* split function
+* endsWith function
+* replace function
+* slice function:
+  * console.log('slice: ', s.slice(3,7));
+* regex functionality
+  * const objRegex = new ReExp('cat.?', 'i')
+  * const literalRegex = /cat.?/i;
+  * the i is a flag that tells how to parse it.
+* use regex for my username/password in my website
+* regex replacement
+* Arrays: let numbers = []
+  * Use push to push a value into the array
+  * Mapping to arrays: numbers.map((n) => n * 100) will take every value in the array and multiply it by 100.
+  * Reduce function: numbers.reduce((a, c) => a + c). a is the accumulator (current accumulated value) and c is the current value (the next to be accumulated).
+  * ForEach function: numbers.forEach((n) => console.log(n % 2))
+  * numbers.filter((n) => n % 2)) Filters out anything that is even.
+  * numbers.some((n) => n > 5)) returns a boolean true or false if there is something that meets the condition.
+ 
+* try catch finally block. Can have just try and finally.
+
+* Template literals:
+  * like an f string in python
+  * console.log(`Template ${'lite' + 'rals'}! ${hello(name)}`;
+  * returns "Template literals! hola amigo"
+ 
+* Truthy vs falsy vs. nullish
+  * null and undefined are nullish
+  * ?? checks for non null values. similar to how || will return the first thing that is truthy and not falsy.
+  * short circuit with nullish coalescing
+  * let z;
+  * z ?? (z = x);
+  * y ??= 30;
