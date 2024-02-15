@@ -631,3 +631,101 @@ Bootstrap:
   * let z;
   * z ?? (z = x);
   * y ??= 30;
+
+# JavaScript Notes:
+* With CodePen you can write whatever JavaScript you would like and immediately see the results.
+## JavaScript Console:
+*  Provides interaction with JavaScript runtime's debugger console. This is different that operating systems console (terminal/command line).
+* log: basic usage of the console object is to output a log message.
+* console.log('hello');
+* create formatted messages in the log output
+  * console.log('hello %s', 'world');
+* can also specify CSS declarations to style the log output
+  * console.log('%c JavaScript Demo', 'font-size:1.5em; color:green;');
+* Timers: If you want to see how long a piece of code is running you can wrap it with time and timeEnd calls and it will output the duration between the time and timeEnd calls.
+  * console.time('demo time');
+  * ...code
+  * console.timeEnd('demo time');
+* To see how many times a block of code is called you can use the count function
+  * console.count('a');
+  * console.count('a'); then this will return 2. substitute a for a given function, element, etc. 
+  * console.count'b');
+
+## Adding JavaScript to HTML:
+* you can insert HTML either by directly including it in the HTML within the content of a \<script> element, or by using the src attribute of the script element to reference an external JavaScript file.
+* function sayHello() {console.log('hello');}
+* \<script> src="javascript.js"> /</script> /</head>
+
+## JavaScript type and construct
+* let x = 1
+* const y = 2
+* Several primitive types:
+  * Null: has not been assigned a value
+  * Undefined: type of variable that has not been defined
+  * Boolean: true/false
+  * Number: 64 bit signed number
+  * BigInt: a number of arbitrary magnitude
+  * String: a textual sequence of characters
+  * Symbol: A unique value
+ 
+* In addtion to primitive types, there are a few object types
+  * Object
+  * Function
+  * Date
+  * Array
+  * Map
+  * JSON
+ 
+* JavaScript is weakly typed.
+
+# String functions
+* The string objects has several interesting functions associated with it.
+  * length: number of charactres in the sstring
+  * indexOf(): The starting index of a given substring
+  * split(): Split the string into an array on the given delimiter string
+  * startsWith(): True if the string has a given prefix
+  * endsWith() true if the string has a given suffix
+  * toLowerCase() converts all characters to lowercase.
+ 
+## Functions:
+* javaScript functions are first class objects, meaning they can be assigned to a name, passed as a parameter, returned as a result, and referenced from an object or array just like any other variable.
+* No type declarations
+
+Functon parameters:
+* When a function is called, the caller may choose what parameters to provide. If a parameter is not provided then the value of the parameters is undefined when the function executes.
+
+Anonymous functions:
+* Functions in JavaScript are commonly assigned to a variable so that they can be passed as a parameter to some other function or stored as an object property. To support this you can define a function anonymously and assign it to a variable.
+* An anonymous function is one assigned to a variable.
+
+Creating, passing, and returning functions:
+* can also use functions as parameters and return values.
+* functions can be declared insie other functions, allowing you to modularize your code without always exposing private details.
+
+## JavaScript arrow function:
+* because functions are first order objects in JavaScript, they can be declared anywhere and passed as parameters, resulting in code with lots of anonymous functions cluttering things up. To make code more compact the arrow syntax was created, replacing the need for the function keyword with the symbols => placed after the paramter declaration.
+* () => 3; this is a function in arrow syntax that always returns 3.
+* Equivalent functions:
+  * a.sort(function (v1, v2) {return v1-v2;});
+  * a.sort((v1,v2) => v1-v2); this is an arrow function.
+ 
+This pointer:
+* arrow functions inherit the this pointer from the scrope of where it is created. This makes what is known as a closure. A closure allows a function to continue referecing its creation scope, even after it has passed out of that scope.
+  * This allows JavaScript to remember the values of variables when the function was created instead of what they are when they are executed.
+ 
+* Debounce function: execute a specified function once within a given time window. Any requests to execute the debounce function more frequently than this will cause the time window to reset. this is important in cases where a user can trigger expensive events thousands of times per second. Without a debound the performance of your application can greatly suffer.
+
+## JavaScript Array:
+* array object has several functions associated with it:
+  * push: add an item to the end of the array
+  * pop: remove an item from the end of the array
+  * slice: return a sub-array
+  * sort: run a function to sort an array in place
+  * Values: creates an iterator for use with a for of loop
+  * Find: find the first item satisfied by a test function
+  * forEach: run a function on each array item
+  * reduce: Run a function to reduce each array item to a single item
+  * map: run a function to map an array to a new array
+  * filter: run a function to remove items
+  * every: run a function to test if all items match
+  * some: run a function to test if any items match
