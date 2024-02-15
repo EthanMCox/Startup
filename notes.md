@@ -729,3 +729,23 @@ This pointer:
   * filter: run a function to remove items
   * every: run a function to test if all items match
   * some: run a function to test if any items match
+
+## JSON: 
+* JSON provides a simple, but effective way to share and store data. jSON is easily convertible to, and from, javaScript objects, making it a very convenient data format when working with web technologies. Because of its simplicity, standardization, and compaibility with JavaScript, JSON has become one of the world's most popular data formats.
+* A JSON document contains one of the following data types:
+  * string
+  * number
+  * boolean
+  * array
+  * object
+  * null
+* JSON is always encoded with UTF-8.
+* You can convert JSON to, and from, JavaScript using the JSON.parse and JSON.stringify functions.
+* JSON cannot represent JavaScript undefined object, so it gets dropped when converting from JavaScript to JSON.
+
+## JavaScript objects and classes:
+* A JavaScript object represents a collection of name value pairs referred to as properties.
+* The property name must be of type String or Symbol, but the value can be of any type. Objects also have common object-oriented functionality such as constructors, a this poitner, static properties and functions, and inheritance.
+* Objects can be created with the new operator. This causes the object's constructor to be called. Once declared you can add new properties to the object by simply referincing the property name in an assignment. Any type of variable can be assigned to a property. This includes a sub-object, array, or function. The properties of an object can be referenced either with dot (obj.prop) or bracket notation (obj['prop']
+* object can refer to standard JavaScript Object object or it can refer to any JavaScript object you create. 
+  
