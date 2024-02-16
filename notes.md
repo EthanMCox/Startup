@@ -747,5 +747,52 @@ This pointer:
 * A JavaScript object represents a collection of name value pairs referred to as properties.
 * The property name must be of type String or Symbol, but the value can be of any type. Objects also have common object-oriented functionality such as constructors, a this poitner, static properties and functions, and inheritance.
 * Objects can be created with the new operator. This causes the object's constructor to be called. Once declared you can add new properties to the object by simply referincing the property name in an assignment. Any type of variable can be assigned to a property. This includes a sub-object, array, or function. The properties of an object can be referenced either with dot (obj.prop) or bracket notation (obj['prop']
-* object can refer to standard JavaScript Object object or it can refer to any JavaScript object you create. 
+* object can refer to standard JavaScript Object object (Promise, Map,, Objecdt, Function, Date...) or it can refer to any JavaScript object you create.
+* Can declare a variable of object type with the objet-literal syntax, allowing you to provide the initial cmposition of the object:
+  * e.g. const obj = { a: 3, b: "fish", };
+  * This is essentially a dictionary
+* Object functions:
+  * Entries: returns an array of key value pairs
+  * Keys: returns an array of keys
+  * Values: returns an array of vlaues
+* Constructor: any function that returns an object is considered a constructor and can be invoked with the new operator.
+* Classes: can be used to define objects. Using a class clarifies the intent to create a reusable component rather than a one-off object. Class declarations look similar to an object but have an explicit constructor and assumed function declarations.
+  * class Person {
+    * construtor(name) { this.name = name;}
+    * log() { console.log("My name is ' + this.name);}}
+* Make properties and functiosn of classes private by prefixing them with a #. e.g. #name
+* Inheritance: Classes can be extended by using the extends keyword to define inheritance. Parameters that need to be passed to the parent class are delivered using the super funciton. Any functions defined on the child that have the same name as the parent override the parent's implementation.
+  * class Employee extends Person {
+    * constructor(name, position) { super(name); this.position = position;} 
+  * Override a parent attribute or function by explicitly redefining it.
+
+## Regular Expressions
+* Built right into JavaScript
+* Can create a regular expression using the class constructor or a regular expression literal.
+* const objRegex - new RegExp('ab*', 'i');
+* const literalRegex = /ab*/i;
+* The string class has several functions that accept regular experessions, including match, replace, search, and split. For a quick test to see if there is a match you can use the regular expression object's test function.
+  * If you had a string called text, you could use text.match(regexobject)
+  * text.replace(petRegex, 'animal');
+  * petregex.test(text)
+* RegEx Flags:
+  * d: generate indices for substring matches
+  * g: global search
+  * i: case-insensitive search
+  * m: allows ^ and $ to match newline characters
+  * s: allows . to match newline characters
+  * u: treat a pattern as a sequence of Unicode code points
+  * v: an upgrade to u mode with more unicode features
+  * y: performa  sticky search that matches starting at the current position in the target string
+ 
+## JavaScript Rest and spread
+* Sometimes you want a function to take an unknown number of parameters. Rest syntax is very useful for this.
+* For example, function hasNumber(test, ...numbers) {return numbers.some((i) === test);}
+  * will take in a number to test and an array of numbers. The ...numbers tells the program to create an array out of the remaining elements after test has been defined with the first element. Then you can run hasNumber with any sequence of numbers, you want.
+* Only the last parameter can be a rest parameter, otherwise JavaScript wouldn't know which parameters to combine into an array
+* Spread: does the opposite of rest. Takes an object that is iterable (array or string) and expands it into a functions parameters
+  * const p = person(...['Ryan', 'Dahl']);
+
+## JavaScript exceptions
+* supports exception handling using the try, catch, and throw syntax. Also finally. 
   
