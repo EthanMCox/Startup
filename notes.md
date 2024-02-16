@@ -794,5 +794,44 @@ This pointer:
   * const p = person(...['Ryan', 'Dahl']);
 
 ## JavaScript exceptions
-* supports exception handling using the try, catch, and throw syntax. Also finally. 
+* supports exception handling using the try, catch, and throw syntax. Also finally.
+
+
+# Lecture 2/16/2024
+* spread operation: take values within an array and spread into some other context. use ...values
+* Rest, handles the rest of possible parameters that you can pass in somewhere.
+* spread is ...someotherobj
+* Optional chain: use x.r?.() which will call the r attribute of x if it exists (? is if r exists). Otherwise use || fallback() function.
+* destructuring:
+  * a = [1, 2]
+  * x = a
+  * \[x] = a will return  1 for \[x]. It takes the first value from a.
+  * could also do \[x, y, z] = a, which will take the first three values (if they exist, otherwise it will take up to the end).
+  * \[x, y, z = 100] will take the first two values, have the third = 100
+  * \[x, ,y, ...z] = \[1,2,3,4,5,6,7] will return the first and third values, then the rest of the array as an array
+  * Destructuring is very useful. I don't know what the user is giving me
+  * syntax of a json file is a map
+  * json.stringify(obj)
+  * json.parse(objText);
+  * between stringify and parse, functions will be lost
+  * don't recommend doing modules in my project (make everything global), react will do modules for me
+## DOM: Document object model
+  * Combination of HTML and CSS being put into a data structure
+  * document is the object representing the top level node of my entire website.
+  * CSS selectors
+  * listelements = document.querySelectorAll('p');
+    * for (const el of listofelements) console.log(el.textcontent)).
+  *  document.querySelector('#t')
+  *  DOM = Document object model
+  *  Be careful with inserting stuff into the document, people can insert javascript (malware) into your code
+  *  Instead do insertChild(selector, text)
+  *  newchild.textContent
+  *  button onclick = "call javascript function"
+  *  Event categories: clipboard, focus, keyboard, mouse, text selection, others
+
+## Local Storage: Saving Data
+* I need a database to call, but for now use localStorage
+* localStorage.setItem('user', user);
+* localStorage.setItem('object', JSON.stringify(myObject)
+* On application tab of inspext, can see all of the local storage data. 
   
