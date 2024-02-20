@@ -795,7 +795,64 @@ This pointer:
 
 ## JavaScript exceptions
 * supports exception handling using the try, catch, and throw syntax. Also finally.
+* Fallback pattern is commonly implemented using exception handling. To implement this, you put the normal feature path in a try block and then provide a fallback implementation in the catch block. For example, normally you would get the high scores for a game by making a network request, but if the network is not available then you can use a locally cached version of the last available scores. By providing a fallback, you can always return something, even if the desired feature is temporarily unavilable. 
 
+## Destructuring
+* Process of pulling indvidual items out of an existing one, or removing structure. Can do this with arrays or objects.
+* const a = \[1,2,4,5]
+* const \[b,c] = a; This takes the first two values from a and assigns them to b and c. 
+* console.log(b,c) will yield 1, 2
+* you can also use rest syntax to combine multiple items from the original object
+  * Ex.: const \[b, c, ...others] = a;
+  * console.log(b,c,others); will yield 1, 2, \[4,5]
+
+## Scope
+* Scope is defined as the variables that are visible in the current context of execution
+* JavaScript has four different types of scope
+  * Global: visible to all code
+  * Module: visible to all code running in a module
+  * Function: visible within a function
+  * Block: visible within a block of code delimited by curly braces
+* initially javascript used var to declar a variable, but var ignores block scope, unlike const or let .Thus, variables declared with var are always logically hoisted to the top of the function.
+* Strongly suggested never to use var
+* This keyword
+  * represents a variable that points to an object that contains the context within the scope of the currently executing line of code. The this variable is automatically declared and you can reference this anywhere in a JavaScript program. Because the value of this depends upon the context in which it is referenced, there are three different contexts that this can refer to.
+    * Global: when this is referenced outside a function or object it refers to the globalThis object. This represents the context for runtime environment.
+    * Function: when this is referenced in a function it refers to the object that owns the function. That is either an object defined by your or glboalThis if the function is defined otuside of an object. Global function's this variable is undefined instead of globalThis when running in JavaScript strict mode
+    * Object: when this is referenced in an object it refers to the object.
+   
+* Closure: defined as a function and its surrounding state. Whatever variables are accessible when a function is created are available inside that function. This holds true even if you pass the function outside of the scope of its original creation.
+
+## Modules   
+* JavaScript modules allow for the partioning and sharing of code.
+* Node.js modules are called CommonJS modules and JavaScript modules are called ES modules
+* Modules create a file-based scope for the code they represent, so you must explicitly export the objects from one file and the import them into another file.
+* modules can only be called from other modules.
+* From HTML, you can specify that you are using an ES module by including a type attribute with the value of module in the script element.
+* When using web framework bundler, you usually don't need to worry about differentiating between global scope and ES module scope. The bundler will inect all necessary syntax to connect HTML to your modules.
+
+## Document Object Model (DOM)
+* DOM is an object representation of the HTML elements that the browser uses to render the display.
+* Browser provides access to the DOM through a global variable name document that points to the root element of the DOM. If you open the browser's debugger consle window and type the variable name document you will see the DOM for the document the browser is currently rendering.
+* Every element in an HTML document implements the DOM element interface.
+* function displayElement(el) {
+* console.log(el.tagName);
+* for (const child of el.childre) {
+* displayElement(child);}}
+* displayElement(document)
+* Use document.querySelectorAll('p'); This will select elements from the document. The textcontent property contains all of the element's text.
+* Modifying the DOM
+  * ability to insert, modify, or delete elements in the DOM. First create a new element on the DOM document. You then insert the new element into the DOM tree by appending it to an existing element in the tree.
+  * function insertChild(parentSelector, text)
+  * insertChild('#courses', 'new course');
+  * deleteElement(elementSelector)
+  * deleteElement('#courses div');
+* Injecting HTML
+  * DOM allows you to inect entire blocks of HTML into an element. However, this is a common attack vector for hackers. if an untrusted party can inject javascript anywhere in your application then that javascript can represent itself as the current user of the application. Attacker can then make requests for sensitive data, monitor activity, and steal credentials.
+  * If injecting HTML, make sure it can't be manipulated by a user. sanitize any HTML that contains variables or simply use DOM manipulation functions instead of using innerHTML.
+ 
+Event Listeners:
+* 
 
 # Lecture 2/16/2024
 * spread operation: take values within an array and spread into some other context. use ...values
@@ -833,5 +890,8 @@ This pointer:
 * I need a database to call, but for now use localStorage
 * localStorage.setItem('user', user);
 * localStorage.setItem('object', JSON.stringify(myObject)
-* On application tab of inspext, can see all of the local storage data. 
+* On application tab of inspext, can see all of the local storage data.
+
+
+
   
