@@ -892,6 +892,38 @@ Event Listeners:
 * localStorage.setItem('object', JSON.stringify(myObject)
 * On application tab of inspext, can see all of the local storage data.
 
+# Lecture 2/20/2024
+## Promises
+* Rendering of HTML page is single-threaded, meaning it is only executing one thing at once.
+* Everything in JavaScript must be asynchronous (because if it's not, running simple functions can lock up the page due to single-threading).
+* Pending = currently running asynchronously
+* fulfilled = completed successfully
+* rejected = failed to complete
+* to create a promise, do: new Promise((resolve, reject) => resolve(true));
+* promise has a prototype: promise, promisestate: fulfilled, promiseresult: true
+* resolve is the function to call that does the work of the function
 
+* Function callback(resolve, reject) { resolve('done');
+* const p = new Promise(callback);
+* p.then((resolve_result_ => console.log(resolve_result)); //when callback resolves, then call this.
+Promise sytanx:
+* .then (result) => console.log...
+* .catch((err) ...
+* .finally (()...
+
+await syntax:
+* try {
+* const result = await toosCoin; (will block until it resolves or rejects
+* console.log(...)
+* }
+* catch (err) {...}
+* finally {...}
+
+* rule for using await
+  * top level module function
+  * or called from an async function
+ 
+* async will auto-generate a promise if not explicitly returned.
+*  
 
   
