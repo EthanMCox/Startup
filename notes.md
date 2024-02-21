@@ -973,6 +973,15 @@ await syntax:
   * or called from an async function
  
 * async will auto-generate a promise if not explicitly returned.
-*  
+
+# Lecture 2/21/2024 Debugging JavaScript
+* How to debug JavaScript
+1. Console.log debugging
+2. source debugging
+* If JavaScript isn't working as expected, use console debugger
+* Console will link me directly to where the JavaScript error is
+* SetInterval function in Simon is similar to setTimer, injects every 5 seconds. 
+
+
 
   
