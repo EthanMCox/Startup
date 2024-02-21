@@ -52,4 +52,4 @@ For this deliverable I added styling elements to my application using CSS.
 * Responsive to window resizing: My app resizes appropriately to fit on various screen sizes and devices.
 * Application elements: Uses good contrast and whitespace. 
 * Application text content: consistent fonts
-* Application images: Styling added to the about page image to have slight shadow around it. Also changed the base image. Styling also aded to cards on play page using grid and card class from bootstrap. 
+* Application images: Styling added to the about page image to have slight shadow around it. Also changed the base image. Styling also added to cards on play page using grid and card class from bootstrap. 

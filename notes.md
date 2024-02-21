@@ -591,4 +591,388 @@ Bootstrap:
   * arrow functions (very similar to lambda functions)
     * const arrow = () => 1;
     * const arrowWithBlock = (a) => { a; }; (when done this way, you need to specify what you are returning)
-  * dup() function (kind of like higher order function 
+  * dup() function (kind of like higher order function
+ 
+# Lecture 2/14/2024 More JavaScript
+* let s = "Cats Dogs Rats Mice';
+  * is equivalent to:
+  * s = new String('Cats Dogs Rats Mice');
+* console.log('casefold ', .toUpperCase(), s.toLowerCase());
+* split function
+* endsWith function
+* replace function
+* slice function:
+  * console.log('slice: ', s.slice(3,7));
+* regex functionality
+  * const objRegex = new ReExp('cat.?', 'i')
+  * const literalRegex = /cat.?/i;
+  * the i is a flag that tells how to parse it.
+* use regex for my username/password in my website
+* regex replacement
+* Arrays: let numbers = []
+  * Use push to push a value into the array
+  * Mapping to arrays: numbers.map((n) => n * 100) will take every value in the array and multiply it by 100.
+  * Reduce function: numbers.reduce((a, c) => a + c). a is the accumulator (current accumulated value) and c is the current value (the next to be accumulated).
+  * ForEach function: numbers.forEach((n) => console.log(n % 2))
+  * numbers.filter((n) => n % 2)) Filters out anything that is even.
+  * numbers.some((n) => n > 5)) returns a boolean true or false if there is something that meets the condition.
+ 
+* try catch finally block. Can have just try and finally.
+
+* Template literals:
+  * like an f string in python
+  * console.log(`Template ${'lite' + 'rals'}! ${hello(name)}`;
+  * returns "Template literals! hola amigo"
+ 
+* Truthy vs falsy vs. nullish
+  * null and undefined are nullish
+  * ?? checks for non null values. similar to how || will return the first thing that is truthy and not falsy.
+  * short circuit with nullish coalescing
+  * let z;
+  * z ?? (z = x);
+  * y ??= 30;
+
+# JavaScript Notes:
+* With CodePen you can write whatever JavaScript you would like and immediately see the results.
+## JavaScript Console:
+*  Provides interaction with JavaScript runtime's debugger console. This is different that operating systems console (terminal/command line).
+* log: basic usage of the console object is to output a log message.
+* console.log('hello');
+* create formatted messages in the log output
+  * console.log('hello %s', 'world');
+* can also specify CSS declarations to style the log output
+  * console.log('%c JavaScript Demo', 'font-size:1.5em; color:green;');
+* Timers: If you want to see how long a piece of code is running you can wrap it with time and timeEnd calls and it will output the duration between the time and timeEnd calls.
+  * console.time('demo time');
+  * ...code
+  * console.timeEnd('demo time');
+* To see how many times a block of code is called you can use the count function
+  * console.count('a');
+  * console.count('a'); then this will return 2. substitute a for a given function, element, etc. 
+  * console.count'b');
+
+## Adding JavaScript to HTML:
+* you can insert HTML either by directly including it in the HTML within the content of a \<script> element, or by using the src attribute of the script element to reference an external JavaScript file.
+* function sayHello() {console.log('hello');}
+* \<script> src="javascript.js"> /</script> /</head>
+
+## JavaScript type and construct
+* let x = 1
+* const y = 2
+* Several primitive types:
+  * Null: has not been assigned a value
+  * Undefined: type of variable that has not been defined
+  * Boolean: true/false
+  * Number: 64 bit signed number
+  * BigInt: a number of arbitrary magnitude
+  * String: a textual sequence of characters
+  * Symbol: A unique value
+ 
+* In addtion to primitive types, there are a few object types
+  * Object
+  * Function
+  * Date
+  * Array
+  * Map
+  * JSON
+ 
+* JavaScript is weakly typed.
+
+# String functions
+* The string objects has several interesting functions associated with it.
+  * length: number of charactres in the sstring
+  * indexOf(): The starting index of a given substring
+  * split(): Split the string into an array on the given delimiter string
+  * startsWith(): True if the string has a given prefix
+  * endsWith() true if the string has a given suffix
+  * toLowerCase() converts all characters to lowercase.
+ 
+## Functions:
+* javaScript functions are first class objects, meaning they can be assigned to a name, passed as a parameter, returned as a result, and referenced from an object or array just like any other variable.
+* No type declarations
+
+Functon parameters:
+* When a function is called, the caller may choose what parameters to provide. If a parameter is not provided then the value of the parameters is undefined when the function executes.
+
+Anonymous functions:
+* Functions in JavaScript are commonly assigned to a variable so that they can be passed as a parameter to some other function or stored as an object property. To support this you can define a function anonymously and assign it to a variable.
+* An anonymous function is one assigned to a variable.
+
+Creating, passing, and returning functions:
+* can also use functions as parameters and return values.
+* functions can be declared insie other functions, allowing you to modularize your code without always exposing private details.
+
+## JavaScript arrow function:
+* because functions are first order objects in JavaScript, they can be declared anywhere and passed as parameters, resulting in code with lots of anonymous functions cluttering things up. To make code more compact the arrow syntax was created, replacing the need for the function keyword with the symbols => placed after the paramter declaration.
+* () => 3; this is a function in arrow syntax that always returns 3.
+* Equivalent functions:
+  * a.sort(function (v1, v2) {return v1-v2;});
+  * a.sort((v1,v2) => v1-v2); this is an arrow function.
+ 
+This pointer:
+* arrow functions inherit the this pointer from the scrope of where it is created. This makes what is known as a closure. A closure allows a function to continue referecing its creation scope, even after it has passed out of that scope.
+  * This allows JavaScript to remember the values of variables when the function was created instead of what they are when they are executed.
+ 
+* Debounce function: execute a specified function once within a given time window. Any requests to execute the debounce function more frequently than this will cause the time window to reset. this is important in cases where a user can trigger expensive events thousands of times per second. Without a debound the performance of your application can greatly suffer.
+
+## JavaScript Array:
+* array object has several functions associated with it:
+  * push: add an item to the end of the array
+  * pop: remove an item from the end of the array
+  * slice: return a sub-array
+  * sort: run a function to sort an array in place
+  * Values: creates an iterator for use with a for of loop
+  * Find: find the first item satisfied by a test function
+  * forEach: run a function on each array item
+  * reduce: Run a function to reduce each array item to a single item
+  * map: run a function to map an array to a new array
+  * filter: run a function to remove items
+  * every: run a function to test if all items match
+  * some: run a function to test if any items match
+
+## JSON: 
+* JSON provides a simple, but effective way to share and store data. jSON is easily convertible to, and from, javaScript objects, making it a very convenient data format when working with web technologies. Because of its simplicity, standardization, and compaibility with JavaScript, JSON has become one of the world's most popular data formats.
+* A JSON document contains one of the following data types:
+  * string
+  * number
+  * boolean
+  * array
+  * object
+  * null
+* JSON is always encoded with UTF-8.
+* You can convert JSON to, and from, JavaScript using the JSON.parse and JSON.stringify functions.
+* JSON cannot represent JavaScript undefined object, so it gets dropped when converting from JavaScript to JSON.
+
+## JavaScript objects and classes:
+* A JavaScript object represents a collection of name value pairs referred to as properties.
+* The property name must be of type String or Symbol, but the value can be of any type. Objects also have common object-oriented functionality such as constructors, a this poitner, static properties and functions, and inheritance.
+* Objects can be created with the new operator. This causes the object's constructor to be called. Once declared you can add new properties to the object by simply referincing the property name in an assignment. Any type of variable can be assigned to a property. This includes a sub-object, array, or function. The properties of an object can be referenced either with dot (obj.prop) or bracket notation (obj['prop']
+* object can refer to standard JavaScript Object object (Promise, Map,, Objecdt, Function, Date...) or it can refer to any JavaScript object you create.
+* Can declare a variable of object type with the objet-literal syntax, allowing you to provide the initial cmposition of the object:
+  * e.g. const obj = { a: 3, b: "fish", };
+  * This is essentially a dictionary
+* Object functions:
+  * Entries: returns an array of key value pairs
+  * Keys: returns an array of keys
+  * Values: returns an array of vlaues
+* Constructor: any function that returns an object is considered a constructor and can be invoked with the new operator.
+* Classes: can be used to define objects. Using a class clarifies the intent to create a reusable component rather than a one-off object. Class declarations look similar to an object but have an explicit constructor and assumed function declarations.
+  * class Person {
+    * construtor(name) { this.name = name;}
+    * log() { console.log("My name is ' + this.name);}}
+* Make properties and functiosn of classes private by prefixing them with a #. e.g. #name
+* Inheritance: Classes can be extended by using the extends keyword to define inheritance. Parameters that need to be passed to the parent class are delivered using the super funciton. Any functions defined on the child that have the same name as the parent override the parent's implementation.
+  * class Employee extends Person {
+    * constructor(name, position) { super(name); this.position = position;} 
+  * Override a parent attribute or function by explicitly redefining it.
+
+## Regular Expressions
+* Built right into JavaScript
+* Can create a regular expression using the class constructor or a regular expression literal.
+* const objRegex - new RegExp('ab*', 'i');
+* const literalRegex = /ab*/i;
+* The string class has several functions that accept regular experessions, including match, replace, search, and split. For a quick test to see if there is a match you can use the regular expression object's test function.
+  * If you had a string called text, you could use text.match(regexobject)
+  * text.replace(petRegex, 'animal');
+  * petregex.test(text)
+* RegEx Flags:
+  * d: generate indices for substring matches
+  * g: global search
+  * i: case-insensitive search
+  * m: allows ^ and $ to match newline characters
+  * s: allows . to match newline characters
+  * u: treat a pattern as a sequence of Unicode code points
+  * v: an upgrade to u mode with more unicode features
+  * y: performa  sticky search that matches starting at the current position in the target string
+ 
+## JavaScript Rest and spread
+* Sometimes you want a function to take an unknown number of parameters. Rest syntax is very useful for this.
+* For example, function hasNumber(test, ...numbers) {return numbers.some((i) === test);}
+  * will take in a number to test and an array of numbers. The ...numbers tells the program to create an array out of the remaining elements after test has been defined with the first element. Then you can run hasNumber with any sequence of numbers, you want.
+* Only the last parameter can be a rest parameter, otherwise JavaScript wouldn't know which parameters to combine into an array
+* Spread: does the opposite of rest. Takes an object that is iterable (array or string) and expands it into a functions parameters
+  * const p = person(...['Ryan', 'Dahl']);
+
+## JavaScript exceptions
+* supports exception handling using the try, catch, and throw syntax. Also finally.
+* Fallback pattern is commonly implemented using exception handling. To implement this, you put the normal feature path in a try block and then provide a fallback implementation in the catch block. For example, normally you would get the high scores for a game by making a network request, but if the network is not available then you can use a locally cached version of the last available scores. By providing a fallback, you can always return something, even if the desired feature is temporarily unavilable. 
+
+## Destructuring
+* Process of pulling indvidual items out of an existing one, or removing structure. Can do this with arrays or objects.
+* const a = \[1,2,4,5]
+* const \[b,c] = a; This takes the first two values from a and assigns them to b and c. 
+* console.log(b,c) will yield 1, 2
+* you can also use rest syntax to combine multiple items from the original object
+  * Ex.: const \[b, c, ...others] = a;
+  * console.log(b,c,others); will yield 1, 2, \[4,5]
+
+## Scope
+* Scope is defined as the variables that are visible in the current context of execution
+* JavaScript has four different types of scope
+  * Global: visible to all code
+  * Module: visible to all code running in a module
+  * Function: visible within a function
+  * Block: visible within a block of code delimited by curly braces
+* initially javascript used var to declar a variable, but var ignores block scope, unlike const or let .Thus, variables declared with var are always logically hoisted to the top of the function.
+* Strongly suggested never to use var
+* This keyword
+  * represents a variable that points to an object that contains the context within the scope of the currently executing line of code. The this variable is automatically declared and you can reference this anywhere in a JavaScript program. Because the value of this depends upon the context in which it is referenced, there are three different contexts that this can refer to.
+    * Global: when this is referenced outside a function or object it refers to the globalThis object. This represents the context for runtime environment.
+    * Function: when this is referenced in a function it refers to the object that owns the function. That is either an object defined by your or glboalThis if the function is defined otuside of an object. Global function's this variable is undefined instead of globalThis when running in JavaScript strict mode
+    * Object: when this is referenced in an object it refers to the object.
+   
+* Closure: defined as a function and its surrounding state. Whatever variables are accessible when a function is created are available inside that function. This holds true even if you pass the function outside of the scope of its original creation.
+
+## Modules   
+* JavaScript modules allow for the partioning and sharing of code.
+* Node.js modules are called CommonJS modules and JavaScript modules are called ES modules
+* Modules create a file-based scope for the code they represent, so you must explicitly export the objects from one file and the import them into another file.
+* modules can only be called from other modules.
+* From HTML, you can specify that you are using an ES module by including a type attribute with the value of module in the script element.
+* When using web framework bundler, you usually don't need to worry about differentiating between global scope and ES module scope. The bundler will inect all necessary syntax to connect HTML to your modules.
+
+## Document Object Model (DOM)
+* DOM is an object representation of the HTML elements that the browser uses to render the display.
+* Browser provides access to the DOM through a global variable name document that points to the root element of the DOM. If you open the browser's debugger consle window and type the variable name document you will see the DOM for the document the browser is currently rendering.
+* Every element in an HTML document implements the DOM element interface.
+* function displayElement(el) {
+* console.log(el.tagName);
+* for (const child of el.childre) {
+* displayElement(child);}}
+* displayElement(document)
+* Use document.querySelectorAll('p'); This will select elements from the document. The textcontent property contains all of the element's text.
+* Modifying the DOM
+  * ability to insert, modify, or delete elements in the DOM. First create a new element on the DOM document. You then insert the new element into the DOM tree by appending it to an existing element in the tree.
+  * function insertChild(parentSelector, text)
+  * insertChild('#courses', 'new course');
+  * deleteElement(elementSelector)
+  * deleteElement('#courses div');
+* Injecting HTML
+  * DOM allows you to inect entire blocks of HTML into an element. However, this is a common attack vector for hackers. if an untrusted party can inject javascript anywhere in your application then that javascript can represent itself as the current user of the application. Attacker can then make requests for sensitive data, monitor activity, and steal credentials.
+  * If injecting HTML, make sure it can't be manipulated by a user. sanitize any HTML that contains variables or simply use DOM manipulation functions instead of using innerHTML.
+ 
+Event listeners:
+* All DOM elements support the ability to attach a function that gets called when an event occurs on the element. These functions are called event listerners.
+  * clipboard: cut, copied, and pasted
+  * focus: an element gets focus
+  * keyboard: keys are pressed
+  * mouse: click events
+  * text selection: when text is selected
+ 
+* event listeners can also be added directly in the HTML. 
+ 
+## Local Storage:
+* Four main functions that can be used with localStorage:
+  * setItem(name, value): sets a named item's value into local storage
+  * getItem(name): Gets a named item's value from local storage
+  * removeItem(name): Removes a named item from local storage
+  * clear(): clears all items in local storage
+* browser's localStorage API provides ability to persistently store and retrieve data (scores, usernmaes, etc.) on a user's browser across user sessions and HTML page renderings.
+* localStorage is also used as a cache for when data cannot be obtained from the server. For example, frontend JavaScript could store the last high scores obtained from the service, and then display those scores in the future if the service is not available.
+
+## Promises
+* The rendering thread of HTML executes on a single threaded, meaning that you can't take a long time processing JavaScript on the main rendering thread. Long running, or blocking tasks, should be executed with the use of a JavaScript Promise. The execution of a promise allows the main rendering thread to continue while some action is executed in the background. You create a promise by calling the Promise object constructor and passing it an executor function that runs the asynchronous operation.
+* Executing asynchronously means that promise constructor may return before the promise executor function runs. The state of promise execution is always in one of three states:
+  * Pending: currently running asynchronously
+  * fulfilled: completed successfully
+  * rejected: failed to complete
+* JavaScript has a setTimeout function that creates a delay in the execution of the code. It takes the number of milliseconds to await and a function to call after that amount of time has expired.
+* Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value
+* Resolving and rejecting
+  * Need to be able to set the state to fulfilled when things complete correctly, or to rejected when an error happens.
+  * Promise executor function takes two functions as parameters, resolve and reject. Calling resolve sets the promise to the fulfilled state, and calling reject sets the promise to the rejected state.
+* Then, catch, finally
+  * Promise object has three functions: then, catch, and finally. The then function is called if the promise is fulfilled, catch is called if the promise is rejected, and finally is always called after all the processing is completed.
+ 
+## Async/Await
+* Larger systems are helped by more concise representation of promises. This is provided by async/await syntax.
+* await keyword wraps the execution of a promise and removed the need to chain functions. The await expression will block until the promise state moves to fulfilled, or throws an exception if the state moves to rejected.
+
+Async, try/catch version:
+try {
+  const result = await coinToss();
+  console.log(`Toss result ${result}`);
+} catch (err) {
+  console.error(`Error: ${err}`);
+} finally {
+  console.log(`Toss completed`);
+}
+
+* Await cannot be called unless it is called at the top level of the JavaScript, or is in a function that is defined with the async keyword.
+* Applying async keyword transforms the function so that it returns a promise that will resolve to the value that was previously returned by the function. Basically, this turns any function into an asynchronous function, so that it can in turn make asynchronous requests.
+* Async keyword declares that a function returns a promise. The await keyword wraps a call to the async function, blocks execution until the promise has resolved, and then returns the result of the promise.
+* combine async with await to create code that is asynchronous but still maintains the flow of code without explicitly using callbacks. 
+
+# Lecture 2/16/2024
+* spread operation: take values within an array and spread into some other context. use ...values
+* Rest, handles the rest of possible parameters that you can pass in somewhere.
+* spread is ...someotherobj
+* Optional chain: use x.r?.() which will call the r attribute of x if it exists (? is if r exists). Otherwise use || fallback() function.
+* destructuring:
+  * a = [1, 2]
+  * x = a
+  * \[x] = a will return  1 for \[x]. It takes the first value from a.
+  * could also do \[x, y, z] = a, which will take the first three values (if they exist, otherwise it will take up to the end).
+  * \[x, y, z = 100] will take the first two values, have the third = 100
+  * \[x, ,y, ...z] = \[1,2,3,4,5,6,7] will return the first and third values, then the rest of the array as an array
+  * Destructuring is very useful. I don't know what the user is giving me
+  * syntax of a json file is a map
+  * json.stringify(obj)
+  * json.parse(objText);
+  * between stringify and parse, functions will be lost
+  * don't recommend doing modules in my project (make everything global), react will do modules for me
+## DOM: Document object model
+  * Combination of HTML and CSS being put into a data structure
+  * document is the object representing the top level node of my entire website.
+  * CSS selectors
+  * listelements = document.querySelectorAll('p');
+    * for (const el of listofelements) console.log(el.textcontent)).
+  *  document.querySelector('#t')
+  *  DOM = Document object model
+  *  Be careful with inserting stuff into the document, people can insert javascript (malware) into your code
+  *  Instead do insertChild(selector, text)
+  *  newchild.textContent
+  *  button onclick = "call javascript function"
+  *  Event categories: clipboard, focus, keyboard, mouse, text selection, others
+
+## Local Storage: Saving Data
+* I need a database to call, but for now use localStorage
+* localStorage.setItem('user', user);
+* localStorage.setItem('object', JSON.stringify(myObject)
+* On application tab of inspect, can see all of the local storage data.
+
+# Lecture 2/20/2024
+## Promises
+* Rendering of HTML page is single-threaded, meaning it is only executing one thing at once.
+* Everything in JavaScript must be asynchronous (because if it's not, running simple functions can lock up the page due to single-threading).
+* Pending = currently running asynchronously
+* fulfilled = completed successfully
+* rejected = failed to complete
+* to create a promise, do: new Promise((resolve, reject) => resolve(true));
+* promise has a prototype: promise, promisestate: fulfilled, promiseresult: true
+* resolve is the function to call that does the work of the function
+
+* Function callback(resolve, reject) { resolve('done');
+* const p = new Promise(callback);
+* p.then((resolve_result_ => console.log(resolve_result)); //when callback resolves, then call this.
+Promise sytanx:
+* .then (result) => console.log...
+* .catch((err) ...
+* .finally (()...
+
+await syntax:
+* try {
+* const result = await toosCoin; (will block until it resolves or rejects
+* console.log(...)
+* }
+* catch (err) {...}
+* finally {...}
+
+* rule for using await
+  * top level module function
+  * or called from an async function
+ 
+* async will auto-generate a promise if not explicitly returned.
+*  
+
+  
