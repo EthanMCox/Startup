@@ -851,8 +851,57 @@ This pointer:
   * DOM allows you to inect entire blocks of HTML into an element. However, this is a common attack vector for hackers. if an untrusted party can inject javascript anywhere in your application then that javascript can represent itself as the current user of the application. Attacker can then make requests for sensitive data, monitor activity, and steal credentials.
   * If injecting HTML, make sure it can't be manipulated by a user. sanitize any HTML that contains variables or simply use DOM manipulation functions instead of using innerHTML.
  
-Event Listeners:
-* 
+Event listeners:
+* All DOM elements support the ability to attach a function that gets called when an event occurs on the element. These functions are called event listerners.
+  * clipboard: cut, copied, and pasted
+  * focus: an element gets focus
+  * keyboard: keys are pressed
+  * mouse: click events
+  * text selection: when text is selected
+ 
+* event listeners can also be added directly in the HTML. 
+ 
+## Local Storage:
+* Four main functions that can be used with localStorage:
+  * setItem(name, value): sets a named item's value into local storage
+  * getItem(name): Gets a named item's value from local storage
+  * removeItem(name): Removes a named item from local storage
+  * clear(): clears all items in local storage
+* browser's localStorage API provides ability to persistently store and retrieve data (scores, usernmaes, etc.) on a user's browser across user sessions and HTML page renderings.
+* localStorage is also used as a cache for when data cannot be obtained from the server. For example, frontend JavaScript could store the last high scores obtained from the service, and then display those scores in the future if the service is not available.
+
+## Promises
+* The rendering thread of HTML executes on a single threaded, meaning that you can't take a long time processing JavaScript on the main rendering thread. Long running, or blocking tasks, should be executed with the use of a JavaScript Promise. The execution of a promise allows the main rendering thread to continue while some action is executed in the background. You create a promise by calling the Promise object constructor and passing it an executor function that runs the asynchronous operation.
+* Executing asynchronously means that promise constructor may return before the promise executor function runs. The state of promise execution is always in one of three states:
+  * Pending: currently running asynchronously
+  * fulfilled: completed successfully
+  * rejected: failed to complete
+* JavaScript has a setTimeout function that creates a delay in the execution of the code. It takes the number of milliseconds to await and a function to call after that amount of time has expired.
+* Promise object represents the eventual completion (or failure) of an asynchronous operation and its resulting value
+* Resolving and rejecting
+  * Need to be able to set the state to fulfilled when things complete correctly, or to rejected when an error happens.
+  * Promise executor function takes two functions as parameters, resolve and reject. Calling resolve sets the promise to the fulfilled state, and calling reject sets the promise to the rejected state.
+* Then, catch, finally
+  * Promise object has three functions: then, catch, and finally. The then function is called if the promise is fulfilled, catch is called if the promise is rejected, and finally is always called after all the processing is completed.
+ 
+## Async/Await
+* Larger systems are helped by more concise representation of promises. This is provided by async/await syntax.
+* await keyword wraps the execution of a promise and removed the need to chain functions. The await expression will block until the promise state moves to fulfilled, or throws an exception if the state moves to rejected.
+
+Async, try/catch version:
+try {
+  const result = await coinToss();
+  console.log(`Toss result ${result}`);
+} catch (err) {
+  console.error(`Error: ${err}`);
+} finally {
+  console.log(`Toss completed`);
+}
+
+* Await cannot be called unless it is called at the top level of the JavaScript, or is in a function that is defined with the async keyword.
+* Applying async keyword transforms the function so that it returns a promise that will resolve to the value that was previously returned by the function. Basically, this turns any function into an asynchronous function, so that it can in turn make asynchronous requests.
+* Async keyword declares that a function returns a promise. The await keyword wraps a call to the async function, blocks execution until the promise has resolved, and then returns the result of the promise.
+* combine async with await to create code that is asynchronous but still maintains the flow of code without explicitly using callbacks. 
 
 # Lecture 2/16/2024
 * spread operation: take values within an array and spread into some other context. use ...values
@@ -890,7 +939,7 @@ Event Listeners:
 * I need a database to call, but for now use localStorage
 * localStorage.setItem('user', user);
 * localStorage.setItem('object', JSON.stringify(myObject)
-* On application tab of inspext, can see all of the local storage data.
+* On application tab of inspect, can see all of the local storage data.
 
 # Lecture 2/20/2024
 ## Promises
