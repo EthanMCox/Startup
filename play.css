@@ -61,6 +61,10 @@
   margin: 0;
   perspective: 1000px;
   position: relative;
+  border: none;
+  padding: 0;
+  flex-grow: 1;
+  background: transparent;
 }
 
 .card-inner {
