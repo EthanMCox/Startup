@@ -21,11 +21,18 @@ class Game {
 
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = this.getPlayerName();
+    this.updateScore(0);
+  }
+
+  updateScore(score) {
+    const scoreEl = document.querySelector('#score');
+    scoreEl.value = score;
   }
 
   getPlayerName() {
     return localStorage.getItem('userName') ?? 'Mystery Player';
   }
+
 
 
 }
