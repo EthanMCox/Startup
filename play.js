@@ -40,12 +40,11 @@ class Game {
     // Get the scores from local storage
     const scoresText = localStorage.getItem('scores');
     // If there are scores in local storage, replace the empty array with those scores
-    console.log(scoresText);
-    debugger;
-    if (scoresText !== null && scoresText !== undefined) {
+    if (!!scoresText && scoresText !== "undefined") {
       scores = JSON.parse(scoresText);
     }
     // Update the scores array based on the current user's new score
+    debugger;
     scores = this.updateScores(username, score, scores);
     localStorage.setItem('scores', JSON.stringify(scores));
   }
