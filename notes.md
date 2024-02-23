@@ -982,6 +982,19 @@ await syntax:
 * Console will link me directly to where the JavaScript error is
 * SetInterval function in Simon is similar to setTimer, injects every 5 seconds. 
 
-
+# Kahoot 2/23/2024:
+* sudo deploy.sh
+* ls -la: list long, find the 
+* chmod +x deploy.sh: sets a file to be executable
+* ssh deploy.sh
+* JSON: key is always a string: \{"x":3}
+* querySelector('p') only targets one 'p' element, queryselectorall('p') selects all elements
+* div stands for division.
+* CNAME: An alias that points to another DNS record
+* A record maps hosts name to address
+* SOA: Startup authority: who is dns registrar
+* TXT: stick text in and associate it with a hostname
+* /A|f/ is the regex, i is a toggle for noncapitalization
+* 
 
   
