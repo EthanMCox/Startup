@@ -64,16 +64,15 @@ class Game {
         found = true;
         break;
       }
-      // If the score hasn't already been inserted, insert it at the end of the list
-      if (!found) {
-        scores.push(newScore);
-      }
+    }
+    // If the score hasn't already been inserted, insert it at the end of the list
+    if (!found) {
+      scores.push(newScore);
+    }
 
-      // If the list is longer than 10, cut it off at 10
-      if (scores.length > 10) {
-        scores.length = 10;
-      }
-
+    // If the list is longer than 10, cut it off at 10
+    if (scores.length > 10) {
+      scores.length = 10;
     }
     return scores;
   }
