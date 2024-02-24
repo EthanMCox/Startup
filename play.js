@@ -30,6 +30,8 @@ const backtexts = [
   {text: "H"}
 ]
 
+let shuffled = backtexts.sort(() => Math.random() - 0.5);
+
 class Card {
   constructor() {
     this.card = card;
@@ -72,7 +74,6 @@ class Game {
       scores = JSON.parse(scoresText);
     }
     // Update the scores array based on the current user's new score
-    debugger;
     scores = this.updateScores(username, score, scores);
     localStorage.setItem('scores', JSON.stringify(scores));
   }
@@ -116,7 +117,7 @@ class Game {
 }
 
 const game = new Game();
-
+console.log(shuffled);
 
 
 
