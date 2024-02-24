@@ -11,6 +11,8 @@
 
 // });
 
+let game;
+
 const backtexts = [
   {letter: "A"},
   {letter: "B"},
@@ -18,16 +20,13 @@ const backtexts = [
   {letter: "D"},
   {letter: "E"},
   {letter: "F"},
-  {letter: "G"},
-  {letter: "H"},
   {letter: "A"},
   {letter: "B"},
   {letter: "C"},
   {letter: "D"},
-  {letter: "E"},
-  {letter: "F"},
-  {letter: "G"},
-  {letter: "H"}
+  {letter: "E"}
+  // {letter: "E"},
+  // {letter: "F"},
 ]
 
 // Later, add a function in the game to generate a new randomly sorted list
@@ -142,12 +141,12 @@ class Game {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  const game = new Game();
-  console.log(shuffled);
+  game = new Game();
 });
 
-// const game = new Game();
-// console.log(shuffled);
+// document.getElementById('reset').addEventListener('click', () => {
+//   game.reset();
+// });
 
 
 
