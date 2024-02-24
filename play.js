@@ -41,8 +41,8 @@ class Card {
     this.allowFlip = true;
     this.cardInner = el.querySelector('.card-inner');
     el.addEventListener("click", () => {
-      flipcard();
-      // this.cardInner.classList.toggle("flipped"); //add this to the flipcard function
+      console.log("Card clicked:", this);
+      game.flipcard(this);
     });
     this.updateBack();
   }
@@ -61,10 +61,18 @@ class Game {
 
   constructor() {
     this.allowPlayer = false;
+    this.cards = new Map();
+
+    document.querySelectorAll('.card').forEach((el, i) => {
+      if (i < shuffled.length) {
+        this.cards.set(el.id, new Card(shuffled[i].letter, el));
+      }
+    
+    })
 
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = this.getPlayerName();
-    this.saveScore(5);
+    // this.saveScore(6); // For testing save score functionality
   }
 
   updateScore(score) {
@@ -89,6 +97,10 @@ class Game {
     // Update the scores array based on the current user's new score
     scores = this.updateScores(username, score, scores);
     localStorage.setItem('scores', JSON.stringify(scores));
+  }
+
+  flipcard(card) {
+    card.el.querySelector('.card-inner').classList.toggle("flipped"); 
   }
 
   updateScores(username, score, scores) {
@@ -129,8 +141,13 @@ class Game {
 
 }
 
-const game = new Game();
-console.log(shuffled);
+document.addEventListener('DOMContentLoaded', () => {
+  const game = new Game();
+  console.log(shuffled);
+});
+
+// const game = new Game();
+// console.log(shuffled);
 
 
 
@@ -141,6 +158,6 @@ console.log(shuffled);
 // `<div class="event"><span class="player-event">Someone</span> scored ${score}</div>` + chatText.innerHTML;
 // }, 20000);
 
-const cardElement = document.getElementById('card1');
-const cardInstance = new Card('B', cardElement);
+// const cardElement = document.getElementById('card1'); // For testing letter insertion
+// const cardInstance = new Card('B', cardElement);
 
