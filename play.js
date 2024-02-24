@@ -11,7 +11,35 @@
 
 // });
 
+const backtexts = [
+  {text: "A"},
+  {text: "B"},
+  {text: "C"},
+  {text: "D"},
+  {text: "E"},
+  {text: "F"},
+  {text: "G"},
+  {text: "H"},
+  {text: "A"},
+  {text: "B"},
+  {text: "C"},
+  {text: "D"},
+  {text: "E"},
+  {text: "F"},
+  {text: "G"},
+  {text: "H"}
+]
 
+class Card {
+  constructor() {
+    this.card = card;
+    this.cardInner = card.querySelector('.card-inner');
+    card.addEventListener("click", () => {
+      this.cardInner.classList.toggle("flipped");
+    });
+  }
+
+}
 
 class Game {
   allowPlayer;
