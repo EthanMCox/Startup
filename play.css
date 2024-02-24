@@ -78,9 +78,9 @@
 
 }
 
-/* .card:hover .card-inner {
+.card:hover .card-inner {
   transform: rotateY(180deg);
-} */
+}
 
 .card .card-inner.flipped {
   transform: rotateY(180deg);
@@ -110,7 +110,7 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) rotateY(180deg);
+  transform: translate(-50%, -50%);
   z-index: 1;
 }
 

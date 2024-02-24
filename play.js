@@ -12,39 +12,52 @@
 // });
 
 const backtexts = [
-  {text: "A"},
-  {text: "B"},
-  {text: "C"},
-  {text: "D"},
-  {text: "E"},
-  {text: "F"},
-  {text: "G"},
-  {text: "H"},
-  {text: "A"},
-  {text: "B"},
-  {text: "C"},
-  {text: "D"},
-  {text: "E"},
-  {text: "F"},
-  {text: "G"},
-  {text: "H"}
+  {letter: "A"},
+  {letter: "B"},
+  {letter: "C"},
+  {letter: "D"},
+  {letter: "E"},
+  {letter: "F"},
+  {letter: "G"},
+  {letter: "H"},
+  {letter: "A"},
+  {letter: "B"},
+  {letter: "C"},
+  {letter: "D"},
+  {letter: "E"},
+  {letter: "F"},
+  {letter: "G"},
+  {letter: "H"}
 ]
 
+// Later, add a function in the game to generate a new randomly sorted list
 let shuffled = backtexts.sort(() => Math.random() - 0.5);
 
 class Card {
-  constructor() {
-    this.card = card;
-    this.cardInner = card.querySelector('.card-inner');
-    card.addEventListener("click", () => {
-      this.cardInner.classList.toggle("flipped");
+  allowFlip;
+  constructor(letter, el) {
+    this.el = el;
+    this.letter = letter;
+    this.allowFlip = true;
+    this.cardInner = el.querySelector('.card-inner');
+    el.addEventListener("click", () => {
+      flipcard();
+      // this.cardInner.classList.toggle("flipped"); //add this to the flipcard function
     });
+    this.updateBack();
+  }
+
+  updateBack() {
+    const cardBackText = this.el.querySelector('.card-back-text');
+    cardBackText.textContent = this.letter;
   }
 
 }
 
 class Game {
+  cards;
   allowPlayer;
+  cardsflipped;
 
   constructor() {
     this.allowPlayer = false;
@@ -127,4 +140,7 @@ console.log(shuffled);
 // chatText.innerHTML = 
 // `<div class="event"><span class="player-event">Someone</span> scored ${score}</div>` + chatText.innerHTML;
 // }, 20000);
+
+const cardElement = document.getElementById('card1');
+const cardInstance = new Card('B', cardElement);
 
