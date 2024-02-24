@@ -77,10 +77,17 @@ class Game {
     return scores;
   }
 
+  async reset() {
+    this.allowPlayer = false;
+    this.updateScore("--");
+    this.allowPlayer = true;
+  }
+
 
 
 }
 
 const game = new Game();
+
 
 
