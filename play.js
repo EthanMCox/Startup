@@ -89,10 +89,13 @@ class Game {
 
 const game = new Game();
 
-setInterval(() => { // WebSocket placeholder
-const score = Math.floor(Math.random() * 3000);
-const chatText = document.querySelector('#notification');
-chatText.innerHTML = 
-`<div class="event"><span class="player-event">Eich</span> scored ${score}</div>` + chatText.innerHTML;
-}, 20000);
+
+
+
+// setInterval(() => { // WebSocket placeholder
+// const score = Math.floor(Math.random() * 3000);
+// const chatText = document.querySelector('#notification');
+// chatText.innerHTML = 
+// `<div class="event"><span class="player-event">Someone</span> scored ${score}</div>` + chatText.innerHTML;
+// }, 20000);
 
