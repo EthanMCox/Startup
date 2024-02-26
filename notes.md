@@ -995,6 +995,54 @@ await syntax:
 * SOA: Startup authority: who is dns registrar
 * TXT: stick text in and associate it with a hostname
 * /A|f/ is the regex, i is a toggle for noncapitalization
-* 
+
+# Lecture 2/26/2024 Servers Introduction
+* How does the Internet Work? Originally came from the military. Didn't want top-level node to be taken down and cause everything else to go down. So the internet is very loosely coupled/tied.
+* DNS = Domain Name System
+* Domain name associated with DNS record
+* Telling it how you get from your domain name to IP address
+* Amazon owns a ton of IP addresses. Each IP address is about $30
+* Internet naming authority leases IP addresses
+* Limited ipv5 infrastructure. Newer ipv6 infrastructure is theoretically unlimited, but it's much more limited
+
+Many layers to networks
+1. Application: ex. https; purpose: functionality like web browsing
+   * https, ssh, ping, different protocols
+2. Transport; Ex. TCP/UDP; purpose: moving connection information packets
+   * Makes sure  makes sure packets get places properly
+   * TCP: this is the start of my data, this is the exact sequence, etc. Most reliable
+   * UDP: Doesn't matter as much to have all the packets perfectly. Faster. Ex. Shooter games need to be fast, low latency, doesn't matter if a few packets are lost
+3. Internet: Ex. IP; Purpose: establishing connections
+   * Segments information into small packets
+   * How data is processed
+4. Link; Ex. Fiber, harware; purpose: physical connections
+
+* Consider taking networking elective CS 324
+* Server vs. service. vs. endpoints
+* Simon Game service:
+* Port: IP address gets me to the machine, but there can be multiple connections to that machine.
+* Port 443 is the secure HTTP port. That's the initial connection port, then it will connect you to another port.
+* Live Server just grabs two different ports
+* You generally don't want to configure it so you allow traffic on port 443 because it opens it up to anyone.
+* Computers don't make very good servers because IP address changes all the time.
+* We opened up SSH, HTTPS ports, etc. Internet Naming authority determines specific ports for various protocols.
+* Don't want to open up stuff for anyone
+* Hosting multiple services? We use three
+  * We will use Caddy: static website hosting, reverse proxy
+ 
+* Three parts of a domain name
+* tld: top level domain: ex. .com, org, edu, gov, mil, int, net, uk, cn, tv, click, gold, cro, fishing
+* Secondary domain ex. makeamatch.com
+* You can have any number of subdomains
+* localhost. Ask for domain name localhost, then it gives it to you. Local host is 127.0.0.1 (live server uses this)
+* DNS Record types:
+  * A/AAAA: Address.Specific IP addresses. IPV4 and IpV6
+  * CName: Name.Alias
+  * NS: Name Server. Authroity for queries and proof of ownership
+  * Text: metadata. used for policies and verification
+  * SOA: start of authority. Propagation information.
+ 
+* IANA
+  * Registrar  
 
   
