@@ -24,9 +24,8 @@ const backtexts = [
   {letter: "B"},
   {letter: "C"},
   {letter: "D"},
-  {letter: "E"}
-  // {letter: "E"},
-  // {letter: "F"},
+  {letter: "E"},
+  {letter: "F"},
 ]
 
 // Later, add a function in the game to generate a new randomly sorted list
