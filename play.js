@@ -40,7 +40,7 @@ class Card {
     this.allowFlip = true;
     this.cardInner = el.querySelector('.card-inner');
     el.addEventListener("click", () => {
-      console.log("Card clicked:", this);
+      // console.log("Card clicked:", this);
       game.flipcard(this);
     });
     this.updateBack();
@@ -71,6 +71,7 @@ class Game {
 
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = this.getPlayerName();
+    console.log(this.cards);
     // this.saveScore(6); // For testing save score functionality
   }
 
