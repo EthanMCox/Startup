@@ -100,8 +100,6 @@
   align-items: center;
 }
 
-
-
 .card .card-back {
   transform: rotateY(180deg);
   background-color: rgb(209, 107, 107);
