@@ -29,8 +29,7 @@ class Card {
     this.allowFlip = true;
     this.cardInner = el.querySelector('.card-inner');
     el.addEventListener("click", () => {
-      // console.log("Card clicked:", this);
-      game.flipcard(this);
+      game.clickcard(this);
     });
     this.updateBack();
   }
@@ -48,9 +47,9 @@ class Game {
   cardsflipped;
 
   constructor() {
-    this.allowPlayer = false;
+    this.allowPlayer = true;
     this.cards = new Map();
-    cardsflipped = []
+    this.cardsflipped = []
 
     document.querySelectorAll('.card').forEach((el, i) => {
       if (i < shuffled.length) {
@@ -89,8 +88,15 @@ class Game {
     localStorage.setItem('scores', JSON.stringify(scores));
   }
 
+  clickcard(card) {
+    // Add an if statement on whether this is allowed
+    if (this.allowPlayer && card.allowFlip) {
+      this.flipcard(card);
+    }
+  }
+
   flipcard(card) {
-    card.el.querySelector('.card-inner').classList.toggle("flipped"); 
+    card.el.querySelector('.card-inner').classList.toggle("flipped");
   }
 
   updateScores(username, score, scores) {
