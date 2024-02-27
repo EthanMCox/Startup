@@ -1,16 +1,3 @@
-// document.addEventListener('DOMContentLoaded', () => {
-//   // Select all elements with the class .card
-//   var cards = document.querySelectorAll(".card");
-
-//   // Add a click event lister to each card
-//   cards.forEach((card) => {
-//     card.addEventListener("click", () => {
-//       // Add the class .flipped to the card
-//       this.querySelector('.card-inner').classList.toggle("flipped");
-//     });
-
-// });
-
 let game;
 
 const backtexts = [
@@ -33,6 +20,9 @@ let shuffled = backtexts.sort(() => Math.random() - 0.5);
 
 class Card {
   allowFlip;
+  el;
+  letter;
+  cardInner;
   constructor(letter, el) {
     this.el = el;
     this.letter = letter;
@@ -60,6 +50,7 @@ class Game {
   constructor() {
     this.allowPlayer = false;
     this.cards = new Map();
+    cardsflipped = []
 
     document.querySelectorAll('.card').forEach((el, i) => {
       if (i < shuffled.length) {
@@ -132,6 +123,7 @@ class Game {
 
   async reset() {
     this.allowPlayer = false;
+
     this.updateScore("--");
     this.allowPlayer = true;
   }
