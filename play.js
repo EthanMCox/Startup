@@ -138,7 +138,7 @@ class Game {
       }
       this.cardsflipped = [];
     }
-    console.log(this.cardsmatched);
+
     // If all cards are matched, generate more cards and increment round
     if (this.cardsmatched === 12) {
       this.round = this.round + 1;
@@ -187,7 +187,7 @@ class Game {
     return scores;
   }
 
-  createCards() {
+  async createCards() {
     this.shuffle();
     document.querySelectorAll('.card').forEach((el, i) => {
       if (i < shuffled.length) {
@@ -197,7 +197,7 @@ class Game {
         this.cards.set(el.id, newCard);
       }
     });
-
+    await delay(1000);
     this.cards.forEach(card => {
       card.el.style.display = ""
     });
