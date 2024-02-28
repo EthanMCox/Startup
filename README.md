@@ -52,4 +52,11 @@ For this deliverable I added styling elements to my application using CSS.
 * Responsive to window resizing: My app resizes appropriately to fit on various screen sizes and devices.
 * Application elements: Uses good contrast and whitespace. 
 * Application text content: consistent fonts
-* Application images: Styling added to the about page image to have slight shadow around it. Also changed the base image. Styling also added to cards on play page using grid and card class from bootstrap. 
+* Application images: Styling added to the about page image to have slight shadow around it. Also changed the base image. Styling also added to cards on play page using grid and card class from bootstrap.
+
+# JavaScript Deliverable:
+* Support for future login: When you hit login, your name and password are stored in local storage, you are taken to the play page, and the name is pulled from local storage and displayed as the current player. 
+* Support for future database data: Local storage stores scores from the game, which is then loaded into the scores tab. 
+* Support for future WebSocket: WebSocket placeholder for people finishing the game and logging a score in real time. 
+* Support for Application Interaction Logic: Fully functional card flipping animation, restart button, random generation of cards, and card game implementation supporting lives, round, and score iteration. 
+
