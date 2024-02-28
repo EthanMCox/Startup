@@ -1043,6 +1043,65 @@ Many layers to networks
   * SOA: start of authority. Propagation information.
  
 * IANA
-  * Registrar  
+  * Registrar
+ 
+# Lecture 2/28/2024: Fetch, URL, ports, HTTP
+* Fetch
+* Execute a fetch request using a url:
+* fetch(url).then (r => r.text())
+* .then(text => console.log(text))
 
+* fetch is another example of a promise returning
+
+* fetch('https://apisomething').then(r => r.json())
+* .then(j => console.log(j.value))
+
+* With API, I most likely want to use something that will give me JSON, so I can just convert it.
+
+* const r = await fetch('https://api.quotable.io/random')
+* const j = await r.json()
+* console.log(j.content)
+
+* A fetch contains a promise that when it returns, will include the content from what we want to get from the API.
+* Fetch can be called from anywhere
+* Endpoints examples
+  * post/user
+  * get/user
+  * get/scores
+  * get/user/route
+ 
+* Objects have methods. Servers have endpoints. endpoints are to servers as methods are to objects.
+* Service can also make fetch requests. Database service and websocket in the case of this class.
+* With fetch, be careful about who you are asking and make sure they are fast
+* My server has three services running:
+  * Caddy: loading up startup html and returning it
+  * Simon service
+  * Startup service
+* Each of these uses a different port.
+* sshd: ssh demon; waits on port 22 for if you use ssh command.
+
+* URL = uniform resource locator
+* https://(scheme)byu.edu(domain):443(port)/api/city(path)?q=pro(parameters)#3(anchor)
+* if you are using https://, then you should use port 80.
+* I will need to specify the path/endpoints.
+* API stands for application programming interface
+* Parameters go to the resource.
+* The anchor is a subindex into the resource. It takes you into one part of the page.
+* www is just a subdomain. Convention meaning that you are a webserver
+* Standard ports
+* HTTP requests:
+  * Method path version
+ 
+* Methods:
+  * Get: get an existing resource
+  * post: create a new resource
+  * put: update an existing resource
+  * delete: delete the resource
+  * options: get more information about resource
+ 
+* Status codes:
+  * 200 means success, 204 no content
+  * 300 is good, but not giving back the thing you asked for; 301/302 redirect, 304 not modified
+  * 400: bad request, 404 not found, 403 forbidden, 429 too many requests
+  * 500: server error, server not available    
   
