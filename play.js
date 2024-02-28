@@ -59,7 +59,7 @@ class Game {
     this.cardsflipped = []
     this.cardsmatched = 0;
     this.score = 0
-    this.lives = 5;
+    this.lives = 10;
     this.round = 1;
 
     // Create the card
