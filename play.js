@@ -45,11 +45,15 @@ class Game {
   cards;
   allowPlayer;
   cardsflipped;
+  score;
+  lives;
 
   constructor() {
     this.allowPlayer = true;
     this.cards = new Map();
     this.cardsflipped = []
+    this.score = 0
+    this.lives = 10;
 
     this.createCards();
 
@@ -57,12 +61,12 @@ class Game {
     playerNameEl.textContent = this.getPlayerName();
     // console.log(this.cards);
     // this.saveScore(6); // For testing save score functionality
-    this.updatelives("3");
+    // this.updatelives(3);
   }
 
-  updatelives(lives) {
+  updatelives() {
     const livesEl = document.querySelector('#lives');
-    livesEl.value = lives;
+    livesEl.value = this.lives;
   }
 
   updateScore(score) {
@@ -89,11 +93,48 @@ class Game {
     localStorage.setItem('scores', JSON.stringify(scores));
   }
 
-  clickcard(card) {
-    // Add an if statement on whether this is allowed
-    if (this.allowPlayer && card.allowFlip) {
-      this.flipcard(card);
+  async clickcard(card) {
+    if (this.allowPlayer === false || card.allowFlip === false) return;
+        // If more than two cards are flipped, don't allow the player to flip more
+    if (this.cardsflipped.length < 2) {
+      this.allowPlayer = true;
     }
+    else {
+      this.allowPlayer = false;
+    }
+    // If the player is allowed to flip, flip the card and add it to the list of flipped cards
+    if (this.allowPlayer && card.allowFlip) { //flip the cards
+      card.allowFlip = false;
+      this.allowPlayer = false;
+      this.cardsflipped.push(card);
+      this.flipcard(card);
+      await this.delay(1000);
+    }
+    // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
+    if (this.cardsflipped.length === 2) {
+      if (this.cardsflipped[0].letter === this.cardsflipped[1].letter) {
+        this.updateScore(this.score + 1);
+        await this.delay(2000)
+        this.cardsflipped[0].el.style.display = "none";
+        this.cardsflipped[1].el.style.display = "none";
+      }
+      else {
+        this.lives = this.lives - 1;
+        this.updatelives();
+        await this.delay(1500);
+        this.flipcard(this.cardsflipped[0]);
+        this.flipcard(this.cardsflipped[1]);
+        await this.delay(1200);
+        this.cardsflipped[0].allowFlip = true;
+        this.cardsflipped[1].allowFlip = true;
+      }
+      this.cardsflipped = [];
+    }
+    this.allowPlayer = true;
+  }
+
+  delay(time) {
+    return new Promise(resolve => setTimeout(resolve, time));
   }
 
   flipcard(card) {
