@@ -16,7 +16,7 @@ const backtexts = [
 ]
 
 // Later, add a function in the game to generate a new randomly sorted list
-let shuffled = backtexts.sort(() => Math.random() - 0.5);
+let shuffled;
 
 class Card {
   allowFlip;
@@ -51,17 +51,18 @@ class Game {
     this.cards = new Map();
     this.cardsflipped = []
 
-    document.querySelectorAll('.card').forEach((el, i) => {
-      if (i < shuffled.length) {
-        this.cards.set(el.id, new Card(shuffled[i].letter, el));
-      }
-    
-    })
+    this.createCards();
 
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = this.getPlayerName();
-    console.log(this.cards);
+    // console.log(this.cards);
     // this.saveScore(6); // For testing save score functionality
+    this.updatelives("3");
+  }
+
+  updatelives(lives) {
+    const livesEl = document.querySelector('#lives');
+    livesEl.value = lives;
   }
 
   updateScore(score) {
@@ -127,12 +128,36 @@ class Game {
     return scores;
   }
 
-  async reset() {
-    this.allowPlayer = false;
+  createCards() {
+    this.shuffle();
+    document.querySelectorAll('.card').forEach((el, i) => {
+      if (i < shuffled.length) {
+        this.cards.set(el.id, new Card(shuffled[i].letter, el));
+      }
+    })
+  }
 
-    this.updateScore("--");
+  shuffle() {
+    shuffled = backtexts.sort(() => Math.random() - 0.5);
+  }
+
+  async resetcards() {
+    this.allowPlayer = false;
+    this.cards = new Map(); // Clear the cards map. Necessary?
+    this.cardsflipped = [];
+    this.shuffle();
+    this.createCards();
     this.allowPlayer = true;
   }
+
+  async restart() {
+    this.allowPlayer = false;
+    this.updateScore("--");
+    this.resetcards();
+    this.allowPlayer = true;
+  }
+
+
 
 
 
