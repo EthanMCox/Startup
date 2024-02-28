@@ -108,23 +108,23 @@ class Game {
       this.allowPlayer = false;
       this.cardsflipped.push(card);
       this.flipcard(card);
-      await this.delay(1000);
+      await delay(1000);
     }
     // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
-    if (this.cardsflipped.length === 2) {
-      if (this.cardsflipped[0].letter === this.cardsflipped[1].letter) {
+    if (this.cardsflipped.length === 2) { 
+      if (this.cardsflipped[0].letter === this.cardsflipped[1].letter) { // Found a match
         this.updateScore(this.score + 1);
-        await this.delay(2000)
+        await delay(200);
         this.cardsflipped[0].el.style.display = "none";
         this.cardsflipped[1].el.style.display = "none";
       }
-      else {
+      else { // No match
         this.lives = this.lives - 1;
         this.updatelives();
-        await this.delay(1500);
+        await delay(300);
         this.flipcard(this.cardsflipped[0]);
         this.flipcard(this.cardsflipped[1]);
-        await this.delay(1200);
+        await delay(1200);
         this.cardsflipped[0].allowFlip = true;
         this.cardsflipped[1].allowFlip = true;
       }
@@ -133,9 +133,7 @@ class Game {
     this.allowPlayer = true;
   }
 
-  delay(time) {
-    return new Promise(resolve => setTimeout(resolve, time));
-  }
+  
 
   flipcard(card) {
     card.el.querySelector('.card-inner').classList.toggle("flipped");
@@ -198,10 +196,10 @@ class Game {
     this.allowPlayer = true;
   }
 
+}
 
-
-
-
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
