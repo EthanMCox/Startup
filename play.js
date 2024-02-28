@@ -154,6 +154,7 @@ class Game {
     // If lives are 0, save the score and reset the game
     if (this.lives === 0) {
       this.saveScore(this.score);
+      this.allowPlayer = true;
       this.restart();
     }
     this.allowPlayer = true;
@@ -200,9 +201,7 @@ class Game {
         const newCard = new Card(shuffled[i].letter, el);
         newCard.el.style.display = "none";
         this.flipcard(newCard);
-        // this.cards.set(el.id, new Card(shuffled[i].letter, el));
         this.cards.set(el.id, newCard);
-        // newCard.el.style.display = "none";
       }
     });
     await delay(1000);
@@ -236,6 +235,7 @@ class Game {
   }
 
   async restart() {
+    if (this.allowPlayer === false) return;
     this.allowPlayer = false;
     // Updates score to be "--"
     this.score = 0;
@@ -262,9 +262,9 @@ document.addEventListener('DOMContentLoaded', () => {
   game = new Game();
 });
 
-// document.getElementById('reset').addEventListener('click', () => {
-//   game.reset();
-// });
+document.getElementById('restart').addEventListener('click', () => {
+  game.restart();
+});
 
 
 
