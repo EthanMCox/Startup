@@ -59,7 +59,13 @@ class Game {
     this.lives = 10;
     this.round = 1;
 
-    this.createCards();
+    // Create the card
+    this.shuffle();
+    document.querySelectorAll('.card').forEach((el, i) => {
+      if (i < shuffled.length) {
+        this.cards.set(el.id, new Card(shuffled[i].letter, el));
+      }
+    })
 
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = this.getPlayerName();
@@ -185,9 +191,22 @@ class Game {
     this.shuffle();
     document.querySelectorAll('.card').forEach((el, i) => {
       if (i < shuffled.length) {
-        this.cards.set(el.id, new Card(shuffled[i].letter, el));
+        const newCard = new Card(shuffled[i].letter, el);
+        this.flipcard(newCard);
+        // this.cards.set(el.id, new Card(shuffled[i].letter, el));
+        this.cards.set(el.id, newCard);
       }
-    })
+    });
+
+    this.cards.forEach(card => {
+      card.el.style.display = ""
+    });
+
+    // document.querySelectorAll('.card').forEach((el, i) => {
+    //   if (i < shuffled.length) {
+    //     this.cards.set(el.id, new Card(shuffled[i].letter, el));
+    //   }
+    // })
   }
 
   shuffle() {
