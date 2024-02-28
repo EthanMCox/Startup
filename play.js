@@ -15,7 +15,6 @@ const backtexts = [
   {letter: "F"},
 ]
 
-// Later, add a function in the game to generate a new randomly sorted list
 let shuffled;
 
 class Card {
@@ -164,6 +163,7 @@ class Game {
 
   flipcard(card) {
     card.el.querySelector('.card-inner').classList.toggle("flipped");
+    console.log(card.letter);
   }
 
   updateScores(username, score, scores) {
@@ -200,6 +200,7 @@ class Game {
       if (i < shuffled.length) {
         const newCard = new Card(shuffled[i].letter, el);
         newCard.el.style.display = "none";
+        newCard.updateBack();
         this.flipcard(newCard);
         this.cards.set(el.id, newCard);
       }
