@@ -96,21 +96,6 @@ class Game {
     return localStorage.getItem('userName') ?? 'Mystery Player';
   }
 
-  saveScore(score) {
-    const username = this.getPlayerName();
-    // Initialize a scores array
-    let scores = [];
-    // Get the scores from local storage
-    const scoresText = localStorage.getItem('scores');
-    // If there are scores in local storage, replace the empty array with those scores
-    if (!!scoresText && scoresText !== "undefined") {
-      scores = JSON.parse(scoresText);
-    }
-    // Update the scores array based on the current user's new score
-    scores = this.updateScores(username, score, scores);
-    localStorage.setItem('scores', JSON.stringify(scores));
-  }
-
   async clickcard(card) {
     // Only execute if the player is allowed to flip the card
     if (this.allowPlayer === false || card.allowFlip === false) return;
@@ -165,11 +150,51 @@ class Game {
     this.allowPlayer = true;
   }
 
-  
-
   flipcard(card) {
     card.el.querySelector('.card-inner').classList.toggle("flipped");
-    console.log(card.letter); // Get rid of this after debugging
+  }
+
+  shuffle() {
+    shuffled = shufflealgorithm(backtexts)
+  }
+
+  async resetcards() {
+    this.allowPlayer = false;
+    this.cards.forEach(card => {
+      card.el.style.display = "none";
+      if (card.flipped) {
+        this.flipcard(card);
+        card.flipped = false;
+      }
+    });
+    await delay(800);
+    this.shuffle();
+    let i = 0;
+    this.cards.forEach(card => {
+      card.letter = shuffled[i].letter;
+      card.updateBack();
+      card.el.style.display = "";
+      i++;
+      card.allowFlip = true;
+    })
+    this.cardsflipped = [];
+    this.cardsmatched = 0;
+    this.allowPlayer = true;
+  }
+
+  saveScore(score) {
+    const username = this.getPlayerName();
+    // Initialize a scores array
+    let scores = [];
+    // Get the scores from local storage
+    const scoresText = localStorage.getItem('scores');
+    // If there are scores in local storage, replace the empty array with those scores
+    if (!!scoresText && scoresText !== "undefined") {
+      scores = JSON.parse(scoresText);
+    }
+    // Update the scores array based on the current user's new score
+    scores = this.updateScores(username, score, scores);
+    localStorage.setItem('scores', JSON.stringify(scores));
   }
 
   updateScores(username, score, scores) {
@@ -200,87 +225,9 @@ class Game {
     return scores;
   }
 
-  // async createCards() {
-  //   this.shuffle();
-  //   document.querySelectorAll('.card').forEach((el, i) => {
-  //     if (i < shuffled.length) {
-  //       const newCard = new Card(shuffled[i].letter, el);
-  //       newCard.el.style.display = "none";
-  //       newCard.updateBack();
-  //       this.flipcard(newCard);
-  //       this.cards.set(el.id, newCard);
-  //     }
-  //   });
-  //   await delay(1000);
-  //   this.cards.forEach(card => {
-  //     card.el.style.display = ""
-  //   });
-// }
-
-    // document.querySelectorAll('.card').forEach((el, i) => {
-    //   if (i < shuffled.length) {
-    //     this.cards.set(el.id, new Card(shuffled[i].letter, el));
-    //   }
-    // })
-  // } // this was originally the end of the function, but I moved it up for convenience
-
-  shuffle() {
-    console.log("shuffling");
-    shuffled = shufflealgorithm(backtexts)
-  }
-
-
-  async resetcards() {
-    this.allowPlayer = false;
-    this.cards.forEach(card => {
-      card.el.style.display = "none";
-      if (card.flipped) {
-        this.flipcard(card);
-        card.flipped = false;
-      }
-    });
-    await delay(800);
-    this.shuffle();
-    let i = 0;
-    this.cards.forEach(card => {
-      card.letter = shuffled[i].letter;
-      card.updateBack();
-      card.el.style.display = "";
-      i++;
-      card.allowFlip = true;
-    })
-    this.cardsflipped = [];
-    this.cardsmatched = 0;
-    this.allowPlayer = true;
-  }
-
-
-  // async resetcards() {
-  //   this.allowPlayer = false;
-  //   this.cards.forEach (card => {
-  //     console.log("hello")
-  //     console.log(card.flipped);
-  //     if (!card.flipped) {
-  //       this.flipcard(card);
-  //     }});
-
-  //   this.cards = new Map(); // Clear the cards map. Necessary?
-  //   this.cardsflipped = [];
-  //   this.cardsmatched = 0;
-  //   await this.createCards();
-  //   this.allowPlayer = true;
-  // }
-
     async restart() {
     if (this.allowPlayer === false) return;
     this.allowPlayer = false;
-
-    // await Promise.all(Array.from(this.cards.values()).map(async (card) => {
-    //   if (!card.flipped) {
-    //       this.flipcard(card);
-    //       await delay(800);
-    //   }
-    // }));
 
     // Updates score to be "--"
     this.score = 0;
@@ -327,8 +274,5 @@ document.getElementById('restart').addEventListener('click', () => {
 // const chatText = document.querySelector('#notification');
 // chatText.innerHTML = 
 // `<div class="event"><span class="player-event">Someone</span> scored ${score}</div>` + chatText.innerHTML;
-// }, 20000);
-
-// const cardElement = document.getElementById('card1'); // For testing letter insertion
-// const cardInstance = new Card('B', cardElement);
+// }, 30000);
 
