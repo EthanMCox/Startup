@@ -113,8 +113,8 @@ class Game {
 
     // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
     if (this.cardsflipped.length === 2) { 
-      cardsmatched = cardsmatched + 2;
       if (this.cardsflipped[0].letter === this.cardsflipped[1].letter) { // Found a match
+        this.cardsmatched = this.cardsmatched + 2;
         this.score = this.score + 1;
         this.updateScore();
         await delay(400);
@@ -132,9 +132,9 @@ class Game {
       }
       this.cardsflipped = [];
     }
-    
+    console.log(this.cardsmatched);
     // If all cards are matched, generate more cards and increment round
-    if (cardsmatched === 12) {
+    if (this.cardsmatched === 12) {
       this.round = this.round + 1;
       this.updateround();
       this.resetcards();
@@ -144,8 +144,6 @@ class Game {
       this.saveScore(this.score);
       this.restart();
     }
-
-
     this.allowPlayer = true;
   }
 
@@ -193,6 +191,7 @@ class Game {
   }
 
   shuffle() {
+    console.log("shuffling");
     shuffled = backtexts.sort(() => Math.random() - 0.5);
   }
 
@@ -200,7 +199,7 @@ class Game {
     this.allowPlayer = false;
     this.cards = new Map(); // Clear the cards map. Necessary?
     this.cardsflipped = [];
-    this.shuffle();
+    this.cardsmatched = 0;
     this.createCards();
     this.allowPlayer = true;
   }
@@ -208,8 +207,15 @@ class Game {
   async restart() {
     this.allowPlayer = false;
     // Updates score to be "--"
+    this.score = 0;
     const scoreEl = document.querySelector('#score');
     scoreEl.value = "--";
+
+    this.lives = 10;
+    this.updatelives();
+
+    this.round = 1;
+    this.updateround();
 
     this.resetcards();
     this.allowPlayer = true;
