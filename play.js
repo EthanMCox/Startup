@@ -41,6 +41,10 @@ class Card {
     cardBackText.textContent = this.letter;
   }
 
+  updateLetter() {
+    return; // Placeholder
+  }
+
 }
 
 class Game {
@@ -129,6 +133,8 @@ class Game {
         await delay(400);
         this.cardsflipped[0].el.style.display = "none"; // Change to something more elegant later if time
         this.cardsflipped[1].el.style.display = "none";
+        this.cardsflipped[0].allowFlip = true;
+        this.cardsflipped[1].allowFlip = true;
       }
       else { // No match
         this.lives = this.lives - 1;
@@ -148,13 +154,13 @@ class Game {
     if (this.cardsmatched === 12) {
       this.round = this.round + 1;
       this.updateround();
-      this.resetcards();
+      await this.resetcards();
     }
     // If lives are 0, save the score and reset the game
     if (this.lives === 0) {
       this.saveScore(this.score);
-      this.allowPlayer = true;
-      this.restart();
+      this.allowPlayer = true; // so that restart can run
+      await this.restart();
     }
     this.allowPlayer = true;
   }
@@ -163,7 +169,7 @@ class Game {
 
   flipcard(card) {
     card.el.querySelector('.card-inner').classList.toggle("flipped");
-    console.log(card.letter);
+    console.log(card.letter); // Get rid of this after debugging
   }
 
   updateScores(username, score, scores) {
@@ -194,50 +200,88 @@ class Game {
     return scores;
   }
 
-  async createCards() {
-    this.shuffle();
-    document.querySelectorAll('.card').forEach((el, i) => {
-      if (i < shuffled.length) {
-        const newCard = new Card(shuffled[i].letter, el);
-        newCard.el.style.display = "none";
-        newCard.updateBack();
-        this.flipcard(newCard);
-        this.cards.set(el.id, newCard);
-      }
-    });
-    await delay(1000);
-    this.cards.forEach(card => {
-      card.el.style.display = ""
-    });
+  // async createCards() {
+  //   this.shuffle();
+  //   document.querySelectorAll('.card').forEach((el, i) => {
+  //     if (i < shuffled.length) {
+  //       const newCard = new Card(shuffled[i].letter, el);
+  //       newCard.el.style.display = "none";
+  //       newCard.updateBack();
+  //       this.flipcard(newCard);
+  //       this.cards.set(el.id, newCard);
+  //     }
+  //   });
+  //   await delay(1000);
+  //   this.cards.forEach(card => {
+  //     card.el.style.display = ""
+  //   });
+// }
 
     // document.querySelectorAll('.card').forEach((el, i) => {
     //   if (i < shuffled.length) {
     //     this.cards.set(el.id, new Card(shuffled[i].letter, el));
     //   }
     // })
-  }
+  // } // this was originally the end of the function, but I moved it up for convenience
 
   shuffle() {
     console.log("shuffling");
-    shuffled = backtexts.sort(() => Math.random() - 0.5);
+    shuffled = shufflealgorithm(backtexts)
   }
+
 
   async resetcards() {
     this.allowPlayer = false;
-    this.cards.forEach (card => {
-      if (!card.flipped) {
+    this.cards.forEach(card => {
+      card.el.style.display = "none";
+      if (card.flipped) {
         this.flipcard(card);
-      }});
-    this.cards = new Map(); // Clear the cards map. Necessary?
+        card.flipped = false;
+      }
+    });
+    await delay(800);
+    this.shuffle();
+    let i = 0;
+    this.cards.forEach(card => {
+      card.letter = shuffled[i].letter;
+      card.updateBack();
+      card.el.style.display = "";
+      i++;
+      card.allowFlip = true;
+    })
     this.cardsflipped = [];
     this.cardsmatched = 0;
-    this.createCards();
     this.allowPlayer = true;
   }
 
-  async restart() {
+
+  // async resetcards() {
+  //   this.allowPlayer = false;
+  //   this.cards.forEach (card => {
+  //     console.log("hello")
+  //     console.log(card.flipped);
+  //     if (!card.flipped) {
+  //       this.flipcard(card);
+  //     }});
+
+  //   this.cards = new Map(); // Clear the cards map. Necessary?
+  //   this.cardsflipped = [];
+  //   this.cardsmatched = 0;
+  //   await this.createCards();
+  //   this.allowPlayer = true;
+  // }
+
+    async restart() {
     if (this.allowPlayer === false) return;
     this.allowPlayer = false;
+
+    // await Promise.all(Array.from(this.cards.values()).map(async (card) => {
+    //   if (!card.flipped) {
+    //       this.flipcard(card);
+    //       await delay(800);
+    //   }
+    // }));
+
     // Updates score to be "--"
     this.score = 0;
     const scoreEl = document.querySelector('#score');
@@ -249,10 +293,19 @@ class Game {
     this.round = 1;
     this.updateround();
 
-    this.resetcards();
-    this.allowPlayer = true;
+    await this.resetcards();
   }
 
+}
+
+function shufflealgorithm(array) {
+  let currentIndex = array.length, randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+  }
+  return array;
 }
 
 function delay(time) {
