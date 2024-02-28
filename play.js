@@ -23,10 +23,13 @@ class Card {
   el;
   letter;
   cardInner;
+  flipped;
+
   constructor(letter, el) {
     this.el = el;
     this.letter = letter;
     this.allowFlip = true;
+    this.flipped = false;
     this.cardInner = el.querySelector('.card-inner');
     el.addEventListener("click", () => {
       game.clickcard(this);
@@ -56,7 +59,7 @@ class Game {
     this.cardsflipped = []
     this.cardsmatched = 0;
     this.score = 0
-    this.lives = 10;
+    this.lives = 5;
     this.round = 1;
 
     // Create the card
@@ -65,7 +68,7 @@ class Game {
       if (i < shuffled.length) {
         this.cards.set(el.id, new Card(shuffled[i].letter, el));
       }
-    })
+    });
 
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = this.getPlayerName();
@@ -113,6 +116,7 @@ class Game {
     card.allowFlip = false;
 
     // Flip the card and add to cardsflipped array
+    card.flipped = true;
     this.cardsflipped.push(card);
     this.flipcard(card);
     await delay(800);
@@ -130,6 +134,8 @@ class Game {
       else { // No match
         this.lives = this.lives - 1;
         this.updatelives();
+        this.cardsflipped[0].flipped = false;
+        this.cardsflipped[1].flipped = false;
         this.flipcard(this.cardsflipped[0]);
         this.flipcard(this.cardsflipped[1]);
         await delay(1000);
@@ -192,9 +198,11 @@ class Game {
     document.querySelectorAll('.card').forEach((el, i) => {
       if (i < shuffled.length) {
         const newCard = new Card(shuffled[i].letter, el);
+        newCard.el.style.display = "none";
         this.flipcard(newCard);
         // this.cards.set(el.id, new Card(shuffled[i].letter, el));
         this.cards.set(el.id, newCard);
+        // newCard.el.style.display = "none";
       }
     });
     await delay(1000);
@@ -216,6 +224,10 @@ class Game {
 
   async resetcards() {
     this.allowPlayer = false;
+    this.cards.forEach (card => {
+      if (!card.flipped) {
+        this.flipcard(card);
+      }});
     this.cards = new Map(); // Clear the cards map. Necessary?
     this.cardsflipped = [];
     this.cardsmatched = 0;
