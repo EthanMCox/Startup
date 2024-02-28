@@ -269,10 +269,10 @@ document.getElementById('restart').addEventListener('click', () => {
 
 
 
-// setInterval(() => { // WebSocket placeholder
-// const score = Math.floor(Math.random() * 3000);
-// const chatText = document.querySelector('#notification');
-// chatText.innerHTML = 
-// `<div class="event"><span class="player-event">Someone</span> scored ${score}</div>` + chatText.innerHTML;
-// }, 30000);
+setInterval(() => { // WebSocket placeholder
+const score = Math.floor(Math.random() * 3000);
+const chatText = document.querySelector('#notification');
+chatText.innerHTML = 
+`<div class="event"><span class="player-event">Someone</span> scored ${score}</div>` + chatText.innerHTML;
+}, 40000);
 
