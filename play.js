@@ -94,28 +94,22 @@ class Game {
   }
 
   async clickcard(card) {
+    // Only execute if the player is allowed to flip the card
     if (this.allowPlayer === false || card.allowFlip === false) return;
-        // If more than two cards are flipped, don't allow the player to flip more
-    if (this.cardsflipped.length < 2) {
-      this.allowPlayer = true;
-    }
-    else {
-      this.allowPlayer = false;
-    }
-    // If the player is allowed to flip, flip the card and add it to the list of flipped cards
-    if (this.allowPlayer && card.allowFlip) { //flip the cards
-      card.allowFlip = false;
-      this.allowPlayer = false;
-      this.cardsflipped.push(card);
-      this.flipcard(card);
-      await delay(1000);
-    }
+    this.allowPlayer = false;
+    card.allowFlip = false;
+
+    // Flip the card and add to cardsflipped array
+    this.cardsflipped.push(card);
+    this.flipcard(card);
+    await delay(1000);
+
     // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
     if (this.cardsflipped.length === 2) { 
       if (this.cardsflipped[0].letter === this.cardsflipped[1].letter) { // Found a match
         this.updateScore(this.score + 1);
         await delay(200);
-        this.cardsflipped[0].el.style.display = "none";
+        this.cardsflipped[0].el.style.display = "none"; // Change to something more elegant later if time
         this.cardsflipped[1].el.style.display = "none";
       }
       else { // No match
