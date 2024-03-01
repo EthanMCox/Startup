@@ -1103,5 +1103,54 @@ Many layers to networks
   * 200 means success, 204 no content
   * 300 is good, but not giving back the thing you asked for; 301/302 redirect, 304 not modified
   * 400: bad request, 404 not found, 403 forbidden, 429 too many requests
-  * 500: server error, server not available    
+  * 500: server error, server not available
+
+# Lecture 3/1/2024
+* Ryan Dahl created Node.js
+* Node.js releaed in 2009
+* 2010: Node Package Manager (NPM) released
+* Everyone was moving to Node.js by 2011.
+* V8 is a javascript interpreter that is used for Google chrome.
+* Node: javascript runtime
+* Node.js also has NPM: Node package manager
+  * allows you to go to huge open source repository, pull stuff from there, include it in your code
+*  Node version manager (NVM): good if I want to do a lot of web dev after this class, easily switch between versions.
+*  Node.js installation is the simple way
+*  Can also install NVM and use that to install it.
+*  Windows installation: run windows-nvm
+*  nvm install lts
+*  nvm use lts
+
+Node Package manager
+* access to massive library of packages
+* Install project
+
+* Frontend = running on browser
+* Backend = running on server
+
+* Use NPM
+  * mkdir npmtest
+  * cd npmtest
+  * npm init -y
+ 
+* const giveMeAJoke = require('give-me-a-joke');
+* giveMeAJoke.getRandomDadJoke((joke) => { console.log(joke);});
+
+* Using Node.js to make a service
+* fetch("https://localhost:3000")
+* app.listen(3000)
+
+* const https = require('http')
+* const server = https.createServer(function req, res) {
+* res.writeHead(200, { 'Content-Type': 'text/html' });
+* res.write('<h1>Hello Node.js!</h1>');
+* res.write(`<p>[${req.method}] $req.url}</p>`);
+* res.end();
+* });
+
+* server.listen(3000, () => {
+* console.log(`Web service listening on port 3000`);
+* r = await fetch('http://localhost:3000/joe")
+* 
+  
   
