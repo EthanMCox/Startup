@@ -1151,6 +1151,123 @@ Node Package manager
 * server.listen(3000, () => {
 * console.log(`Web service listening on port 3000`);
 * r = await fetch('http://localhost:3000/joe")
-* 
-  
+
+# Server Reading Notes
+* Devices must have IP addresses for devices to talk to each other
+* We use a symbolic name instead of an IP address. This is the Domain name. Domain names are converted to an IP address by doing a lookup in the Domain Name System (DNS). You can look up the IP address for any domain name using the dig console utility
+
+* Traceout: allows you to trace the route of a connection. Ex: traceroute byu.edu
+* Network internals:
+  * Sending data uses the TCP/IP model.
+ 
+* Application, transport, internet, and link layers.
+* TCP/IP protocol is application layer, representing user functionality, like HTTP, SMTP, FTP, SSH, and IRC
+* Transport layer breaks application layers information into small chunks and sends the data
+* Actual connection is made using internet layer, finding the device you want to talk to and keeping the connection alive
+* Bottom of the model is the link layer, which is where there are physical connections and hardware.
+
+## Web Servers
+* Most modern programming languages have libraries that provide ability to make connections and serve up HTTP. This makes it possible to build services right into a web application
+* Microservices: Web services that provide a single functional purpose. By partitioning functionality into small logical chunks, you can develop and manage them independently from other functionality on a larger system.
+
+## Domain Names
+* You can get a domain name by using the dig console utility: dig amazon.com
+* Domain names are broken up into a root domain, secondary domain, and top level domain
+* You can get information about a domain name from the domain name registry using the whois console utility
+* DNS: Once a domain name is in the registry, it can be listed with a DNS server and associated with an IP address.
+* Address(A) record: straight mapping from a domain name to IP address
+* CNAME(canonical name) records: maps one domain name to another domain name, acting as a domain name alias. This can be used to map byu.com to byu.edu so that either can be used.
+* TTL setting for domain record.
+* Leasing a domain name: you can pay to lease an unused domain name for a period of time. You have the right to extend the lease for an additional amount of time. 
+
+## Web services Introduction
+* Up to this point, application is loaded from web server and runs on the user's browser. It starts when the broswer requests the index.html file from the web server. All of these files that are running on the browser are the frontend of my application. It is using the HTTPS protocol for this.
+* From frontend javascript, we can make requests to external services.
+* Next step in building a fullstack application is to create a web service, which can provide the static frontend files along with functions to handle fetch requests for things like storing data persistently, providing security, running tasks, and executing application logic that you don't want user to be able to see. The functionality provided here is the backend.
+* Functions provided by a web service are called endpoints or APIs. Access endpoints from frontend Javascript with the fetch function.
+* Backend service can also use fetch to make requests to other web services.
+
+## URL
+* URL = uniform resource locator: represents the location of a web resource, which can be anything, like a web page, font, image, video stream, database record, or JSON object.
+* scheme: protocol required to ask for the resource (like https)
+* Domain name (like byu.edu)
+* Port
+* path
+* parameters: represent a list of key value pairs, usually providing additional qualifiers on the resource represented by the path
+* Anchor: usually represents a sub-location in the resource.
+* URL, URN, and URI
+* URN = uniform resource name
+* URI = uniform resource identifier
+
+## Ports:
+* 20: File transfer protocol (FTP) for data transfer
+* 22: Secure shell (SSH) for connecting to remote devices
+* 25: Simple Mail Transfer Protocol (SMTP) for sending email
+* 53: Domain Name System (DNS) for looking up IP addresses
+* 80: HTTP
+* 110: Post Office Protocol (POP3) for retrieving email
+* 123: network Time Protocol (NTP) for managing time
+* 161: Simple Network Management Protocol (SNMP) for managing network devices such as routers or printers
+* 194: Internet Relay Chat (IRC) for chatting
+* 443: HTTPS
+
+## HTTP
+* How the web talks
+* When a web client and a web server talk they exchange HTTP requests and responses. The browser makes an HTTP request and the server generates a response.
+* You can see the HTTP exchange by using the browsers debugger or by using a console tool like curl.
+* ex. curl -v -s http://something.html
+
+* HTTP request
+* HTTP response: similar to request
+* HTTP Verbs used by request
+  * GET: get the requested resource
+  * POST: Create a new resource. The body of the request contains the resource. The response should include a unique ID of the newly created resource
+  * PUT: Update a resource
+  * DELETE: delete a resource
+  * OPTIONS: Get metadata about a resource: usually only HTTP headers are returned, not the resource itself.
+ 
+* Status codes
+  * 1xx Informational
+  * 2xx Success
+  * 3xx Redirect to some other location; cached resource still valid
+  * 4xx client errors; invalid request
+  * 5xx Server errors; request cannot be satisfied due to an errors on the server
+ 
+* Headers: specify metadata about a request or response; this includes things like how to handle security, caching, data formats, and cookies.
+  * Authorization: a token that authorizes the user making the request
+  * Accept: the format the client accepts
+  * Content-type: format of the content being sent
+  * Cookie: key value pairs that are generated by the server and stored on the client
+  * Host: the domain name of the server, required in all requests.
+  * Origin: Identifies the orgin that cuased the request
+  * Access-control-allow-origin: Server response of what origins can make a request
+  * Content-length: the number of bytes contained in the response
+  * cache control: tells the client how it can cache the response
+  * user-agent: the client application making the request
+ 
+* Body: the format of the body of an HTTP request or response is defined by the Content-type header.
+
+* Body: format of the body of an HTTP request or response is defined by Content-type header.
+* Cookies: HTTP is stateless, so it doesn't know anything about a previous or future request. But cookies can help track state. Cookies are generated by a server and passed to the client as an HTTP header.
+
+* HTTP versions: constant evolution
+  * HTTP0.9
+  * HTTP1
+  * HTTP1.1
+  * HTTP2
+  * HTTP3
+ 
+## Fetch
+* Ability to make HTTP requests from JavaScript is one of the main technologies that changed the web from static content pages to one of web applications that fully interact with the user.
+* Fetch API is the preferred way to make HTTP requests.
+* Fetch takes a URL and returns a promise. The promise then function takes a callback function that is asynchronously called when the requested URL content is obtained.
+* To do a POST request, populate options parameter with the HTTP method and headers
+* fetch('stuff...', {
+  * method: 'Post',
+  * body: ...
+  * }),
+  * headers: {...
+  *  
+
+
   
