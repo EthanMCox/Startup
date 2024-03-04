@@ -1267,7 +1267,11 @@ Node Package manager
   * body: ...
   * }),
   * headers: {...
-  *  
+ 
+# Node.js notes
+* Created by Ryan Dahl
+* Node.js took the V8 engine of google and ran it inside of a console application.
+* Installing NVM and Node.js: web server comes with it already installed. 
 
 
   
