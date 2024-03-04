@@ -1293,7 +1293,54 @@ Node Package manager
 * package-lock.json file tracks version of the package you installed.
 * const giveMeAJoke = require('give-me-a-joke');
 * giveMeAJoke.getRandomDadJoke((joke) => {console.log(joke);});
-* 
 
+# Express:
+* Express is a node package that provides routing requrests for service endpoints, manipulation of HTTP requests with JSON body content, generating HTTP responses, and using middleware to add functionality
+* Create an express application by using NPM to install the Express package and then calling the express constructor to create the Express application and listen for HTTP requests on a desired port.
+* npm install express. 
+
+* const express = require('express');
+* const app = express();
+* app.listen(8080);
+* With the app object, it is now possible to add HTTP routing and middleware functions to the application.
+
+## Defining routes
+* HTTP endpionts implemented by defining routes that call a funciton based upon an HTTP path. The Express app object supports all of the HTTP verbs as functions on the object.
+* Express app object supports all HTTP verbs as functions on the object. For example, for route function that handles an HTTP GET request, call the get method on the app
+* app.get('/store/provo', (req, res, next) +> {
+* res.send({name: 'provo'});
+* get function takes two parameters, a URL path matching pattern, and a callback function that is invoked when the pattern matches.
+  * The callback function has three parameters that represent the HTTP request object (req), the HTTP response object (res), and the next routing function that Express expects to be called if this routing function wants another function to generate a response.
+  * rewrite to app.get('/store/:storeName'...
+  * The colon creates a map of path parameters and populates it with matching values found in the URL path. You can then reference the parameters using the req.params object
+ 
+## Using middleware
+* Standard pattern has a mediator and middleware. Middleware represents componentized piecies of functionality
+* Mediator loads middleware components and determines their order of execution.
+* When a request comes to the mediator it then passes the request around to the middleware components. Following this pattern, Express is the mediator, and middleware functions are the middleware components.
+* Express comes with a standard set of middleware functions. These provide functionality like routing, authentication, CORS, sessions, serving static web files, cookies, and logging.
+* Routing functions are a form of middleware functions, but routing functions are only calld if associated pattern matches.
+* middleware function has the following pattern:
+  * function middlewareName(req, res, next)
+ 
+* Creating your own middleware:
+  * app.use((req, res, next) => {
+  * console.log(req.originalURL);
+  * next();
+  * });
+ 
+* Builtin middleware: Example: static middleware function
+  * app.use(express.static('public));
+  * Now if you create a subdirectory in project directory and name it public you can serve up any static content that you want. For example, you can create an index.html file that is the default content for your web service. Then you can call your web service without any path the index.html file will be returned.
+ 
+* Third-party middleware:
+  * Can also use NPM to install packages and including the package in javascript with the require function.
+  * ex. npm install cookie-parser
+  * const cookieParser = require('cookie-parser');
+  * app.use(cookieParser());
+ 
+* Error handling middleware: Can add middleware for handling errors that occur. Error middleware looks similar to other middleware functions, but takes addtional err parameter that contains the error.
+* function errorMIddleware name(err, req, res, next)
+*    
 
   
