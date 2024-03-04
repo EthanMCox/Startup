@@ -1341,6 +1341,68 @@ Node Package manager
  
 * Error handling middleware: Can add middleware for handling errors that occur. Error middleware looks similar to other middleware functions, but takes addtional err parameter that contains the error.
 * function errorMIddleware name(err, req, res, next)
-*    
+* If you wanted to add a simple error handler for anything that might go wrong while processing HTTP requests, you can add the following
+  * app.use(function (err, req, res, next) { res.status(500.send(({type: err.name, message: err.message});
+* Test that error middleware is getting used by adding a new endpoint that generates an error
+  * app.get('/error', (req, res, next) => { throw new Error('Trouble in river city');});
+ 
+Full example of web service built using Express:
+* const express = require('express');
+* const cookieParser = require('cookie-parser')
+* const app = express();
 
+* app.use(cookieParser());
+
+# Lecture 3/4/2024
+* Idea behind express is to wrap node.js server to make it easier to write the service
+* fetch("https://simon-service.cs260.click/api/scores")
+* TJ Holowaychuk created Express; open source
+* Simple, but powerful
+* Five main objects within Express:
+  * express: constructor and default middleware
+  * app: express application
+  * req: request object
+  * res: response object
+  * router: adding child routing
+
+* npm init -y
+* npm install express
+* Do this within the directory you want to use express for
+* Create an index.js file
+* in index.js file:
+  * const express = require('express')
+  * const app = express();
+* app.get('*', (eq, res) => { res.send('<h1>Hello Express!</h1>');
+* app.listen(3000).
+
+* browser = client = frontend
+* backend = server = application
+
+* res.send('simple text') will render as simple text
+* res.redirect(301, 'https://cs260.click')
+* res.sendFile('public/index.html', { root : __dirnmae})
+* res.status(400).send('trouble in River city')
+
+## Middleware
+* Common design
+* Have a request that does something, then have next function that calls another request, which in turn returns a response (or another next).
+* defining own middleware
+  * app.use([path,] callback(req, res, next))
+  * app.use(function (req, res, next) will always get called because it has no associated path
+  * can't have to responses.
+*  next is always based on what occurs next in the file
+*  only include next if you actually want to go to the next function
+* When debugging, keep in mind when you are on frontend vs. backend.
+* Console.log won't always execute on frontend, it could be executing on the backend.
+
+## Serving Up Static files
+* app.use(express.static('public', {  root : __dirname}));
+  * This will allow me to make everything in my static directory load onto the page.
+ 
+* :something parameterizes urls
+* * is a wildcard that matches anything between slashes.
+ 
+## Simon implementation
+* When you clone the repository, make sure to use npm install express
+* 
   
