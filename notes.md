@@ -1271,7 +1271,29 @@ Node Package manager
 # Node.js notes
 * Created by Ryan Dahl
 * Node.js took the V8 engine of google and ran it inside of a console application.
-* Installing NVM and Node.js: web server comes with it already installed. 
+* Installing NVM and Node.js: web server comes with it already installed.
+* Once installed, you can execute javascript with node.js from console using node -e ("passed in parameter, function, etc")
+* You can also use node index.js, which will then run index.js from the console, or any other file you pass in
+* You can also run node in interpretive mode by executing without any parameters and typing javascript directly into interpreter
+* node
+  * 1 + 1 -> 2
+  * console.log("hello") -> hello
+*  Can be helpful to use preexisting packages of javasctipt for common tasks. to load a package, install the package locally using NPM (node package manager) and then include a require statement in your code that references the package name. NPM is automatically installed with Node.js
+* Search for packages on NPM using the NPM website.
+* in order to start using NPM to install packages, you first need to create a directory that will contain your javascript, then run npm init
+* mkdir npmtest
+* cd npmtest
+* npm init -y
+* This will create a file named package.json. This contains metadata about project, commands (scripts that you can execute to do things like run, test, or distribute your code, and packages that the project depends on.
+* npm install give-me-a-joke
+* If you no longer want a package dependency, use npm uninstall <package name here>
+* When you start installing package dependencies, NPM will create an additional file called package-lock.json and a directory named node_modules. Node_modules directory contains actual JavaScript files for the package and all of its dependent packages. As you isntall several packages, this directory wil get very large. Don't check this directory into source control system as it can get large.
+* Include node_modules in your .gitignore file
+* Any time you clone source code from GitHub to a new location, first thing you should do is run npm install in the project directory. This will cause NPM to download all previously installed packages and recreate the node_modules directory.
+* package-lock.json file tracks version of the package you installed.
+* const giveMeAJoke = require('give-me-a-joke');
+* giveMeAJoke.getRandomDadJoke((joke) => {console.log(joke);});
+* 
 
 
   
