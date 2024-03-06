@@ -1404,5 +1404,44 @@ Full example of web service built using Express:
  
 ## Simon implementation
 * When you clone the repository, make sure to use npm install express
-* 
-  
+
+
+# Lecture 3/6/2024
+* UML is a common diagramming model to help look at how things work
+* Sequence diagram is one of the most common types of diagrams.
+* sequencediagram.org allows you to do a textual description of the sequnce diagram see example: (https://sequencediagram.org/index.html#initialData=C4S2BsFMAIGEAsCGxqIA5oFCcQY2APYBO0AguCLpDvsdAEIEBG25lkAtAHwDKkRAN34AuPikQDEIcIiZRMjJtz6CRY1JOmz5igDy6OHFUKLC2VDVJlzq5yPsPGRDZpa03Md5fxOjgiIhRcAgA7EwBnZBBQ6AB3MHgXFj0DIx8RWFCIqJiiSABHAFdIcJQQglAAM0ockIVmb1VTUlwqNBQ7aGCw-kjQUPqlXnTTHkQAT2gAIgAJSHBwAinoQjIKKkwnIm47YVn5xeXKogIAWySgA)https://sequencediagram.org/index.html#initialData=C4S2BsFMAIGEAsCGxqIA5oFCcQY2APYBO0AguCLpDvsdAEIEBG25lkAtAHwDKkRAN34AuPikQDEIcIiZRMjJtz6CRY1JOmz5igDy6OHFUKLC2VDVJlzq5yPsPGRDZpa03Md5fxOjgiIhRcAgA7EwBnZBBQ6AB3MHgXFj0DIx8RWFCIqJiiSABHAFdIcJQQglAAM0ockIVmb1VTUlwqNBQ7aGCw-kjQUPqlXnTTHkQAT2gAIgAJSHBwAinoQjIKKkwnIm47YVn5xeXKogIAWySgA)
+* If I find myself getting lost in what is happening, make a sequence diagram
+* Often there will be a backend and frontend repository. Simon does backend in root directory, frontend in public directory.
+* Look at sequence diagram to determine what functions you need for backend and frontend applications; example: set available
+* Simon service endpoints:
+  * Create accounts
+  * Login
+  * Logout
+  * Get user: can grab cookies from previous logins
+  * Get scores
+  * Save scores
+* HTTP is client to server (frontend to backend). WebSocket allows you to do it from either side (backend to frontend as well)
+* Start from user focus, then transition to leveraging technologies
+* Leverage Standards:
+  * Transfer protocols: https, https, udp
+  * http verbs: get, put, delete
+  * MIME types: application/json, image/png
+  * HTTP headers: cache, accept, cors
+  * Data format: JSON, YAML
+  * You need a really good reason if you decide to move away from these standard technologies.
+ 
+* Endpoint design:
+  * Service is kind of like a class, that has operations you can call on it. Those are called endpoints (or sometimes APIs)
+  * Grammatical: noun/resource based
+    * paths should represent an object, method should be a verb on that object 
+  * Readable: /store/provo/order/28502
+  * Simple: single responsibility principle: if you're doing a get on something, don't also update it. Do one thing and do it well
+  * Documented: Open API; if you're going to make a service that is used by a lot of people, you want to document it well. Open API is a common, well-accepted specification form
+ 
+* pick technologies well and then use them to full advantage
+* Three categories of endpoint design:
+  * RPC: Remote Procedure Calls: expose service endpoints as simple function calls. Usually just leverages POST HTTP verb.
+  * REST (Representational state transfer): nobody does REST right. Attempts to take advantage of HTTP as much as possible. Using the verb properly and the path makes sense
+  * GraphQL: Put all of the logic onto the client and get the server out of the picture. Provide all the parameters of what you want on the client side. Lots of applications use this
+
+* Cross site request forgery: CORS
