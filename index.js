@@ -20,6 +20,17 @@ app.use((_req, res) => {
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+// GetScores endpoint
+apiRouter.get('/scores', (_req, res) => {
+    res.send(scores);
+});
+
+// Submit score endpoint
+apiRouter.post('/score', (req, res) => {
+    const newScore = req.body;
+    scores = updateScores(newScore, scores);
+    res.send(scores);
+});
 
 
 // Start the server, log where the server is running
