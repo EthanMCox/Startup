@@ -1445,3 +1445,29 @@ Full example of web service built using Express:
   * GraphQL: Put all of the logic onto the client and get the server out of the picture. Provide all the parameters of what you want on the client side. Lots of applications use this
 
 * Cross site request forgery: CORS
+
+# Lecture 3/8/2024
+* Frontend (Chrome)
+* Backend (Node.js)
+* I need to keep track of frontend vs backend
+
+* npm init -y allows me to pull down packages from npm
+* Make sure to keep frontend code and backend code separate
+
+* I am able to separate the backend from the frontend because of node.js. Running node.js enables me to run the backend and load the frontend
+* Debugging: need to make sure content is correct.
+* need to set breakpoints for the frontend in chrome, set breakpoints for the backend in VSCode
+* The frontend executes in the browser itself.
+* All you have to do to send json is wrap something in a a javascript object. JavaScript plays really nicely with JSON.
+* If you do need to change something on frontend, make sure it's within VSCode
+* You can't hide frontend code, but you can hide your backend code.
+* Chrome is not a development environment, it's a debugger
+
+* Nodemon; makes it so you don't have to restart node debugger every time you change it.
+* install it, will make it easier to debug my stuff
+* Daemons -Pm2: Keeps your node service running
+* Normally if you run node, when you exit out, it will just close everythnig
+* Daemons makes it possible to run servers without being in it
+* pm2 is running on my server, and it makes it possible for me to run my server without actually being in it.
+* pm2 start index.js -n appname -- parameters
+
