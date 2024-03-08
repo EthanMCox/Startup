@@ -1,14 +1,15 @@
 async function loadScores() {
   // Initialize an empty array for storing scores
   let scores = [];
-
   try { // Try to fetch scores from the API
     const response = await fetch('/api/scores');
-    scores = await response.json();
+
+    scores = await response.json(); // Something is wrong with this functionality
+    console.log("awaited response");
 
     // Save scores in local storage in case server endpoints fail later
     localStorage.setItem('scores', JSON.stringify(scores));
-
+    console.log("Successfully loaded API")
   } catch { // Get scores from local storage if the API fails
     const scoresText = localStorage.getItem('scores');
     if (scoresText) {
@@ -18,6 +19,7 @@ async function loadScores() {
     //  {"name":"Player 2","score":200,"date":"1/2/2021"}
     // ]
     scores = JSON.parse(scoresText);
+    console.log("Failed, loaded local storage instead")
     }
   }
 

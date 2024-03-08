@@ -11,11 +11,6 @@ app.use(express.json());
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
 
-// Return the application's default page if the path is unknown
-app.use((_req, res) => {
-    res.sendFile('index.html', { root: 'public' });
-});
-
 // Create a router for the API Service Endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
@@ -32,6 +27,11 @@ apiRouter.post('/score', (req, res) => {
     res.send(scores);
 });
 
+// Return the application's default page if the path is unknown
+app.use((_req, res) => {
+    res.sendFile('index.html', { root: 'public' });
+});
+
 
 // Start the server, log where the server is running
 app.listen(port, () => {
@@ -42,9 +42,11 @@ let scores = [];
 function updateScores(newScore, scores) {
     let found = false;
     for (const [i, prevScore] of scores.entries()) {
-        scores.splice(i, 0, newScore);
-        found = true;
-        break;
+        if (newScore.score > prevScore.score) {
+            scores.splice(i, 0, newScore);
+            found = true;
+            break;
+        }
     }
 
     // Insert score at the bottom of the list if not already found
