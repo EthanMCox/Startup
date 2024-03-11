@@ -1,5 +1,7 @@
 # How To Write Markdown: Notes
 
+* Course website: learn.cs260.click
+
 ## Headings:
 * \# = first-level-heading
 * \## = second-level heading
@@ -1471,3 +1473,35 @@ Full example of web service built using Express:
 * pm2 is running on my server, and it makes it possible for me to run my server without actually being in it.
 * pm2 start index.js -n appname -- parameters
 
+# Lecture 3/11/2024
+* Don't ever mix my development environment with my production environment.
+* Real companies often won't even let development engineers touch the production environment.
+* Compliance issues
+* Use deployment scripts instead
+* More complex and realistic pipeline
+  * Devlelopment: push to github -> automatic testing and auto-deploy -> staging: private testing environment for team to test -> continuous integration -> Manual deployment to production.
+  * Could have more than this too. For example, enviornments for marketing, QA team, CEO, etc.
+* There are benefits to deploying sooner. When things are low-stakes, you can definitely get away with it.
+* Deployment scripts:
+* Our model: stop, delete, replace, start
+* More common model:
+  * At least two or more servers hosting your service
+  * Draing, stop, start...repeat. Update one or two at a time.
+  * Elastic load balance: more common in a production environment.
+ 
+* Gradual with error monitoring: you can tell your load balancer what percentage of servers to change; this is the canary appoach
+* Blue/green: swap as a cluster. Always have two clusters up and running: one blue, one green.
+  * If things go wrong, immediately move servers back to previous servers on the previous version.
+  * Disadvantage: allocating a ton of hardware for this
+  * Can use blue as staging environment, green as production environment. Then you can flip the two.
+ 
+* A/B: Useful for marketing department. Shift what it looks like for some but not all users. View statistics/feedback and potentially allocate more service space to more servers if it looks good.
+* Make it easy to do A/B testing
+* Uploading files:
+* Multer from NPM can be used for uploading files
+* Bad idea for photo upload:
+  * Limited space
+  * No backup
+  * Servers are transient
+  * Multiple servers hosting data
+* use a Storage Service
