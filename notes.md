@@ -1,5 +1,7 @@
 # How To Write Markdown: Notes
 
+* Course website: learn.cs260.click
+
 ## Headings:
 * \# = first-level-heading
 * \## = second-level heading
@@ -1043,6 +1045,463 @@ Many layers to networks
   * SOA: start of authority. Propagation information.
  
 * IANA
-  * Registrar  
+  * Registrar
+ 
+# Lecture 2/28/2024: Fetch, URL, ports, HTTP
+* Fetch
+* Execute a fetch request using a url:
+* fetch(url).then (r => r.text())
+* .then(text => console.log(text))
 
-  
+* fetch is another example of a promise returning
+
+* fetch('https://apisomething').then(r => r.json())
+* .then(j => console.log(j.value))
+
+* With API, I most likely want to use something that will give me JSON, so I can just convert it.
+
+* const r = await fetch('https://api.quotable.io/random')
+* const j = await r.json()
+* console.log(j.content)
+
+* A fetch contains a promise that when it returns, will include the content from what we want to get from the API.
+* Fetch can be called from anywhere
+* Endpoints examples
+  * post/user
+  * get/user
+  * get/scores
+  * get/user/route
+ 
+* Objects have methods. Servers have endpoints. endpoints are to servers as methods are to objects.
+* Service can also make fetch requests. Database service and websocket in the case of this class.
+* With fetch, be careful about who you are asking and make sure they are fast
+* My server has three services running:
+  * Caddy: loading up startup html and returning it
+  * Simon service
+  * Startup service
+* Each of these uses a different port.
+* sshd: ssh demon; waits on port 22 for if you use ssh command.
+
+* URL = uniform resource locator
+* https://(scheme)byu.edu(domain):443(port)/api/city(path)?q=pro(parameters)#3(anchor)
+* if you are using https://, then you should use port 80.
+* I will need to specify the path/endpoints.
+* API stands for application programming interface
+* Parameters go to the resource.
+* The anchor is a subindex into the resource. It takes you into one part of the page.
+* www is just a subdomain. Convention meaning that you are a webserver
+* Standard ports
+* HTTP requests:
+  * Method path version
+ 
+* Methods:
+  * Get: get an existing resource
+  * post: create a new resource
+  * put: update an existing resource
+  * delete: delete the resource
+  * options: get more information about resource
+ 
+* Status codes:
+  * 200 means success, 204 no content
+  * 300 is good, but not giving back the thing you asked for; 301/302 redirect, 304 not modified
+  * 400: bad request, 404 not found, 403 forbidden, 429 too many requests
+  * 500: server error, server not available
+
+# Lecture 3/1/2024
+* Ryan Dahl created Node.js
+* Node.js releaed in 2009
+* 2010: Node Package Manager (NPM) released
+* Everyone was moving to Node.js by 2011.
+* V8 is a javascript interpreter that is used for Google chrome.
+* Node: javascript runtime
+* Node.js also has NPM: Node package manager
+  * allows you to go to huge open source repository, pull stuff from there, include it in your code
+*  Node version manager (NVM): good if I want to do a lot of web dev after this class, easily switch between versions.
+*  Node.js installation is the simple way
+*  Can also install NVM and use that to install it.
+*  Windows installation: run windows-nvm
+*  nvm install lts
+*  nvm use lts
+
+Node Package manager
+* access to massive library of packages
+* Install project
+
+* Frontend = running on browser
+* Backend = running on server
+
+* Use NPM
+  * mkdir npmtest
+  * cd npmtest
+  * npm init -y
+ 
+* const giveMeAJoke = require('give-me-a-joke');
+* giveMeAJoke.getRandomDadJoke((joke) => { console.log(joke);});
+
+* Using Node.js to make a service
+* fetch("https://localhost:3000")
+* app.listen(3000)
+
+* const https = require('http')
+* const server = https.createServer(function req, res) {
+* res.writeHead(200, { 'Content-Type': 'text/html' });
+* res.write('<h1>Hello Node.js!</h1>');
+* res.write(`<p>[${req.method}] $req.url}</p>`);
+* res.end();
+* });
+
+* server.listen(3000, () => {
+* console.log(`Web service listening on port 3000`);
+* r = await fetch('http://localhost:3000/joe")
+
+# Server Reading Notes
+* Devices must have IP addresses for devices to talk to each other
+* We use a symbolic name instead of an IP address. This is the Domain name. Domain names are converted to an IP address by doing a lookup in the Domain Name System (DNS). You can look up the IP address for any domain name using the dig console utility
+
+* Traceout: allows you to trace the route of a connection. Ex: traceroute byu.edu
+* Network internals:
+  * Sending data uses the TCP/IP model.
+ 
+* Application, transport, internet, and link layers.
+* TCP/IP protocol is application layer, representing user functionality, like HTTP, SMTP, FTP, SSH, and IRC
+* Transport layer breaks application layers information into small chunks and sends the data
+* Actual connection is made using internet layer, finding the device you want to talk to and keeping the connection alive
+* Bottom of the model is the link layer, which is where there are physical connections and hardware.
+
+## Web Servers
+* Most modern programming languages have libraries that provide ability to make connections and serve up HTTP. This makes it possible to build services right into a web application
+* Microservices: Web services that provide a single functional purpose. By partitioning functionality into small logical chunks, you can develop and manage them independently from other functionality on a larger system.
+
+## Domain Names
+* You can get a domain name by using the dig console utility: dig amazon.com
+* Domain names are broken up into a root domain, secondary domain, and top level domain
+* You can get information about a domain name from the domain name registry using the whois console utility
+* DNS: Once a domain name is in the registry, it can be listed with a DNS server and associated with an IP address.
+* Address(A) record: straight mapping from a domain name to IP address
+* CNAME(canonical name) records: maps one domain name to another domain name, acting as a domain name alias. This can be used to map byu.com to byu.edu so that either can be used.
+* TTL setting for domain record.
+* Leasing a domain name: you can pay to lease an unused domain name for a period of time. You have the right to extend the lease for an additional amount of time. 
+
+## Web services Introduction
+* Up to this point, application is loaded from web server and runs on the user's browser. It starts when the broswer requests the index.html file from the web server. All of these files that are running on the browser are the frontend of my application. It is using the HTTPS protocol for this.
+* From frontend javascript, we can make requests to external services.
+* Next step in building a fullstack application is to create a web service, which can provide the static frontend files along with functions to handle fetch requests for things like storing data persistently, providing security, running tasks, and executing application logic that you don't want user to be able to see. The functionality provided here is the backend.
+* Functions provided by a web service are called endpoints or APIs. Access endpoints from frontend Javascript with the fetch function.
+* Backend service can also use fetch to make requests to other web services.
+
+## URL
+* URL = uniform resource locator: represents the location of a web resource, which can be anything, like a web page, font, image, video stream, database record, or JSON object.
+* scheme: protocol required to ask for the resource (like https)
+* Domain name (like byu.edu)
+* Port
+* path
+* parameters: represent a list of key value pairs, usually providing additional qualifiers on the resource represented by the path
+* Anchor: usually represents a sub-location in the resource.
+* URL, URN, and URI
+* URN = uniform resource name
+* URI = uniform resource identifier
+
+## Ports:
+* 20: File transfer protocol (FTP) for data transfer
+* 22: Secure shell (SSH) for connecting to remote devices
+* 25: Simple Mail Transfer Protocol (SMTP) for sending email
+* 53: Domain Name System (DNS) for looking up IP addresses
+* 80: HTTP
+* 110: Post Office Protocol (POP3) for retrieving email
+* 123: network Time Protocol (NTP) for managing time
+* 161: Simple Network Management Protocol (SNMP) for managing network devices such as routers or printers
+* 194: Internet Relay Chat (IRC) for chatting
+* 443: HTTPS
+
+## HTTP
+* How the web talks
+* When a web client and a web server talk they exchange HTTP requests and responses. The browser makes an HTTP request and the server generates a response.
+* You can see the HTTP exchange by using the browsers debugger or by using a console tool like curl.
+* ex. curl -v -s http://something.html
+
+* HTTP request
+* HTTP response: similar to request
+* HTTP Verbs used by request
+  * GET: get the requested resource
+  * POST: Create a new resource. The body of the request contains the resource. The response should include a unique ID of the newly created resource
+  * PUT: Update a resource
+  * DELETE: delete a resource
+  * OPTIONS: Get metadata about a resource: usually only HTTP headers are returned, not the resource itself.
+ 
+* Status codes
+  * 1xx Informational
+  * 2xx Success
+  * 3xx Redirect to some other location; cached resource still valid
+  * 4xx client errors; invalid request
+  * 5xx Server errors; request cannot be satisfied due to an errors on the server
+ 
+* Headers: specify metadata about a request or response; this includes things like how to handle security, caching, data formats, and cookies.
+  * Authorization: a token that authorizes the user making the request
+  * Accept: the format the client accepts
+  * Content-type: format of the content being sent
+  * Cookie: key value pairs that are generated by the server and stored on the client
+  * Host: the domain name of the server, required in all requests.
+  * Origin: Identifies the orgin that cuased the request
+  * Access-control-allow-origin: Server response of what origins can make a request
+  * Content-length: the number of bytes contained in the response
+  * cache control: tells the client how it can cache the response
+  * user-agent: the client application making the request
+ 
+* Body: the format of the body of an HTTP request or response is defined by the Content-type header.
+
+* Body: format of the body of an HTTP request or response is defined by Content-type header.
+* Cookies: HTTP is stateless, so it doesn't know anything about a previous or future request. But cookies can help track state. Cookies are generated by a server and passed to the client as an HTTP header.
+
+* HTTP versions: constant evolution
+  * HTTP0.9
+  * HTTP1
+  * HTTP1.1
+  * HTTP2
+  * HTTP3
+ 
+## Fetch
+* Ability to make HTTP requests from JavaScript is one of the main technologies that changed the web from static content pages to one of web applications that fully interact with the user.
+* Fetch API is the preferred way to make HTTP requests.
+* Fetch takes a URL and returns a promise. The promise then function takes a callback function that is asynchronously called when the requested URL content is obtained.
+* To do a POST request, populate options parameter with the HTTP method and headers
+* fetch('stuff...', {
+  * method: 'Post',
+  * body: ...
+  * }),
+  * headers: {...
+ 
+# Node.js notes
+* Created by Ryan Dahl
+* Node.js took the V8 engine of google and ran it inside of a console application.
+* Installing NVM and Node.js: web server comes with it already installed.
+* Once installed, you can execute javascript with node.js from console using node -e ("passed in parameter, function, etc")
+* You can also use node index.js, which will then run index.js from the console, or any other file you pass in
+* You can also run node in interpretive mode by executing without any parameters and typing javascript directly into interpreter
+* node
+  * 1 + 1 -> 2
+  * console.log("hello") -> hello
+*  Can be helpful to use preexisting packages of javasctipt for common tasks. to load a package, install the package locally using NPM (node package manager) and then include a require statement in your code that references the package name. NPM is automatically installed with Node.js
+* Search for packages on NPM using the NPM website.
+* in order to start using NPM to install packages, you first need to create a directory that will contain your javascript, then run npm init
+* mkdir npmtest
+* cd npmtest
+* npm init -y
+* This will create a file named package.json. This contains metadata about project, commands (scripts that you can execute to do things like run, test, or distribute your code, and packages that the project depends on.
+* npm install give-me-a-joke
+* If you no longer want a package dependency, use npm uninstall <package name here>
+* When you start installing package dependencies, NPM will create an additional file called package-lock.json and a directory named node_modules. Node_modules directory contains actual JavaScript files for the package and all of its dependent packages. As you isntall several packages, this directory wil get very large. Don't check this directory into source control system as it can get large.
+* Include node_modules in your .gitignore file
+* Any time you clone source code from GitHub to a new location, first thing you should do is run npm install in the project directory. This will cause NPM to download all previously installed packages and recreate the node_modules directory.
+* package-lock.json file tracks version of the package you installed.
+* const giveMeAJoke = require('give-me-a-joke');
+* giveMeAJoke.getRandomDadJoke((joke) => {console.log(joke);});
+
+# Express:
+* Express is a node package that provides routing requrests for service endpoints, manipulation of HTTP requests with JSON body content, generating HTTP responses, and using middleware to add functionality
+* Create an express application by using NPM to install the Express package and then calling the express constructor to create the Express application and listen for HTTP requests on a desired port.
+* npm install express. 
+
+* const express = require('express');
+* const app = express();
+* app.listen(8080);
+* With the app object, it is now possible to add HTTP routing and middleware functions to the application.
+
+## Defining routes
+* HTTP endpionts implemented by defining routes that call a funciton based upon an HTTP path. The Express app object supports all of the HTTP verbs as functions on the object.
+* Express app object supports all HTTP verbs as functions on the object. For example, for route function that handles an HTTP GET request, call the get method on the app
+* app.get('/store/provo', (req, res, next) +> {
+* res.send({name: 'provo'});
+* get function takes two parameters, a URL path matching pattern, and a callback function that is invoked when the pattern matches.
+  * The callback function has three parameters that represent the HTTP request object (req), the HTTP response object (res), and the next routing function that Express expects to be called if this routing function wants another function to generate a response.
+  * rewrite to app.get('/store/:storeName'...
+  * The colon creates a map of path parameters and populates it with matching values found in the URL path. You can then reference the parameters using the req.params object
+ 
+## Using middleware
+* Standard pattern has a mediator and middleware. Middleware represents componentized piecies of functionality
+* Mediator loads middleware components and determines their order of execution.
+* When a request comes to the mediator it then passes the request around to the middleware components. Following this pattern, Express is the mediator, and middleware functions are the middleware components.
+* Express comes with a standard set of middleware functions. These provide functionality like routing, authentication, CORS, sessions, serving static web files, cookies, and logging.
+* Routing functions are a form of middleware functions, but routing functions are only calld if associated pattern matches.
+* middleware function has the following pattern:
+  * function middlewareName(req, res, next)
+ 
+* Creating your own middleware:
+  * app.use((req, res, next) => {
+  * console.log(req.originalURL);
+  * next();
+  * });
+ 
+* Builtin middleware: Example: static middleware function
+  * app.use(express.static('public));
+  * Now if you create a subdirectory in project directory and name it public you can serve up any static content that you want. For example, you can create an index.html file that is the default content for your web service. Then you can call your web service without any path the index.html file will be returned.
+ 
+* Third-party middleware:
+  * Can also use NPM to install packages and including the package in javascript with the require function.
+  * ex. npm install cookie-parser
+  * const cookieParser = require('cookie-parser');
+  * app.use(cookieParser());
+ 
+* Error handling middleware: Can add middleware for handling errors that occur. Error middleware looks similar to other middleware functions, but takes addtional err parameter that contains the error.
+* function errorMIddleware name(err, req, res, next)
+* If you wanted to add a simple error handler for anything that might go wrong while processing HTTP requests, you can add the following
+  * app.use(function (err, req, res, next) { res.status(500.send(({type: err.name, message: err.message});
+* Test that error middleware is getting used by adding a new endpoint that generates an error
+  * app.get('/error', (req, res, next) => { throw new Error('Trouble in river city');});
+ 
+Full example of web service built using Express:
+* const express = require('express');
+* const cookieParser = require('cookie-parser')
+* const app = express();
+
+* app.use(cookieParser());
+
+# Lecture 3/4/2024
+* Idea behind express is to wrap node.js server to make it easier to write the service
+* fetch("https://simon-service.cs260.click/api/scores")
+* TJ Holowaychuk created Express; open source
+* Simple, but powerful
+* Five main objects within Express:
+  * express: constructor and default middleware
+  * app: express application
+  * req: request object
+  * res: response object
+  * router: adding child routing
+
+* npm init -y
+* npm install express
+* Do this within the directory you want to use express for
+* Create an index.js file
+* in index.js file:
+  * const express = require('express')
+  * const app = express();
+* app.get('*', (eq, res) => { res.send('<h1>Hello Express!</h1>');
+* app.listen(3000).
+
+* browser = client = frontend
+* backend = server = application
+
+* res.send('simple text') will render as simple text
+* res.redirect(301, 'https://cs260.click')
+* res.sendFile('public/index.html', { root : __dirnmae})
+* res.status(400).send('trouble in River city')
+
+## Middleware
+* Common design
+* Have a request that does something, then have next function that calls another request, which in turn returns a response (or another next).
+* defining own middleware
+  * app.use([path,] callback(req, res, next))
+  * app.use(function (req, res, next) will always get called because it has no associated path
+  * can't have to responses.
+*  next is always based on what occurs next in the file
+*  only include next if you actually want to go to the next function
+* When debugging, keep in mind when you are on frontend vs. backend.
+* Console.log won't always execute on frontend, it could be executing on the backend.
+
+## Serving Up Static files
+* app.use(express.static('public', {  root : __dirname}));
+  * This will allow me to make everything in my static directory load onto the page.
+ 
+* :something parameterizes urls
+* * is a wildcard that matches anything between slashes.
+ 
+## Simon implementation
+* When you clone the repository, make sure to use npm install express
+
+
+# Lecture 3/6/2024
+* UML is a common diagramming model to help look at how things work
+* Sequence diagram is one of the most common types of diagrams.
+* sequencediagram.org allows you to do a textual description of the sequnce diagram see example: (https://sequencediagram.org/index.html#initialData=C4S2BsFMAIGEAsCGxqIA5oFCcQY2APYBO0AguCLpDvsdAEIEBG25lkAtAHwDKkRAN34AuPikQDEIcIiZRMjJtz6CRY1JOmz5igDy6OHFUKLC2VDVJlzq5yPsPGRDZpa03Md5fxOjgiIhRcAgA7EwBnZBBQ6AB3MHgXFj0DIx8RWFCIqJiiSABHAFdIcJQQglAAM0ockIVmb1VTUlwqNBQ7aGCw-kjQUPqlXnTTHkQAT2gAIgAJSHBwAinoQjIKKkwnIm47YVn5xeXKogIAWySgA)https://sequencediagram.org/index.html#initialData=C4S2BsFMAIGEAsCGxqIA5oFCcQY2APYBO0AguCLpDvsdAEIEBG25lkAtAHwDKkRAN34AuPikQDEIcIiZRMjJtz6CRY1JOmz5igDy6OHFUKLC2VDVJlzq5yPsPGRDZpa03Md5fxOjgiIhRcAgA7EwBnZBBQ6AB3MHgXFj0DIx8RWFCIqJiiSABHAFdIcJQQglAAM0ockIVmb1VTUlwqNBQ7aGCw-kjQUPqlXnTTHkQAT2gAIgAJSHBwAinoQjIKKkwnIm47YVn5xeXKogIAWySgA)
+* If I find myself getting lost in what is happening, make a sequence diagram
+* Often there will be a backend and frontend repository. Simon does backend in root directory, frontend in public directory.
+* Look at sequence diagram to determine what functions you need for backend and frontend applications; example: set available
+* Simon service endpoints:
+  * Create accounts
+  * Login
+  * Logout
+  * Get user: can grab cookies from previous logins
+  * Get scores
+  * Save scores
+* HTTP is client to server (frontend to backend). WebSocket allows you to do it from either side (backend to frontend as well)
+* Start from user focus, then transition to leveraging technologies
+* Leverage Standards:
+  * Transfer protocols: https, https, udp
+  * http verbs: get, put, delete
+  * MIME types: application/json, image/png
+  * HTTP headers: cache, accept, cors
+  * Data format: JSON, YAML
+  * You need a really good reason if you decide to move away from these standard technologies.
+ 
+* Endpoint design:
+  * Service is kind of like a class, that has operations you can call on it. Those are called endpoints (or sometimes APIs)
+  * Grammatical: noun/resource based
+    * paths should represent an object, method should be a verb on that object 
+  * Readable: /store/provo/order/28502
+  * Simple: single responsibility principle: if you're doing a get on something, don't also update it. Do one thing and do it well
+  * Documented: Open API; if you're going to make a service that is used by a lot of people, you want to document it well. Open API is a common, well-accepted specification form
+ 
+* pick technologies well and then use them to full advantage
+* Three categories of endpoint design:
+  * RPC: Remote Procedure Calls: expose service endpoints as simple function calls. Usually just leverages POST HTTP verb.
+  * REST (Representational state transfer): nobody does REST right. Attempts to take advantage of HTTP as much as possible. Using the verb properly and the path makes sense
+  * GraphQL: Put all of the logic onto the client and get the server out of the picture. Provide all the parameters of what you want on the client side. Lots of applications use this
+
+* Cross site request forgery: CORS
+
+# Lecture 3/8/2024
+* Frontend (Chrome)
+* Backend (Node.js)
+* I need to keep track of frontend vs backend
+
+* npm init -y allows me to pull down packages from npm
+* Make sure to keep frontend code and backend code separate
+
+* I am able to separate the backend from the frontend because of node.js. Running node.js enables me to run the backend and load the frontend
+* Debugging: need to make sure content is correct.
+* need to set breakpoints for the frontend in chrome, set breakpoints for the backend in VSCode
+* The frontend executes in the browser itself.
+* All you have to do to send json is wrap something in a a javascript object. JavaScript plays really nicely with JSON.
+* If you do need to change something on frontend, make sure it's within VSCode
+* You can't hide frontend code, but you can hide your backend code.
+* Chrome is not a development environment, it's a debugger
+
+* Nodemon; makes it so you don't have to restart node debugger every time you change it.
+* install it, will make it easier to debug my stuff
+* Daemons -Pm2: Keeps your node service running
+* Normally if you run node, when you exit out, it will just close everythnig
+* Daemons makes it possible to run servers without being in it
+* pm2 is running on my server, and it makes it possible for me to run my server without actually being in it.
+* pm2 start index.js -n appname -- parameters
+
+# Lecture 3/11/2024
+* Don't ever mix my development environment with my production environment.
+* Real companies often won't even let development engineers touch the production environment.
+* Compliance issues
+* Use deployment scripts instead
+* More complex and realistic pipeline
+  * Devlelopment: push to github -> automatic testing and auto-deploy -> staging: private testing environment for team to test -> continuous integration -> Manual deployment to production.
+  * Could have more than this too. For example, enviornments for marketing, QA team, CEO, etc.
+* There are benefits to deploying sooner. When things are low-stakes, you can definitely get away with it.
+* Deployment scripts:
+* Our model: stop, delete, replace, start
+* More common model:
+  * At least two or more servers hosting your service
+  * Draing, stop, start...repeat. Update one or two at a time.
+  * Elastic load balance: more common in a production environment.
+ 
+* Gradual with error monitoring: you can tell your load balancer what percentage of servers to change; this is the canary appoach
+* Blue/green: swap as a cluster. Always have two clusters up and running: one blue, one green.
+  * If things go wrong, immediately move servers back to previous servers on the previous version.
+  * Disadvantage: allocating a ton of hardware for this
+  * Can use blue as staging environment, green as production environment. Then you can flip the two.
+ 
+* A/B: Useful for marketing department. Shift what it looks like for some but not all users. View statistics/feedback and potentially allocate more service space to more servers if it looks good.
+* Make it easy to do A/B testing
+* Uploading files:
+* Multer from NPM can be used for uploading files
+* Bad idea for photo upload:
+  * Limited space
+  * No backup
+  * Servers are transient
+  * Multiple servers hosting data
+* use a Storage Service
