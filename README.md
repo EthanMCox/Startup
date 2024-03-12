@@ -58,5 +58,12 @@ For this deliverable I added styling elements to my application using CSS.
 * Support for future login: When you hit login, your name and password are stored in local storage, you are taken to the play page, and the name is pulled from local storage and displayed as the current player. 
 * Support for future database data: Local storage stores scores from the game, which is then loaded into the scores tab. 
 * Support for future WebSocket: WebSocket placeholder for people finishing the game and logging a score in real time. 
-* Support for Application Interaction Logic: Fully functional card flipping animation, restart button, random generation of cards, and card game implementation supporting lives, round, and score iteration. 
+* Support for Application Interaction Logic: Fully functional card flipping animation, restart button, random generation of cards, and card game implementation supporting lives, round, and score iteration.
+
+# Service Deliverable:
+* Node.js/Express HTTP service: done
+* Static middleware for frontend: done
+* Calls to third party endpoints: I call a random quote API on my about.html page using about.js
+* Backend Service endpoints: There are two endpoints for updating the score and getting the score in index.js
+* Frontend calls service endpoints: I use fetch in my saveScore function in play.js and in my loadScores function in scores.js
 
