@@ -12,3 +12,17 @@
   border-radius: 5px;
 }
 
+.quote {
+  font-style: italic;
+  text-align: center;
+}
+
+.author {
+  font-weight: lighter;
+  text-align: center;
+}
+
+.author::before {
+  content: " - ";
+}
+
