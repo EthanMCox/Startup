@@ -1505,3 +1505,39 @@ Full example of web service built using Express:
   * Servers are transient
   * Multiple servers hosting data
 * use a Storage Service
+
+# Lecture 3/13/2024
+* Types of data Storage solutions
+  * mySQL; specializes in Relational queries (relational databases are very common)
+  * Redis: memory cached objects, really fast
+  * ElasticSearch: Ranked free text;
+  * MongoDB: Developer productivity; JSON objects
+  * DynamoDB: key value pairs; some Id and blob of data, efficiency, then DynamoDB is best
+  * Neo4J: Graph-based-data
+  * InfluxDB: Time series data
+* MongoDB:
+  * Database has one or more collections of data in it.
+  * A collection is an array of some number of JSON objects.
+  * Mongo is the javascript of databases; really versatile, can kind of do whatever you want with it
+  * Search for the name of the object
+  * id is usually automatically generated unless you tell Mongo what the id is
+* Once set up on MongoDB ->
+  * npm install mongodb
+  * npm install mongo
+* const { MongoClient } = require('mongodb');
+
+* const unerName =
+* const password =
+* const hostname =
+* const url =
+* const client = new MongoClient(url);
+* const db = client.db
+
+* client
+  * .connect()
+  * .then((  => db.command({ping:1}))
+  * .then((
+ => console.log(`Cnnected`))
+.catch((ex)
+
+* MongoDB isn't relational, which can be a disadvantage depending on the use case
