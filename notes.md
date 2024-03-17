@@ -1541,3 +1541,93 @@ Full example of web service built using Express:
 .catch((ex)
 
 * MongoDB isn't relational, which can be a disadvantage depending on the use case
+
+# SOP and CORS
+* Security should be on your mind when on the web
+* Same Origin Policy (SOP) was created to allow JavaScript to make requests to a domain only if it is the same domain that the user is currently viewing. This provides security, but introduces complications. If you want to build a service that any web app can use, it would also violate SOP and fail
+* CORS (Cross Origin Resource Sharing) was invented to address this
+* CORS allows client to specify the orgin of a request and then let the server respond with what origins are allowed.
+* CORS is only meant to alert the user that something nefarious is being attempted, but a hacker can still proxy requests through their own server to the course website and ignore the Access-control-allow-origin header.
+* If you want to make requests to a different domain than the one your web app is hosted on, make sure the domain allows requests as defined by the Access-control-allow-origin header it returns.
+* Because of CORS and some services not allowing API calls, you need to test services you want to use before you include them in your application.
+
+# Service Design
+* Web services provide interactive functionality of web application.
+* Model and sequence diagrams are helpful to model application's primary objects and the interactions of the objects.
+* Leveraging HTTP; use it
+* endpoints: web service usually divided up into multiple service endpoints. Each endpoint provides a single functional purpose.
+* Designing service endpoints: make them
+  * Grammatical (everything is a resource (noun) that you act on (HTTP verb)
+  * Readable: resource you request should be clearly readable in the URL path
+  * Discoverable; when providing endpoints that contain other resources, make sure only the top level endpoint needs to be remembered
+  * Compatible: make sure you can add new functionality without breaking existing clients
+  * Simple
+  * Documented
+ 
+Models for exposing endpoints: three common ones
+* RPC: Remote Procedure calls; exposes service endpoints as simple function calls, leveraging post http verb; maps directly to function calls that might exist within the server
+* REST: Representational State transfer; REST HTTP verbs always act upon a resource
+* Operations on a resource impact the state of the resource as it is transferred by a REST endpoint call
+* GraphQL: focuses on manipulation of data instead of a function call or a resource. Query that specifies the desired data nd how it should be joined and filtered; has a lot of information in one place.
+* GraphQL helps remove a lot of the logic for parsing endpoints and mapping requests to specific resources. IN graphQL there is only one endpoint, the query.
+
+# Service Daemons
+* Program automatically terminates when you close console or computer restarts
+* To keep programs running after a shutdown, you need to register it as a daemon.
+* Process manager 2 (PM2) is an example of a daemon
+* PM2 is installedin production server as part of AWS AMI
+* run pm2 ls to see pm2 in action
+
+Registering a new web service: 
+* to setup another subdomain, add the rule to the Caddyfile to tell it how to direct requests for the domain
+* Create a directory and add the files for the web service
+* Configure PM2 to host the web service.
+
+* Modify caddyfile
+  * SSH into server
+  * copy section for startup subdomain and alter it so that it represents the desired subdomain
+  * sudo service caddy restart to make sure caddy works after this
+  * Configure PM2 to host the web service
+ 
+# Debugging Node.js
+* Use debug tools built into VS code: use F5 to debug in node.js
+* Nodemon; once you start writing complex web applications you will find yourself making changes in the middle of debuggin sessions and want node to restart automatically and update the browser as changes are saved.
+* Nodemon package is a wrapper arounde node that watches for files in the project directory to change. When it dectects that you saved something it will automatically restart node
+
+# Development and production environments
+* Critical to separate where you develop your application from where the production release of application is made publicly available.
+* Never consider production environment as a place to develop or experiment with your application
+* You may shell into production environment to configure a server or debug a production problem, but deployment should happen using an automated CI process
+* Automated deployment process is the way to go.
+* Look up bash script tutorial for how to script automatic deployment.
+
+# Storage Services:
+* Web applications commonly need to store files associated with the application or the users of the application. This includes files like images, user uploads, documents, and movies. Files usually have an ID, metadata, and bytes representing the file itself.
+* Don't store files directly on server
+  * server has limited space
+  * Server is temporary and can be thrown away and replaced by a copy at any time
+  * Need backup copies of application and user files; only one copy of files, and they will disappear when server disappers.
+ 
+* AWS S3
+  * Unlimited capacity
+  * Only pay for what you use
+  * Optimized for global access
+  * keeps multiple redundant copies of every file
+  * Can version the files
+  * It is performant
+  * It supports metadata tags
+  * You can make files publicly avaialbe directly from S3
+  * You can keep files private and only accessible to your application
+ 
+* To use storage with AWS SDK, generally includes
+  * Create S3 bucket to store data in
+  * Get credentials so application can access the bucket
+  * Use credentials in application
+  * Use SDK to write, list, read, and delete files from bucket
+ 
+* Do not include credentials in code   
+
+# Data Services
+* Web applications commonly need to store app and user data persistently. Historically, SQL databases have served as general purpose data service solution, but other data services began starting around 2010 addressing special data solutions
+* Mongo has no strict scheme requirements for type and definition beforehand
+* first step for using mongo in application is to install mongodb package using npm
