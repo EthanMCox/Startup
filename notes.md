@@ -1631,3 +1631,48 @@ Registering a new web service:
 * Web applications commonly need to store app and user data persistently. Historically, SQL databases have served as general purpose data service solution, but other data services began starting around 2010 addressing special data solutions
 * Mongo has no strict scheme requirements for type and definition beforehand
 * first step for using mongo in application is to install mongodb package using npm
+
+# Lecture 3/18/2024
+* Storing passwords can't just be in local storage
+* Very important to create multiple layers to protect data
+* Store password hashes rather than the password itself
+* Good hashes are one-directional. That way if someone gets into the database, they still don't actually know what your password is
+* Hashes are not the same as encryption, which can be reversed
+* Would need hash and you need the hash algorithm
+
+* Hash table attack
+  * Have table of values that are commonly used, see if any of the commonly used passwords have matching hashes
+ 
+* Salted passwords
+  * Generate a random number: adding more on top of the hashed password. Doesn't stop attackers but greatly slows them down. Then you need access, the hash algorithm, and hash for every candidate
+ 
+* brcrypt npm package which does salting, hasing, and comparing all for us
+  * hashed password = await bcrypt.hash("toomanysecrets", 10);
+  * if (await bcrypt.compare("toomanysecretes", hashedPassword)) { console.log("asswords match");
+ 
+* Authorization tokens
+  * Common to authenticate once, generate an authorization token, which is sufficient for any other time you need to be authenticated
+  * Tokens are also stealable
+  * Expiring tokens are very common
+ 
+* Google uses rotation to use the prior token to create a new token
+* Cookies:
+  * Some things like preferences that you might want to store on the client, that don't really need authentication.
+  * Cookies can be used to uniquely identify users
+ 
+* Cookies can be used for good and evil
+* Some optional parameters that can be set for cookies
+  * secure; makes cookies secure
+  * httponly; only sent over http fetch requests. Javascript can't read the cookie
+  * samesite=strict; no third party site can look at your cookies
+  * can also do other samesite parameters
+  * expires parameter; set when the cookies expire
+ 
+*       
+
+
+
+# Authorization Services
+* 
+
+
