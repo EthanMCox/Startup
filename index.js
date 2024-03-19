@@ -1,6 +1,8 @@
-express = require('express');
-
+const cookieParser = require('cookie-parser');
+const bcrypt = require('bcrypt');
+const express = require('express');
 const app = express();
+const DB = require('./database.js');
 
 // Use the port provided as the first command-line argument, or 3000 if not provided
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
