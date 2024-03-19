@@ -1667,12 +1667,30 @@ Registering a new web service:
   * samesite=strict; no third party site can look at your cookies
   * can also do other samesite parameters
   * expires parameter; set when the cookies expire
- 
-*       
-
-
+     
 
 # Authorization Services
-* 
+* Users need to be authenticated by asking for information
+* For some period, a user is authenticated by storing an authentication token on the user's device. Often, that is stored in a cookie that is passed back to your web service on each request.
+* After authentication, there is also authorization Users may be authorized to be able to do different things
+* Authorization and authentication become complex very quickly. It is a primary target for a hacker.
+* Authorization services often use standard protocols for authenticating and authorizing. These include OAuth, SAML, and OIDC. They also support Single Sign on (SSO) and Federated login
+* Single sign on allows a user to use the same credentials for multiple web applications.
+* To experiment with different authentication services, consider AWS Cognito and Google Firebase
+
+# Account Creation and Login
+* Two service endpoints for authentication; create an authentication credential and login for future visits
+* Web services often have a GetMe endpoint that gives information about the currently authenticated user.
+* Create authentication endpoint
+* use uuid (universally unique identifier); does a good job at creating a hard to guess, random, unique ID
+* uuid creates an authentication token
+* Very important to securely store passwords
+* we can use bcrypt to securely store passwords.
+* Passing authentication tokens to the browser when the login endpoint is called and get it back on subsequent requests. To do this, we use cookies
+* cookie-parser package provides middleware for cookies
+* When a user is successfully create or logs in, we set the cookie header
+* httponly tells the broswer to not allow JavaScript running on the browser to read the cookie
+* secure requires HTTPS to be used when sending the cookie back to the server
+* sameSite only returns the cookie to the domain that generated it. 
 
 
