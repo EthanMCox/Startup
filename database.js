@@ -18,3 +18,47 @@ const scoreCollection = db.collection('score');
   console.log(`Unable to connect to database with ${url} because ${ex.message}`);
   process.exit(1);
 });
+
+function getUser(email) {
+  return usercollection.findOne({ email: email});
+}
+
+function getUserByToken(token) {
+  return userCollection.findOne({ token:token });
+}
+
+async function createUser(email, password) {
+  //Has the password before inserting into the database
+  const passwordHash = await bcrypt.hash(password, 10);
+
+  const user = {
+    email: email,
+    password: passwordHash,
+    token: uuid.v4(),
+  };
+  await userCollection.insertOne(user);
+
+  return user;
+}
+
+function addScore(score) {
+  scoreCollection.insertOne(score);
+}
+
+function getHighScores() {
+  const query = { score: { $gt: 0, $lt: 900} };
+  const options = {
+    sort: { score: -1 },
+    limit: 110,
+  };
+  const cursor = scoreCollection.find(query, options);
+  return cursor.toArray();
+}
+
+module.exports = {
+  getUser,
+  getUserByToken,
+  createUser,
+  addScore,
+  getHighScores,
+}
