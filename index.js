@@ -22,6 +22,21 @@ app.set('trust proxy', true);
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
 
+// CreateAuth token endpoint (for new users)
+apiRouter.post('/auth/create', async (req, res) => {
+    if (await DB.getUser(req.body.email)) {
+        res.status(409).send({ msg: "Existing user" });
+    } else {
+        const user = await DB.createUser(req.body.email, req.body.password);
+
+        // Set the cookie
+        setAuthCookie(res, user.token);
+
+        res.send({
+            id: user._id,
+        });
+    }
+});
 
 // GetScores endpoint
 apiRouter.get('/scores', (_req, res) => {
