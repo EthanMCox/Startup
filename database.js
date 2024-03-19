@@ -10,9 +10,7 @@ const userCollection = db.collection('user');
 const scoreCollection = db.collection('score');
 
 
-
-
-
+// At JavaScript runtime, this asynchronously tests the connection and exits the process if it fails
 (async function testConnection() {
   await client.connect();
   await db.command({ ping: 1 });
