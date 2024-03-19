@@ -4,6 +4,8 @@ const express = require('express');
 const app = express();
 const DB = require('./database.js');
 
+const authCookieName = 'token';
+
 // Use the port provided as the first command-line argument, or 3000 if not provided
 const port = process.argv.length > 2 ? process.argv[2] : 3000;
 
@@ -13,9 +15,13 @@ app.use(express.json());
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
 
+// Trust headers that are forwarded from the proxy so we can determine IP addresses
+app.set('trust proxy', true);
+
 // Create a router for the API Service Endpoints
 var apiRouter = express.Router();
 app.use(`/api`, apiRouter);
+
 
 // GetScores endpoint
 apiRouter.get('/scores', (_req, res) => {
