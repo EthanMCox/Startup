@@ -1691,6 +1691,27 @@ Registering a new web service:
 * When a user is successfully create or logs in, we set the cookie header
 * httponly tells the broswer to not allow JavaScript running on the browser to read the cookie
 * secure requires HTTPS to be used when sending the cookie back to the server
-* sameSite only returns the cookie to the domain that generated it. 
+* sameSite only returns the cookie to the domain that generated it.
+
+# Lecture 3/20/2024
+* Automated testing; want to be able to develop faster
+* Test driven development is important
+* Playwright: does frontend test programming
+  * Created by Microsoft; plays really well with VS Code
+  * playwright will show up in devDepencies rather than dependencies; doesn't get transferred up to production environment.
+  * caniuse.com shows what works on different browsers
+ 
+* Endpoint/backend testing
+  * Jest is the most common for this
+* npm install jest supertest -D (-D means development only dependency)
+* To use jest, you need to decouple index.js from jest
+  * Do this by having server.js which can use jest and index.js, but index.js and jest are decoupled
+* supertest starts up the server so that jest can run
+* 
+
+
+# UI Testing
+* 
+
 
 
