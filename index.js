@@ -91,11 +91,17 @@ secureAPIRouter.use(async (req, res, next) => {
 })
 
 
+// GetScores endpoint
+secureAPIRouter.get('/scores', async (req, res) => {
+    const scores = await DB.getHighScores();
+    res.send(scores);
+});
 
 // Submit score endpoint
-apiRouter.post('/score', (req, res) => {
-    const newScore = req.body;
-    scores = updateScores(newScore, scores);
+apiRouter.post('/score', async (req, res) => {
+    const score = { ...req.body, ip: req.ip };
+    await DB.addScore(score);
+    constscores = await DB.getHighScores();
     res.send(scores);
 });
 
