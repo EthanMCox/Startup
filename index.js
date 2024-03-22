@@ -12,6 +12,9 @@ const port = process.argv.length > 2 ? process.argv[2] : 3000;
 // JSON body parsing using built-in middleware
 app.use(express.json());
 
+// Use the cookie parser middleware for tracking authentication tokens
+app.use(cookieParser());
+
 // Serve up the front-end static content hosting
 app.use(express.static('public'));
 
@@ -24,7 +27,8 @@ app.use(`/api`, apiRouter);
 
 // CreateAuth token endpoint (for new users)
 apiRouter.post('/auth/create', async (req, res) => {
-    if (await DB.getUser(req.body.email)) {
+    // request object contains email that is accessed by req.body.email
+    if (await DB.getUser(req.body.email)) { 
         res.status(409).send({ msg: "Existing user" });
     } else {
         const user = await DB.createUser(req.body.email, req.body.password);
@@ -55,6 +59,13 @@ app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
+function setAuthCookie(res, authToken) {
+    res.cookie(authCookieName, authToken, {
+        secure: true,
+        httpOnly: true,
+        sameSite: 'strict',
+    })
+}
 
 // Start the server, log where the server is running
 app.listen(port, () => {
