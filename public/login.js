@@ -26,7 +26,7 @@ async function loginOrCreate(endpoint) {
     method: 'post',
     body: JSON.stringify({ email: userName, password: password}),
     headers: {
-      'Content-Type': 'application/json, charset=UTF-8',
+      'Content-type': 'application/json; charset=UTF-8',
     },
   });
 

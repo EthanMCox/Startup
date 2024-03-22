@@ -1,7 +1,7 @@
-const config = require('./dbConfig.json');
 const { MongoClient } = require('mongodb');
-const uuid = require('uuid');
 const bcrypt = require('bcrypt');
+const uuid = require('uuid');
+const config = require('./dbConfig.json');
 
 const url = `mongodb+srv://${config.userName}:${config.password}@${config.hostname}`;
 const client = new MongoClient(url);
@@ -28,6 +28,7 @@ function getUserByToken(token) {
 }
 
 async function createUser(email, password) {
+  console.log('Received password:', password);
   //Has the password before inserting into the database
   const passwordHash = await bcrypt.hash(password, 10);
 
