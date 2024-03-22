@@ -33,6 +33,12 @@ async function loginOrCreate(endpoint) {
   if (response.ok) {
     localStorage.setItem('userName', userName);
     window.location.href = 'play.html';
+  } else {
+    const body = await response.json();
+    const modalEl = document.querySelector('#msgModal');
+    modalEl.querySelector('.modal-body').textContent = `Error: ${body.msg}`;
+    const msgModal = new bootstrap.Modal(modalEl, {});
+    msgModal.show();
   }
 }
 

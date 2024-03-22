@@ -25,7 +25,7 @@
     </header>
 
     <main class="container-fluid bg-secondary text-center">
-       <div>
+      <div>
         <h2>Welcome to Make a Match</h2>
         <!-- Displayed when needing authentication -->
         <div id="loginControls" style="display: none">
@@ -47,7 +47,21 @@
           <button type="button" class="btn btn-primary" style="margin-right: 50px;" onclick="play()">Play</button>
           <button type="button" class="btn btn-secondary" onclick="logout()">Logout</button>
         </div>
-       </div> 
+
+        <!-- Error dialog -->
+        <div class="modal fade" id="msgModal" tabindex="-1">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-dark">
+              <div class="modal-body">error message here</div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> 
+
+        
     </main>
 
     <footer class="bg-dark text-white-50">
@@ -57,6 +71,11 @@
         </div>
     </footer>
     <script src="login.js"></script>
+    <script 
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+      crossorigin="anonymous"
+    ></script>
 </body>
 
 </html>
