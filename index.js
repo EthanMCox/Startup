@@ -77,6 +77,21 @@ apiRouter.get('/scores', (_req, res) => {
     res.send(scores);
 });
 
+var secureAPIRouter = express.Router();
+apiRouter.use(secureAPIRouter);
+
+secureAPIRouter.use(async (req, res, next) => {
+    authToken = req.cookies[authCookieName];
+    const user = await DB.getUserByToken(authToken);
+    if (user) {
+        next();
+    } else {
+        res.status(401).send({ msg: "Unauthorized" });
+    }
+})
+
+
+
 // Submit score endpoint
 apiRouter.post('/score', (req, res) => {
     const newScore = req.body;
