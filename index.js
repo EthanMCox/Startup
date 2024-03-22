@@ -90,7 +90,6 @@ secureAPIRouter.use(async (req, res, next) => {
     }
 })
 
-
 // GetScores endpoint
 secureAPIRouter.get('/scores', async (req, res) => {
     const scores = await DB.getHighScores();
@@ -105,11 +104,17 @@ secureAPIRouter.post('/score', async (req, res) => {
     res.send(scores);
 });
 
+// Default error handler if server endpoints do not work correctly
+app.use(function (err, req, res, next) {
+    res.status(500).send({ type: err.name, message: err.nessage });
+})
+
 // Return the application's default page if the path is unknown
 app.use((_req, res) => {
     res.sendFile('index.html', { root: 'public' });
 });
 
+// Set the authentication cookie
 function setAuthCookie(res, authToken) {
     res.cookie(authCookieName, authToken, {
         secure: true,
