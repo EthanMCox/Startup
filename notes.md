@@ -1691,6 +1691,86 @@ Registering a new web service:
 * When a user is successfully create or logs in, we set the cookie header
 * httponly tells the broswer to not allow JavaScript running on the browser to read the cookie
 * secure requires HTTPS to be used when sending the cookie back to the server
-* sameSite only returns the cookie to the domain that generated it. 
+* sameSite only returns the cookie to the domain that generated it.
 
+# Lecture 3/20/2024
+* Automated testing; want to be able to develop faster
+* Test driven development is important
+* Playwright: does frontend test programming
+  * Created by Microsoft; plays really well with VS Code
+  * playwright will show up in devDepencies rather than dependencies; doesn't get transferred up to production environment.
+  * caniuse.com shows what works on different browsers
+ 
+* Endpoint/backend testing
+  * Jest is the most common for this
+* npm install jest supertest -D (-D means development only dependency)
+* To use jest, you need to decouple index.js from jest
+  * Do this by having server.js which can use jest and index.js, but index.js and jest are decoupled
+* supertest starts up the server so that jest can run
+* 
+
+
+# UI Testing
+* Test driven development is a methodology for accelerating application creation, protecting against regression bugs, and demonstrating correctness
+* Web applicaiton UI code is complex to test, and using automated tests is even more difficult.
+* Every major broswer behaves differently, viewport size makes a big difference, code executes asynchronously, network disruptions are common, and there is the human factor. There's a lot of factors that make testing hard. But not testing code doesn't work either.
+* Playwright: automates testing applications in a browser (frontend)
+* Playwright is backed my Microsoft and integrates really well with VSCode
+* to install Playwright in your project directory, use NPM to download the Playwright packages, install the browser drivers, configure project, and create a couple example test files
+  * npm init playwright@latest
+  * Install playwright test extension for VSCode
+ 
+* Testing various devices: BrowserStack
+  * Lets you pick from a long list of physical devices that you can run interactively, or use when driving automated tests with Selenium. When you launc a device it connects the browser interface to a physical device hosted in a data center. You can then use the device to reproduce user reported problems, or validate that your implementation works on that specific device.
+  * BrowserStack offers free trials to see how startup application would work on a specific device.
+ 
+# Endpoint Testing
+* Testing services is usually easier than writing UI tests because it doesn't require a broswer. But it still takes effort to learn to write tests that are effective and efficient
+* Jest is one of the top services right now
+* to install jest:
+  * mkdir testJest
+  * cd testJest
+  * npm init -y
+  * npm install express
+  * create a file named server.js and use express to create an application with two endpoints; one to get a store and one to update a store
+  * server.js functions like index.js used to and does almost all the same things. We can export app from server.js, import it on index.js, and listen on index.js. This allows us to decouple running our service from testing the service with jest
+  * Tests in jest are meant to be human readable.
+ 
+* To install jest:
+  * npm install jest supertest -D
+  * replace the scripts section of the package.json file with a new command that will run our tests with Jest
+    * i.e. "test": "jest" in scripts
+  * supertst allows us to make HTTP requests without having to actually send them over the network.
+ 
+* With TDD, you can write tests first and then write code based upon the design represented by thet tests. When the tests pass, you know that your code is complete. 
+
+# WebSocket
+* HTTP is based on a client-server architecture, where a client initiates the request and the server responds. This is great for building a global document library connected by hyperlinks, but for other use cases it doesn't work
+* Applications for notification, distributed task processing, peer-to-peer communication, or asynchronous events need communication that is initiated by two or more connected devices.
+* WebSocket solves these problems
+* WebSocket is fully duplexed, meaning that after the initial connection is made from a client, the relationship changes to a peer-to-peer connection where either party can efficiently send data at any time.
+* WebSocket connections are still only between two parties, so if you want a conversation between a group of users, the server needs to act as an intermediary.
+* JavaScript running on a browser can initiate a WebSocket connection with the browser's WebSocket API by creating a WebSocket object specifying the port you want to communicate on.
+
+# Debugging WebSocket
+* Can debug both sides of the WebSocket communication with VSCode to debug the server, and Chrome to debug the client. Chrome's debugger has support specifically for working with WebSocket communication.
+* Debugging the server
+  * Create a directory
+  * npm init -y
+  * npm install ws
+  * make WebSocket code
+  * Set breakpoints and start debugging with F5
+ 
+* Debugging the client:
+  * Open chrome debugger by pressing F12
+  * Paste   const socket = new WebSocket('ws://localhost:9900');
+
+socket.onmessage = (event) => {
+  console.log('received: ', event.data);
+};
+
+  * into the debugger console window and press enter to execute it. Exeucting this code will immediately hit the server breakpoint. Take a look at what is going on and then remove the breakpoint from the server
+  * Select the Network tab and select the HTTP message that was generated
+  * Click Messages tab to view websocket messages
+  * Send a message to the server by using socket.send('message')
 
