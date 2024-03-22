@@ -20,7 +20,7 @@ const scoreCollection = db.collection('score');
 });
 
 function getUser(email) {
-  return usercollection.findOne({ email: email});
+  return userCollection.findOne({ email: email});
 }
 
 function getUserByToken(token) {
