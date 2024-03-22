@@ -1774,3 +1774,22 @@ socket.onmessage = (event) => {
   * Click Messages tab to view websocket messages
   * Send a message to the server by using socket.send('message')
 
+# Lecture 3/22/2024
+* Learn how to use curl/postman
+* HTTP is great for making client-to-server requests: client makes response, server gives response
+* WebSocket: Proxy messages between clients; sending notifications to client
+* Server is the proxy between clients
+* HTTP has a built-in request to upgrade the infrastructure. You start from an HTTP client, and then you can upgrade to a WebSocket connection.
+
+* npm install ws will install websocket
+
+const socket = new WebSocket('ws://localhost:9900');
+socket.onmessage = (event) => {
+console.log('received: ', event.data);
+};
+socket.send('I am listening');
+
+* Be really careful when taking input from the user that it can't be executed
+
+* Simon websocket
+* protocol in websocket called ping and pong that tells the connection to stay alive. 
