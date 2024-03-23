@@ -72,11 +72,6 @@ apiRouter.get('user/:email', async (req, res) => {
     res.status(404).send({ msg: "User not found" });
 });
 
-// GetScores endpoint
-apiRouter.get('/scores', (_req, res) => {
-    const scores = await DB.getHighScores();
-    res.send(scores);
-});
 
 var secureAPIRouter = express.Router();
 apiRouter.use(secureAPIRouter);
