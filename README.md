@@ -67,3 +67,9 @@ For this deliverable I added styling elements to my application using CSS.
 * Backend Service endpoints: There are two endpoints for updating the score and getting the score in index.js
 * Frontend calls service endpoints: I use fetch in my saveScore function in play.js and in my loadScores function in scores.js
 
+# Login Deliverable
+* Supports new user registration: Creates a new account in the database when users create their account
+* Supports existing user authentication: Checks for existing users, and if they are found in the database they are allowed access. Otherwise, an error message pops up. 
+* Stores application data in MongoDB: Stores scores from users
+* Stores and retrieves credentials in MongoDB: Done!
+* Restricts application functionality based upon authentication: Users can still play the game and view the scores tab, but unless they are authenticated, their scores will not be saved and they cannot view the scores of others. 
