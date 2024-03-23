@@ -28,7 +28,6 @@ function getUserByToken(token) {
 }
 
 async function createUser(email, password) {
-  console.log('Received password:', password);
   //Has the password before inserting into the database
   const passwordHash = await bcrypt.hash(password, 10);
 

@@ -74,6 +74,7 @@ apiRouter.get('user/:email', async (req, res) => {
 
 // GetScores endpoint
 apiRouter.get('/scores', (_req, res) => {
+    const scores = await DB.getHighScores();
     res.send(scores);
 });
 
