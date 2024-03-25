@@ -1792,4 +1792,81 @@ socket.send('I am listening');
 * Be really careful when taking input from the user that it can't be executed
 
 * Simon websocket
-* protocol in websocket called ping and pong that tells the connection to stay alive. 
+* protocol in websocket called ping and pong that tells the connection to stay alive.
+
+# Lecture 3/25/2024: Security
+* React is a different framework from vanilla HTML, CSS, JavaScript
+* React will basically completely turn my application on its head
+* Brazilian meatpacking JBS ransomware
+* Solarwinds APT
+* Amazon DDOS attack (distributed denial of service)
+* Sony entertainment breach
+* VA unencrypted data
+* AWS, Yahoo, CNN, Dell DDOS Mafiaboy
+
+## OWASP 10
+* Open Worldwide Application Security Project
+* Has 10 ten things developers should think about in terms of web development
+1. Broken access control
+  * Least privilege access violation
+* URL bypass control; if you know the URL, you can just get to the right place
+* Resource path on url allows access
+
+2. Cryptographic failures
+* Transmitting data as clear text
+* Not encrypting at rest or transit
+* Weak cryptography (Sha1, MD5)
+* Misused cryptography (no salt, wrong params)
+* Security needs to be a multilayered approach
+
+3. Injection
+* User supplied data is not sanitized
+
+4. Insecure Design
+* Not aware of best practices
+* Unlimited trial accounts
+* Customer data not segmented
+* Single layer defense
+
+5. Security Misconfiguration
+* Development info exposed
+* Using default configurations (ex. Routers, leaving default username/password)
+* Unnecessary features installed (if you don't need it, get rid of it)
+* System not hardened; once it's clean, shrink parameters and everything running as much as possible (ex. letting any IP address access, rather than just your production server)
+
+6. Vulnerable Components
+* Unnecessary/unused packages imported
+* Untrusted/verified sources
+* Out of date software
+* Not tracking vulnerabilty bulletins
+* Package version not locked
+
+7. ID and Auth Failures
+* Credential stuffing (compromised list of passwords)
+* Brute force attacks (guess a password)
+* Permitting weak passwords
+* Weak credential recovery
+* Credentials in URL
+* Not expiring auth tokens
+
+8. Software Integrity Failures
+* Unverified CDN usage (fine if you trust the CDN source, you need to trust though)
+* Unverified packages (npm install)
+* unverified updates
+* Insecure CD/CI platforms
+* Your partners are part of your code
+
+9. Logging failure
+* Not logging critical requests
+* Not monitoring system performance
+* Logs not audited, automatic or manual
+* Logs not stored centrally
+* No real-time response
+
+10. Server Side Request Forgery
+
+* The line of death: the only thing you can trust is the host name (url), but nothing that comes after the .com, .org, etc.
+
+
+
+
