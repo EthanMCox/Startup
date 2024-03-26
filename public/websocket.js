@@ -1,9 +1,9 @@
-const { webSocketServer } = require('ws');
+const { WebSocketServer } = require('ws');
 const uuid = require('uuid');
 
-function webSocketServer(httpServer) {
+function peerProxy(httpServer) {
     // Create a websocket object
-    const wss = new webSocketServer({ noServer: true});
+    const wss = new WebSocketServer({ noServer: true});
 
     // Handle the protocol upgrade from HTTP to WebSocket
     httpServer.on('upgrade', (request, socket, head) => {
@@ -43,5 +43,19 @@ function webSocketServer(httpServer) {
             connection.alive = true;
         });
     });
+
+    // Keep active connections alive
+    setInterval(() => {
+        connections.forEach((c) => {
+            // Kill any connection that didn't respond to the ping last time
+            if (!c.alive){
+                c.ws.terminate();
+            } else {
+                c.alive = false;
+                c.ws.ping();
+            }
+        });
+    }, 10000);
 }
 
+module.exports = { peerProxy };
