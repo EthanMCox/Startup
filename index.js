@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const express = require('express');
 const app = express();
 const DB = require('./database.js');
+const { peerProxy } = require('./websocket.js');
 
 const authCookieName = 'token';
 
@@ -120,6 +121,8 @@ function setAuthCookie(res, authToken) {
 }
 
 // Start the server, log where the server is running
-app.listen(port, () => {
+const httpService = app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);
 });
+
+peerProxy(httpService);
