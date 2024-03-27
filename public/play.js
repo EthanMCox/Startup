@@ -1,8 +1,8 @@
 let game;
 
 // Event messages
-const gameEndEvent = 'gameEnd';
-const gameStartEvent = 'gameStart';
+const GameEndEvent = 'gameEnd';
+const GameStartEvent = 'gameStart';
 
 const backtexts = [
   {letter: "A"},
@@ -271,6 +271,16 @@ class Game {
     this.socket.onopen = (event) => {
       this.displayMsg('system', 'game', 'connected');
     }
+    this.socket.onclose = (event) => {
+      this.displayMsg('system', 'game', 'disconnected');
+    }
+    this.socket.onmessage = (event) => {
+      const msg = JSON.parse(await event.data.text());
+      if (msg.type === GameEndEvent) {
+        this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
+      } else if (msg.type == GameStartEvent) {
+        this.displayMsg('player', msg.from, `started a new game`);
+      }
   }
 
   displayMsg(cls, from, msg) {
