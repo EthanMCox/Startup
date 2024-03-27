@@ -1867,6 +1867,11 @@ socket.send('I am listening');
 
 * The line of death: the only thing you can trust is the host name (url), but nothing that comes after the .com, .org, etc.
 
+# Lecture 3/27/2024 Security Practice
+* Gruyere is similar to juicebox, can go to it through google and play around it
+* Juice shop; install it on computer. clone it on your environment.
+* There are no secrets in frontend. Gotta be careful with that.
+
 
 
 
