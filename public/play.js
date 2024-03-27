@@ -1,5 +1,9 @@
 let game;
 
+// Event messages
+const gameEndEvent = 'gameEnd';
+const gameStartEvent = 'gameStart';
+
 const backtexts = [
   {letter: "A"},
   {letter: "B"},
@@ -55,6 +59,7 @@ class Game {
   score;
   lives;
   round;
+  socket;
 
   constructor() {
     this.allowPlayer = true;
@@ -75,6 +80,8 @@ class Game {
 
     const playerNameEl = document.querySelector('.player-name');
     playerNameEl.textContent = this.getPlayerName();
+
+    this.configureWebSocket();
   }
 
   updatelives() {
@@ -255,6 +262,30 @@ class Game {
     this.updateround();
 
     await this.resetcards();
+  }
+
+  //Functionality for peer communication using websocket
+  configureWebSocket() {
+    const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+    this.socket = new WebSocket(`${protocol}//${window.location.host}/ws`);
+    this.socket.onopen = (event) => {
+      this.displayMsg('system', 'game', 'connected');
+    }
+  }
+
+  displayMsg(cls, from, msg) {
+    const chatText = document.querySelector('#player-messages');
+    chatText.innerHTML = 
+    `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
+  }
+
+  broadcastEvent(from, type, value) {
+    const event = {
+      from: from,
+      type: type,
+      value: value
+    };
+    this.socket.send(JSON.stringify(event));
   }
 
 }
