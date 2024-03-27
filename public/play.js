@@ -204,6 +204,8 @@ class Game {
         body: JSON.stringify(newScore)
       });
 
+      this.broadcastEvent(username, GameEndEvent, newScore);
+
       // store what the service gave us as the high scores
       const scores = await response.json();
       // Update the scores in local storage in case server endpoints fail
