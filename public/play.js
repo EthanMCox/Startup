@@ -262,6 +262,7 @@ class Game {
     this.updateround();
 
     await this.resetcards();
+    this.broadcastEvent(this.getPlayerName(), GameStartEvent, {});
   }
 
   //Functionality for peer communication using websocket
