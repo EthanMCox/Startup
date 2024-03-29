@@ -15,7 +15,8 @@ function peerProxy(httpServer) {
     // Keep track of all the connections so we can forward messages
     let connections = [];
 
-    wss.on('connection', (ws) => {
+    wss.on('connection', (ws) => { // works together with wss.emit('connection'...) above
+        // Create a connection with a unique ID, mark connection alive
         const connection = { id: uuid.v4(), alive: true, ws: ws};
         connections.push(connection);
 

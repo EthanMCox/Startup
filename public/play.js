@@ -3,6 +3,7 @@ let game;
 // Event messages
 const GameEndEvent = 'gameEnd';
 const GameStartEvent = 'gameStart';
+const GameConnectEvent = 'gameConnect';
 
 const backtexts = [
   {letter: "A"},
@@ -273,6 +274,7 @@ class Game {
     this.socket = new WebSocket(`${protocol}//${window.location.host}/ws`);
     this.socket.onopen = (event) => {
       this.displayMsg('system', 'game', 'connected');
+      this.broadcastEvent(this.getPlayerName(), GameConnectEvent, {})
     }
     this.socket.onclose = (event) => {
       this.displayMsg('system', 'game', 'disconnected');
@@ -283,16 +285,21 @@ class Game {
         this.displayMsg('player', msg.from, `scored ${msg.value.score}`);
       } else if (msg.type === GameStartEvent) {
         this.displayMsg('player', msg.from, `started a new game`);
+      } else if (msg.type === GameConnectEvent) {
+        this.displayMsg('player', msg.from, `connected`);
       }
     };
   }
 
+  // Take class type (cls), from (name of the player) and message for display
   displayMsg(cls, from, msg) {
-    const chatText = document.querySelector('#player-messages');
+    const chatText = document.querySelector('#player-notifications');
     chatText.innerHTML = 
     `<div class="event"><span class="${cls}-event">${from}</span> ${msg}</div>` + chatText.innerHTML;
   }
 
+  // Creates a json object with from (name of player), 
+  // type of event (GameEndEvent or GameStartEvent) and value (score or {})
   broadcastEvent(from, type, value) {
     const event = {
       from: from,

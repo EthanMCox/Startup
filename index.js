@@ -125,4 +125,5 @@ const httpService = app.listen(port, () => {
     console.log(`Server started at http://localhost:${port}`);
 });
 
+// Calls the peerProxy function from websocket.js to upgrade httpservice
 peerProxy(httpService);
