@@ -1872,6 +1872,41 @@ socket.send('I am listening');
 * Juice shop; install it on computer. clone it on your environment.
 * There are no secrets in frontend. Gotta be careful with that.
 
+# Security
+* Even if you don't think your application is valable enough to require security, it could pose a security problem for your users on other systems.
+* Web application security (AppSec) is a subset of cybersecurity that specifically focuses on preventing security vulnerabilities within end-user applications.
+* Hacking: process of making a system do something it is not supposed to do
+* Exploit: code or input that takes advantage of a programming or configuration flaw
+* Attack vector: The method that a hacker employs to penetrate and exploit a system
+* Attack surface: The exposed parts of a system that an attacker can access. For example, open ports, service endpoints, or user accounts
+* Attack payload: The acctual code, or data, that a hacker delivers to a system in order to exploit it
+* Input sanitation: "Cleaning" any input of potentially malicious data
+* Black box testing: testing an application without knowledge of the internals of the application
+* White box testing: testing an application with knowledge of the source code and internal infrastructure
+* Penetration testing: attempting to gain access to, or exploit, a system in ways that are not anticipated by the developers
+* Mitigation: the action taken to remove, or reduce, a threat
 
+Attacker motivation:
+* Disruption (attempts at extortion, or punish a business that attacker does not agree with)
+* Data exfiltration: exploit insider information, sell information to competitors, or leverage the information for additional attacks
+* Resource consumption; use resources for other purposes like mining cryptocurrency, gathering consumer information, or attacking other systems
+
+Common hacking techniques
+* Injection; when an application interacts with a database on the backend, a progrmamer can use a specialized query to make the database reveal hidden information or even delete the database
+* Cross-site-scripting (XSS): make malicious code execute on a different user's browser.
+* Denial of service: render a service inaccessible; SQL injection, sending unexpected data, making more requests than a server can handle
+* Credential stuffing
+* Social engineering
+
+What can I do?
+* Sanitize input data; assume it is unsafe
+* Logging: create an immutable log of requests that will expose when a system is being exploited
+* Traps: create what appears to be valuable information and then trigger alarms when the data is accessed
+* Educate: Teach yourself, your users, and everyone your work with to be security-minded
+* Reduce attack surfaces: Don't open access anymore than is necessary; ie what network ports are open
+* Layered security: don't assume that one safeguard is enough. Create multiple layers of security
+* Least required access policy: don't give any one user all credentials necessary to control whole system
+* Safeguard credentials
+* Public review: Do not rely on obscurity to keep your system safe. Assume that an attacker knows everything about your system and make it difficult for anyone to exploit it
 
 
