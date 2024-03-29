@@ -72,4 +72,10 @@ For this deliverable I added styling elements to my application using CSS.
 * Supports existing user authentication: Checks for existing users, and if they are found in the database they are allowed access. Otherwise, an error message pops up. 
 * Stores application data in MongoDB: Stores scores from users
 * Stores and retrieves credentials in MongoDB: Done!
-* Restricts application functionality based upon authentication: Users can still play the game and view the scores tab, but unless they are authenticated, their scores will not be saved and they cannot view the scores of others. 
+* Restricts application functionality based upon authentication: Users can still play the game and view the scores tab, but unless they are authenticated, their scores will not be saved and they cannot view the scores of others.
+
+# WebSocket Deliverable
+* Backend listens for WebSocket connection: done!
+* Frontend makes WebSocket connection: done!
+* Data sent over WebSocket connection: done!
+* WebSocket Data displayed in application userface: when playing the game, WebSocket will display when other users connect, when they score, and when they start the game.
