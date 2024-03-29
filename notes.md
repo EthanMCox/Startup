@@ -1909,4 +1909,27 @@ What can I do?
 * Safeguard credentials
 * Public review: Do not rely on obscurity to keep your system safe. Assume that an attacker knows everything about your system and make it difficult for anyone to exploit it
 
+# Lecture 3/29/2024 Web Frameworks
+* Purpose of frameworks: simplify common patterns, provide common component, improve performance, increase device coverage
+* Frameworks come and go
+* React came from meta (instagram)
+* Angular came from google
+* Jordan Walke: lead architect for creating React
 
+* Core of react: JSX
+  * Combining Javacript and HTML
+  * Need transpile (translation compile using babel); converts jsx file into js to manipulate the DOM
+* In CodePen, you can specify that you want to use a babel preprocessor
+* need two react libraries
+* A lot of security stuff is built into the frameworks themselves
+* React helps us create a one-page react application
+* index.html is the only html file
+
+* To create a component, make a function (i.e. Hello) which returns the jsx that you want to be rendered.
+* Components need to be uppercase
+* can also use classes, but functions are the preferred and supported method
+* Properties in react heavily use object destructuring
+* Hooks in react; keep tract of state
+
+* Assignment: property to set initial color
+* Mouse over to change initial color
