@@ -1933,3 +1933,72 @@ What can I do?
 
 * Assignment: property to set initial color
 * Mouse over to change initial color
+
+# Web Frameworks
+* Provide tools for completing common application tasks
+* Some frameworks take things beyond the standard technologies and crate new hybrid file formats that combine things like HTML and JavaScript into a single file (i.e. React JSX, Vue SFC, and Svelte files
+* React extracts HTML into a JavaScript variant called JSX. JSX is converted into alid HTML and JavaScript using Babel, a preprocessor.
+* React.createElement function generates DOM elements and monitors the data they represent for changes. When a change is discovered, React will trigger dependent changes
+
+# Components
+* React allows you modularize the functionality of your application
+* render function: whatever is returned is inserted into the component HTML element
+* functions are React components that can be rendered
+
+Properties:
+* React properties allow you to pass information to them in the form of element properties
+
+State:
+* A component can have an internal state. Component state is create by calling the React.useState hook function, which returns a variable that contains the current state and a function to update the state.
+
+Class style components are also supported, but react is moving away from that towards functions
+
+# Toolchains:
+* As web programming becomes more complex, it becomes necessary to abstract away some of the complexity with a series of tools
+* Common functional pieces of a web application toolchain include:
+  * Code repository
+  * Linter: Removes, or warns, of non-idiomatic code usage
+  * Prettier: Formats code according to a shared standard
+  * Transpiler: Compiles code into a different format. For example, from JSX to JavaScript, Typescript to JS, etc.
+  * Polyfill: Generates backwards compatible code for supporting old browser version that don't support the latest standards
+  * Bundler: packages code into bundles for delivery to the browser. This enables combatibility or performance.
+  * Minifier: Removes whitespace and renames variables in order to make code smaller and more efficient to deploy
+  * Testing: Automated tests at multiple levels to ensure correctness
+  * Deployment: automated packaging and delivery of code from dev environment to prod environment
+ 
+* Toolchain we use or React includes GitHub as code repo, Vite for JSX, TS: dev and debugging support, ESBuild: convert ES6 modules and transpiling (Babel underneath), Rollup: bundling and tree shaking, PostCSS: CSS transpiling, simple bash script for deployment
+
+# Vite:
+* Common way to configure project is to use CLI initially to set up web app
+* CLI saves trouble of configuring toolchain parameters and gets you quickly started with a default application
+* Vite bundles code quickly, has good debugging support, allows you to easily support JSX, TypeScript, and different CSS flavors
+* To create a new React-based web application using Vite, open console and run the following commands:
+  * npm create vite@latest demoVite -- --template react
+  * cd demoVite
+  * npm install
+  * npm run dev
+ 
+* run q to stop Vite from hosting
+* Vite creates a few application files
+  * index.html: primary page for app, loads all JSX components beginning with main.jsx
+  * package.json: what maps npm run dev to actually start up vite
+  * package-lock.json
+  * vite.config.js: configuration setting for Vite
+  * vite.svg: vite logo for uas a favicon and for display in the app
+  * main.jsx: entry point for code execution
+  * index.css: Css for the entire application
+  * App.jsx: JSX for top level application component; displays the logs and implements the click counter
+  * App.css: Css for the top level applciation component
+  * react.svg: react logo for display in the app
+ 
+ ## Building a production release:
+ * When you run npm run dev, you are bundling the code to a temporary directory that the Vite debug HTTP server loads from. When you want to bundle your application so that you can deploy to a production environment, you need to run npm run build. this executes the build script found in package.json and invokes Vite. Vite build transpiles, minifies, and injects the proper JS and then ouputs everything to a deployment-ready version.
+ * Deploying a production release:
+   * deployment script for React creates a production distribution by calling npm run build and then copying the resulting dist directory to your production server
+  
+# Router:
+* A web framework router provides essential functionality for single-page application.
+* With a multiple-webpage application th headers, footers, navigation, and common components must be either duplicated in each HTML page or injected before the server sends the page to the browser.
+* Router defines the routes a user can take through the application, and automatically manipulates the DOM to display the appropriate framework components.
+* React doesn't have a standard router package. There are many we can choose from, but we will use react-router-dom version 6
+* Basic implementation of a BrowserRouter component that encapsulates the entire application and controls the routing action. the Link, or NavLink component captures use navigation events and modifies what is rendered by the Routes component by matching up the to and path attributes. 
