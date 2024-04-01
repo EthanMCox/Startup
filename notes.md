@@ -2001,4 +2001,19 @@ Class style components are also supported, but react is moving away from that to
 * With a multiple-webpage application th headers, footers, navigation, and common components must be either duplicated in each HTML page or injected before the server sends the page to the browser.
 * Router defines the routes a user can take through the application, and automatically manipulates the DOM to display the appropriate framework components.
 * React doesn't have a standard router package. There are many we can choose from, but we will use react-router-dom version 6
-* Basic implementation of a BrowserRouter component that encapsulates the entire application and controls the routing action. the Link, or NavLink component captures use navigation events and modifies what is rendered by the Routes component by matching up the to and path attributes. 
+* Basic implementation of a BrowserRouter component that encapsulates the entire application and controls the routing action. the Link, or NavLink component captures use navigation events and modifies what is rendered by the Routes component by matching up the to and path attributes.
+
+# Lecture 4/1/2024
+* React Router
+* State variables are called react hooks
+* Other hooks are used to make the html
+* Single page application: only one html page loaded, inject components that load and do different things
+* Router: click on a link: replaces one component with a different component (different body)
+* can't use anchor tags, need NavLink tag, which then talks to the Router
+* top level component will probably contain my browser router
+* Toolchain: chain of tools that allow me to take something that can't render in the browswer and turn it into something that can render in the browser.
+* npm run build, vite build -> Babel transpile, bundle, polyfill, minify compression, etc.
+* Vite - frontend build tool
+* 
+
+
