@@ -2014,6 +2014,6 @@ Class style components are also supported, but react is moving away from that to
 * Toolchain: chain of tools that allow me to take something that can't render in the browswer and turn it into something that can render in the browser.
 * npm run build, vite build -> Babel transpile, bundle, polyfill, minify compression, etc.
 * Vite - frontend build tool
-* 
+* Go to Startup application tab on the website, there is a video to see
 
 
