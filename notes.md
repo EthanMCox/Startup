@@ -2020,4 +2020,16 @@ Class style components are also supported, but react is moving away from that to
 * Making UI react to changes in user input or data is one of the foundations of React.
 * React enables reactivity with three major pieces of a React component: props, state, and render
 * When JSX is rendered, React parses the JSX and creates a list of any references to the component's state or prop objects. React monitors these objects for changes, and if they change then it will call the component's render function so that the impact of the change is visualized.
+
+# Lecture 4/3/2024
+* Every functional react component must return jsx
+* Properties and state are the main things that make react reactive
+* useState: component State
+* useEffect: lifecycle activities
+* useEffect: do something every time the state gets re-rendered
+* Can also return a function in the useEffect function which indicates what the page will do during deconstruction.
+* React.useEffect...console.log("rendered") return function cleanup() {console.log("cleanup")}
+* React.useEffect... const [count, updatecount] = React.useState(0)... , [count]; this updates conditionally when count changes. if [], then it only updates the first time
+* Use effect must be within the top level of a component
+* You can have multiple use effects
 * 
