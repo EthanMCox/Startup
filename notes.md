@@ -2016,4 +2016,8 @@ Class style components are also supported, but react is moving away from that to
 * Vite - frontend build tool
 * Go to Startup application tab on the website, there is a video to see
 
-
+# Reactivity 
+* Making UI react to changes in user input or data is one of the foundations of React.
+* React enables reactivity with three major pieces of a React component: props, state, and render
+* When JSX is rendered, React parses the JSX and creates a list of any references to the component's state or prop objects. React monitors these objects for changes, and if they change then it will call the component's render function so that the impact of the change is visualized.
+* 
