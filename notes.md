@@ -2032,4 +2032,7 @@ Class style components are also supported, but react is moving away from that to
 * React.useEffect... const [count, updatecount] = React.useState(0)... , [count]; this updates conditionally when count changes. if [], then it only updates the first time
 * Use effect must be within the top level of a component
 * You can have multiple use effects
+
+# Lecture 4/5/2024
+* Multiple files are typically associated with one component, so include those files all within one folder.
 * 
