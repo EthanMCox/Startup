@@ -2035,4 +2035,42 @@ Class style components are also supported, but react is moving away from that to
 
 # Lecture 4/5/2024
 * Multiple files are typically associated with one component, so include those files all within one folder.
-* 
+
+# Lecture 4/8/2024
+* TypeScript
+* JavaScript has types, but they are dynamic
+* Typescript checks types more strictly than JavaScript
+* npm install typescript package
+* Two ways to install typescript:
+  * npm install -g typescript: globally download typescript
+  * npm install typescript: project specific
+ 
+* use index.ts instead of index.js
+* let count: number = 1;
+  * count is the name of the variable; number is the type of the variable
+ 
+* Compiler needs to convert typescript to javascript.
+* Typescript: you can create your own types!
+* polymorphism: there is more data, but only give what the receiver of the data actually nees
+  * This can be accomplished through interface
+ 
+* Optimization
+* Optimize for real usage (cache, bandwidth, cpu, storage)
+  * test based on the worst use case, not how the high-performance computer you're programming on is running it.  
+* Optimize based on data
+* Prioritize bottlenecks
+* Look at download size
+* compress, reduce, minify
+* Lazy load
+* Use psychology
+  * Have a joke, tips, etc.
+ 
+* Tools:
+  * Lighthouse tool within google itself
+  * If you get good rankings on lighthouse, google uses that in its algorithm
+  * tools.pingdom.com
+  * dotcom-tools.com/website-speed-test
+  * network tab
+  * empty cache and hard reload
+ 
+* Performance tab; record performance  
