@@ -93,3 +93,9 @@ function App() {
     </BrowserRouter>
   );
 }
+
+function NotFound() {
+    return <main className='container-fluid bg-secondary text-center'>404: Page Not Found</main>;
+}
+
+export default App;

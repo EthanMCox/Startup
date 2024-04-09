@@ -103,7 +103,7 @@ secureAPIRouter.post('/score', async (req, res) => {
 
 // Default error handler if server endpoints do not work correctly
 app.use(function (err, req, res, next) {
-    res.status(500).send({ type: err.name, message: err.nessage });
+    res.status(500).send({ type: err.name, message: err.message });
 })
 
 // Return the application's default page if the path is unknown
