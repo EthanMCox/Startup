@@ -42,9 +42,8 @@ export function Unauthenticated(props) {
 
   return (
     <>
-      
-        {/* Displayed when needing authentication */}
-      
+      {/* Displayed when needing authentication */}
+
       <div id="loginControls" style="display: none">
         <div className="input-group mb-3">
           <span className="input-group-text">@</span>
@@ -52,7 +51,7 @@ export function Unauthenticated(props) {
             className="form-control"
             type="text"
             value={userName}
-            onChange={(e) => setUserName(e.target.value}
+            onChange={(e) => setUserName(e.target.value)}
             placeholder="your@email.com"
           />
         </div>
@@ -66,56 +65,19 @@ export function Unauthenticated(props) {
             placeholder="password"
           />
         </div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          style="margin-right: 50px;"
-          onclick="loginUser()"
-        >
+        <Button variant="primary" onClick={() => loginUser()}>
           Login
-        </button>
-        <button type="button" className="btn btn-primary" onclick="createUser()">
+        </Button>
+        <Button variant="primary" onClick={() => createUser()}>
           Create
-        </button>
-      </div>
-
-      
-        // Displayed when authenticated
-      
-      <div id="authenticationControls" style="display: none">
-        <div id="playerName"></div>
-        <button
-          type="button"
-          className="btn btn-primary"
-          style="margin-right: 50px;"
-          onclick="play()"
-        >
-          Play
-        </button>
-        <button type="button" className="btn btn-secondary" onclick="logout()">
-          Logout
-        </button>
+        </Button>
       </div>
 
       {
         // Error dialog
       }
-      <div className="modal fade" id="msgModal" tabindex="-1">
-        <div className="modal-dialog modal-dialog-centered">
-          <div className="modal-content text-dark">
-            <div className="modal-body">error message here</div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <MessageDialog message={displayError} onHide={() = setDisplayError(null)}/>
     </>
   );
 }
