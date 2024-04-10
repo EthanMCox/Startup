@@ -1,12 +1,23 @@
 import React from "react";
-import { unauthenticated } from "./unauthenticated";
+import { Unauthenticated } from "./unauthenticated";
+// import { Authenticated } from "./authenticated";
 
-export function Login() {
+import { AuthState } from "./authState";
+
+
+export function Login({userName, authState, onAuthChange}) {
   return (
     <main class="container-fluid bg-secondary text-center">
       <div>
         <h2>Welcome to Make a Match</h2>
-        
+        {authState === AuthState.Unauthenticated && (
+          <Unauthenticated
+            userName={userName}
+            onLogin={(loginUserName) => {
+              onAuthChange(loginUserName, AuthState.Authenticated);
+            }}
+          />
+        )}
       </div>
     </main>
   );

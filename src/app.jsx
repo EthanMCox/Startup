@@ -25,7 +25,7 @@ function App() {
             <h3 className="logo">Make a Match</h3>
             <menu className="navbar-nav">
               <li className="nav-item navPaddingLeft">
-                <NavLink className="nav-link" to="">
+                <NavLink className="nav-link" to='/'>
                   Login
                 </NavLink>
               </li>
