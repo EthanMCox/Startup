@@ -2,7 +2,6 @@ import React from "react";
 
 import Button from "react-bootstrap/Button";
 import { MessageDialog } from "./messageDialog";
-import e from "express";
 
 export function Unauthenticated(props) {
   const [userName, setUserName] = React.useState("");
@@ -18,8 +17,6 @@ export function Unauthenticated(props) {
   }
 
   async function loginOrCreate(endpoint) {
-    const userName = document.querySelector("#userName")?.value;
-    const password = document.querySelector("#userPassword")?.value;
     const response = await fetch(endpoint, {
       method: "post",
       body: JSON.stringify({ email: userName, password: password }),
@@ -30,13 +27,10 @@ export function Unauthenticated(props) {
 
     if (response.ok) {
       localStorage.setItem("userName", userName);
-      window.location.href = "play.html";
+      props.onLogin(userName);
     } else {
       const body = await response.json();
-      const modalEl = document.querySelector("#msgModal");
-      modalEl.querySelector(".modal-body").textContent = `Error: ${body.msg}`;
-      const msgModal = new bootstrap.Modal(modalEl, {});
-      msgModal.show();
+      setDisplayError(`Error: ${body.message}`)
     }
   }
 
@@ -77,7 +71,7 @@ export function Unauthenticated(props) {
         // Error dialog
       }
       
-      <MessageDialog message={displayError} onHide={() = setDisplayError(null)}/>
+      <MessageDialog message={displayError} onHide={() => setDisplayError(null)}/>
     </>
   );
 }
