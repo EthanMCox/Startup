@@ -2073,4 +2073,110 @@ Class style components are also supported, but react is moving away from that to
   * network tab
   * empty cache and hard reload
  
-* Performance tab; record performance  
+* Performance tab; record performance
+
+# Lecture 4/10/2024 UX design
+## Simplicity
+* "Don't make me think"
+* Simplicity is king
+* Google pioneered the minimalistic interface
+* Simplicity doesn't necessarily mean one thing on the screen, could be one function, repeated multiple times (i.e. pinterest)
+
+## Design as a story
+* "Come for Philadelphia. Stay for Philly"
+
+## Consistency
+* Reduce the mental load on the user
+* Jarring/being different can be good, but only if you're legitimately better
+* Use a UI framework, don't make your own framework
+
+## Navigation
+* tell the story in the way that the user is expecting to navigate
+* Create a sitemap
+* What are the primary things and secondary things a customer or visitor might want to do
+
+## Display location
+* Where am I?
+* Be able to get back out or in to wherever you want
+* Browser controls (i.e. be able to go back and forth, BYU job site doesn't do this)
+* Breadcrumbs: be able to get back out
+* Anticipate common paths (if songs is the purpose of spotify, you want to be able to go straight to songs
+
+## Color
+* Have decent colors
+* paletton.com
+* color.adobe.com
+* Contrast or harmony of the colors is what makes it nice and inviting
+* Color accessibility is very important
+* have 1-3 colors normally
+* If you do have a lot of colors, you want to have a good transition.
+
+## Typography
+* Fonts are very important
+* Four classifications of fonts
+* Less fonts = better
+* Sans serif generally for heades
+* serif fonts can work for content
+* have consistent font sizes for titles, headers, content, etc. across entire site
+  * Not necessarily fixed pixels, but definitely fixed ratio
+
+## Proofread
+* Don't have grammatical/spelling errors
+
+## Icongoraphy
+* Use standard icons
+* Go to google icons to see common ones
+
+## Space
+* White space is very good
+
+## Images
+* Images MUST add value
+* Only have an image if it is relevant and good
+
+## Animation
+* Animation can be really helpful for making a site feel alive
+* Don't have animation that is too jarring
+
+## Decision fatigue
+* The time necessary to make a decision increases logarithmically with the number of choices presented
+* Give one choice to user at a time (i.e. pizza shop, decompose choices into parts)
+
+## Be aware of device-specific UI
+
+## Performance
+
+## Accessibility
+* visual, audio, and physical needs
+* High contrast theme
+* screen reader support
+* closed caption
+* visual animation
+* keyboard navigation
+* element ordering
+
+## Legal
+* Privacy
+* Education
+* Health
+
+## Walls
+* Features are important, but what might stop people from using my site
+* Registration
+* Payment
+* Login
+* Navigation
+* Legal
+* Some walls are inevitable or required by your product means, but keep the wall as minimal as possible
+* Too many options
+
+## Internationalization
+* Language
+* Currency
+* Times and dates
+* Numbers
+* Icons
+* Images
+* Handle across your entire application
+
+
