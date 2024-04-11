@@ -17,7 +17,7 @@ async function loadScores() {
     //  {"name":"Player 2","score":200,"date":"1/2/2021"}
     // ]
     scores = JSON.parse(scoresText);
-    console.log("Failed, loaded local storage instead")
+    // console.log("Failed, loaded local storage instead")
     }
   }
 
