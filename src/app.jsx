@@ -43,8 +43,8 @@ function App() {
                   </NavLink>
                 </li>
               )}
-              <li className="nav-item">
-                <NavLink className="nav-link active" to="about">
+              <li className="nav-item navPaddingLeft">
+                <NavLink className="nav-link" to="about">
                   About
                 </NavLink>
               </li>
