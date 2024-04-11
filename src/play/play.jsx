@@ -1,8 +1,10 @@
 import React from 'react';
+import { Players } from './players';
 
-
-export function Play() {
+export function Play(props) {
     return (
-        <div>hello</div>
+        <main className='bg-secondary'>
+            <Players username={props.userName} />
+        </main>
     );
 }

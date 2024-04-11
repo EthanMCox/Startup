@@ -1,7 +1,8 @@
 const GameEvent = {
-  // System: 'system',
+  System: 'system',
   End: "gameEnd",
   Start: "gameStart",
+  Connect: "gameConnect",
 };
 
 class EventMessage {
@@ -12,30 +13,29 @@ class EventMessage {
   }
 }
 
-class gameEventNotifier {
+class GameEventNotifier {
   events = [];
   handlers = [];
 
   constructor() {
     let port = window.location.port;
     const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
-    this.socket = new WebSocket(`${protocol}//${window.location.hostname}:${port}/ws`);
+    this.socket = new WebSocket(
+      `${protocol}//${window.location.hostname}:${port}/ws`
+    );
     this.socket.onopen = (event) => {
-      this.displayMsg("system", "game", "connected");
-      this.broadcastEvent(this.getPlayerName(), GameConnectEvent, {});
+        this.receiveEvent(new EventMessage('game', GameEvent.System, { msg: 'connected' }))
+        // this.displayMsg("system", "game", "connected");
+    //   this.broadcastEvent(this.getPlayerName(), GameConnectEvent, {});
     };
     this.socket.onclose = (event) => {
-      this.displayMsg("system", "game", "disconnected");
+        this.receiveEvent(new EventMessage('game', GameEvent.System, { msg: 'disconnected' }))
     };
-    this.socket.onmessage = async (event) => {
-      const msg = JSON.parse(await event.data.text());
-      if (msg.type === GameEndEvent) {
-        this.displayMsg("player", msg.from, `scored ${msg.value.score}`);
-      } else if (msg.type === GameStartEvent) {
-        this.displayMsg("player", msg.from, `started a new game`);
-      } else if (msg.type === GameConnectEvent) {
-        this.displayMsg("player", msg.from, `connected`);
-      }
+    this.socket.onmessage = async (msg) => {
+      try {
+        const event = JSON.parse(await msg.data.text());
+        this.receiveEvent(event);
+      } catch {}
     };
   }
 
@@ -56,10 +56,10 @@ class gameEventNotifier {
     this.events.push(event);
 
     this.handlers.forEach((handler) => {
-        handler(event);
-      });
+      handler(event);
+    });
   }
 }
 
-const gameEventNotifier = new gameEventNotifier();
-export { GameEvent, GameNotifer };
+const GameNotifier = new GameEventNotifier();
+export { GameEvent, GameNotifier };
