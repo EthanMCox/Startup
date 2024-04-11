@@ -17,22 +17,25 @@ export function Unauthenticated(props) {
   }
 
   async function loginOrCreate(endpoint) {
+    // try {
     const response = await fetch(endpoint, {
       method: "post",
-      body: JSON.stringify({ email: userName, password: password }),
+      body: JSON.stringify({email: userName, password: password}),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
       },
     });
 
-    if (response.ok) {
+    if (response?.ok) {
       localStorage.setItem("userName", userName);
       props.onLogin(userName);
     } else {
       const body = await response.json();
-      setDisplayError(`Error: ${body.message}`)
+      setDisplayError(`Error: ${body.msg}`)
     }
-  }
+  } // catch (error) {
+  //   console.log(error);
+  // }}
 
   return (
     <>
