@@ -37,8 +37,7 @@ export function Unauthenticated(props) {
   return (
     <>
       {/* Displayed when needing authentication */}
-
-      <div id="loginControls" style="display: none">
+      <div id="loginControls">
         <div className="input-group mb-3">
           <span className="input-group-text">@</span>
           <input

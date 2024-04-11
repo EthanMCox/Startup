@@ -7,7 +7,7 @@ import { AuthState } from "./authState";
 
 export function Login({userName, authState, onAuthChange}) {
   return (
-    <main class="container-fluid bg-secondary text-center">
+    <main className="container-fluid bg-secondary text-center">
       <div>
         <h2>Welcome to Make a Match</h2>
         {authState === AuthState.Unauthenticated && (
