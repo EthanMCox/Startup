@@ -1,4 +1,5 @@
 import React from "react";
+import { Card } from "./card";
 
 import { Button } from "react-bootstrap";
 import { delay } from "./delay";
@@ -16,10 +17,23 @@ export function MakeAMatchGame(props) {
   const [lives, setLives] = React.useState(10);
   const [round, setRound] = React.useState(1);
 
+    async function clickCard(cardID) {
+        return; // Placeholder
+    }
+
+
+  for (let i = 0; i < 12; i++) {
+    cards.set(i, { letter: "A", flipped: false, allowFlip: true, ref: React.useRef() });
+  }
+
+  const cardArray = Array.from(cards, (key, cardData)  => {
+    return <Card key={key} ref={cardData.ref} clickCard={() => clickCard(key)}></Card>
+  })
+
   return (
     <>
       <div className="card-game-container">
-        <div className="card-game">Card Placeholder</div>
+        <div className="card-game">{cardArray}</div>
       </div>
 
       <div className="stat-bar container-fluid">

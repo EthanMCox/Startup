@@ -1,19 +1,23 @@
 import React from "react";
 
 export function Card(props) {
+  //Placeholder
+
+  //End Placeholder
+
   return (
-    <div class="card-center">
-      <div class="card" id="card1">
-        <div class="card-inner">
-          <div class="transparent">
-            <img class="card-img-top" src="card.jpg" alt="playing_card" />
+    <div className="card-center">
+      <div className="card" id="card1">
+        <div className="card-inner">
+          <div className="transparent">
+            <img className="card-img-top" src="/card.jpg" alt="playing_card" />
           </div>
-          <div class="card-front">
-            <img class="card-img-top" src="card.jpg" alt="playing_card" />
+          <div className="card-front">
+            <img className="card-img-top" src="/card.jpg" alt="playing_card" />
           </div>
-          <div class="card-back">
+          <div className="card-back">
             <div>
-              <p class="card-back-text">A</p>
+              <p className="card-back-text">A</p>
             </div>
           </div>
         </div>

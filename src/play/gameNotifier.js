@@ -1,7 +1,7 @@
 const GameEvent = {
   System: 'system',
-  End: "gameEnd",
-  Start: "gameStart",
+  End: "player",
+  Start: "player",
   Connect: "player",
 };
 
