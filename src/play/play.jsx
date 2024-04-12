@@ -4,7 +4,7 @@ import { Players } from './players';
 export function Play(props) {
     return (
         <main className='bg-secondary'>
-            <Players username={props.userName} />
+            <Players userName={props.userName} />
         </main>
     );
 }

@@ -28,15 +28,14 @@ export function Players(props) {
                 message = `scored ${event.value.score}`;
             } else if (event.type === GameEvent.Start) {
                 message = 'started a new game';
-            } else if (event.type === GameEvent.Connect) {
-                message = 'connected';
-            } //else if (event.type === GameEvent.System) {
-            //     message = event.value.msg;
-            // }
+            } else if (event.type === GameEvent.System) {
+                // Message will be either 'connected' or 'disconnected'
+                message = event.value.msg;
+            }
 
             messageArray.push(
                 <div key={i} className="event">
-                    <span className={`${event.from}-event`}>{event.from.split('@')[0]}</span> {message}
+                    <span className={`${event.type}-event`}>{event.from.split('@')[0]}</span> {message}
                 </div>
             );
         }
@@ -46,8 +45,8 @@ export function Players(props) {
     return (
         <div className="players">
             Player: 
-            <span className="player-name">{userName}</span>
+            <span className="player-name"> {userName}</span>
             <div id="player-notifications">{createMessageArray()}</div>
         </div>
-    )
+    );
 }
