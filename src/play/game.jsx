@@ -17,14 +17,14 @@ export function MakeAMatchGame(props) {
   const [round, setRound] = React.useState(1);
 
   return (
-    <div>
+    <>
       <div className="card-game-container">
         <div className="card-game">Card Placeholder</div>
       </div>
 
       <div className="stat-bar container-fluid">
         <div className="stat-bar-input">
-          <label for="restart"></label>
+          <label htmlFor="restart"></label>
         </div>
         <div className="stat-bar-input">
           <input
@@ -35,7 +35,7 @@ export function MakeAMatchGame(props) {
           />
         </div>
         <div>
-          <label for="round">Round: </label>
+          <label htmlFor="round">Round: </label>
         </div>
         <div className="stat-bar-input">
           <input
@@ -43,11 +43,11 @@ export function MakeAMatchGame(props) {
             type="text"
             id="round"
             value={round}
-            readonly
+            readOnly
           />
         </div>
         <div>
-          <label for="lives">Lives: </label>
+          <label htmlFor="lives">Lives: </label>
         </div>
         <div className="stat-bar-input">
           <input
@@ -55,11 +55,11 @@ export function MakeAMatchGame(props) {
             type="text"
             id="lives"
             value={lives}
-            readonly
+            readOnly
           />
         </div>
         <div>
-          <label for="score">Score: </label>
+          <label htmlFor="score">Score: </label>
         </div>
         <div className="stat-bar-input">
           <input
@@ -67,10 +67,10 @@ export function MakeAMatchGame(props) {
             type="text"
             id="score"
             value={score}
-            readonly
+            readOnly
           />
         </div>
       </div>
-    </div>
+    </>
   );
 }
