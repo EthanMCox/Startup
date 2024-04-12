@@ -2178,5 +2178,49 @@ Class style components are also supported, but react is moving away from that to
 * Icons
 * Images
 * Handle across your entire application
+* 
+
+# Lecture 4/12/2024
+* Two dev teams, one for android, one for iphone
+* Native apps: app store, certification, rev share different for each device
+* Progressive web dev is about being able to develop on multiple devices, and have it function universally
+* Don't want to have multiple specialized teams for various platforms
+* Cross-compiling:
+  * react-router-native vs. react-router dom
+  * Can make it so there's one-ish code base
+  * Still not completely once only
+  * Need special code for targets
+  * Multiple distribution paths
+  * App store
+  * Can utilize unique device features
+ 
+* PWA: Progressive Web Application
+  * The browser is a common platform with standards on what a browser should be supporting.
+  * Target the browser and standard web tecnologies
+ 
+* Advantages of Progressive web app
+  * One code base
+  * Smaller than native
+  * One distribution (easy updates)
+  * No app store—no approval, installation, or fees
+  * Works offline
+  * Advanced caching
+  * native-like experience
+  * Go to a website like spotify, there is an option to install the app directly from the browser
+  * install via the browser, then behaves like an app from then on
+  * Going to apple, all apps will be native (compiled code specifically tailored to hardware and stuff)
+  * Progressive web apps run like native, hide the browser interface. 
+ 
+* How to implement a progressive web app
+  * Really easy
+  * Only need three things, then one optional thing
+  * Manifest json file
+  * Icons
+  * Service worker: a little bit of code that you need to write
+    * One thread for rendering, but second thread can do background jobs, caching of files even when offline, etc. The second thread is the service worker 
+  * Offline fallbacks
+ 
+* Can grab boilerplate code for serviceWorker registration
+* Have to write service-worker itself. Bring in images, sounds, etc. 
 
 
