@@ -2,6 +2,7 @@ const GameEvent = {
   System: 'system',
   End: "gameEnd",
   Start: "gameStart",
+  Connect: "player",
 };
 
 class EventMessage {
@@ -16,7 +17,14 @@ class GameEventNotifier {
   events = [];
   handlers = [];
 
-  constructor() {
+  constructor(userName) {
+    if (GameEventNotifier.instance) {
+      return GameEventNotifier.instance;
+    }
+
+    this.username = userName;
+    GameEventNotifier.instance = this;
+
     let port = window.location.port;
     const protocol = window.location.protocol === "https:" ? "wss" : "ws";
     this.socket = new WebSocket(
@@ -25,7 +33,7 @@ class GameEventNotifier {
     this.socket.onopen = (event) => {
         this.receiveEvent(new EventMessage('game', GameEvent.System, { msg: 'connected' }))
         // this.displayMsg("system", "game", "connected");
-    //   this.broadcastEvent(this.getPlayerName(), GameConnectEvent, {});
+        this.broadcastEvent(userName, GameEvent.Connect, {msg: 'connected'});
     };
     this.socket.onclose = (event) => {
         this.receiveEvent(new EventMessage('game', GameEvent.System, { msg: 'disconnected' }))
@@ -48,7 +56,8 @@ class GameEventNotifier {
   }
 
   removeHandler(handler) {
-    this.handlers.filter((h) => h !== handler);
+    // this.handlers.filter((h) => h !== handler);
+    this.handlers= this.handlers.filter((h) => h !== handler);
   }
 
   receiveEvent(event) {
@@ -60,5 +69,4 @@ class GameEventNotifier {
   }
 }
 
-const GameNotifier = new GameEventNotifier();
-export { GameEvent, GameNotifier };
+export { GameEvent, GameEventNotifier };

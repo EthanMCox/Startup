@@ -1,12 +1,16 @@
 import React from 'react';
 
-import { GameEvent, GameNotifier } from './gameNotifier';
+import { GameEvent, GameEventNotifier } from './gameNotifier';
 import './play.css';
 
 export function Players(props) {
     const userName = props.userName;
-
+    const [GameNotifier, setGameNotifier] = React.useState(new GameEventNotifier(userName));
     const [events, setEvent] = React.useState([]);
+
+
+
+
 
     React.useEffect(() => {
         GameNotifier.addHandler(handleGameEvent);
@@ -28,7 +32,7 @@ export function Players(props) {
                 message = `scored ${event.value.score}`;
             } else if (event.type === GameEvent.Start) {
                 message = 'started a new game';
-            } else if (event.type === GameEvent.System) {
+            } else if (event.type === GameEvent.System || event.type === GameEvent.Connect) {
                 // Message will be either 'connected' or 'disconnected'
                 message = event.value.msg;
             }
