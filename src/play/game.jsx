@@ -46,10 +46,10 @@ export function MakeAMatchGame(props) {
         setCardsMatched(cardsmatched + 2);
         setScore(score + 1);
         await delay(400);
-        this.cardsflipped[0].el.style.display = "none"; // Change to something more elegant later if time
-        this.cardsflipped[1].el.style.display = "none";
-        this.cardsflipped[0].allowFlip = true;
-        this.cardsflipped[1].allowFlip = true;
+        cardsflipped[0].ref.current.matched(true); // Change to something more elegant later if time
+        cardsflipped[1].ref.current.match(true);
+        cardsflipped[0].ref.current.updateAllowFlip(true);
+        cardsflipped[1].ref.current.updateAllowFlip(true);
       } else {
         // No match
         this.lives = this.lives - 1;
