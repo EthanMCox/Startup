@@ -6,6 +6,33 @@ import { delay } from "./delay";
 import { GameEvent, GameEventNotifier } from "./gameNotifier";
 import "./play.css";
 
+const backtexts = [
+  { letter: "A" },
+  { letter: "B" },
+  { letter: "C" },
+  { letter: "D" },
+  { letter: "E" },
+  { letter: "F" },
+  { letter: "A" },
+  { letter: "B" },
+  { letter: "C" },
+  { letter: "D" },
+  { letter: "E" },
+  { letter: "F" },
+];
+
+let shuffled;
+
+function shufflealgorithm(array) {
+    let currentIndex = array.length, randomIndex;
+    while (currentIndex != 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
+    }
+    return array;
+  }
+
 export function MakeAMatchGame(props) {
   const userName = props.userName;
   const cards = new Map();
@@ -41,7 +68,10 @@ export function MakeAMatchGame(props) {
 
     // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
     if (cardsflipped.length === 2) {
-      if (cardsflipped[0].ref.current.getLetter() === cardsflipped[1].ref.current.getLetter()) {
+      if (
+        cardsflipped[0].ref.current.getLetter() ===
+        cardsflipped[1].ref.current.getLetter()
+      ) {
         // Found a match
         setCardsMatched(cardsmatched + 2);
         setScore(score + 1);
@@ -59,24 +89,27 @@ export function MakeAMatchGame(props) {
         cardsflipped[0].current.ref.updateAllowFlip(true);
         cardsflipped[1].current.ref.updateAllowFlip(true);
       }
-        setCardsFlipped([]);
+      setCardsFlipped([]);
     }
 
     // If all cards are matched, generate more cards and increment round
     if (cardsmatched === 12) {
-        setRound(round + 1);
-    //   await this.resetcards(); // Uncomment this out when done
+      setRound(round + 1);
+      //   await this.resetcards(); // Uncomment this out when done
     }
     // If lives are 0, save the score and reset the game
     if (lives === 0) {
-        // Uncomment this out when implemented
-    //   this.saveScore(this.score);
-    //   this.allowPlayer = true; // so that restart can run
-    //   await this.restart();
+      // Uncomment this out when implemented
+      //   this.saveScore(this.score);
+      //   this.allowPlayer = true; // so that restart can run
+      //   await this.restart();
     }
     setAllowPlayer(true);
   }
 
+  function shuffle() {
+    shuffled = shufflealgorithm(backtexts)
+  }
 
   for (let i = 0; i < 12; i++) {
     cards.set(i, { ref: React.useRef() });
