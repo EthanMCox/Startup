@@ -20,6 +20,9 @@ export const Card = React.forwardRef(({ clickCard }, ref) => {
     },
     flipped() {
       return flipped;
+    },
+    getLetter() {
+        return letter;
     }
   }));
 

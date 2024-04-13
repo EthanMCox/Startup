@@ -37,16 +37,14 @@ export function MakeAMatchGame(props) {
     card.ref.current.updateFlipped(true);
     setCardsFlipped([...cardsflipped, card]);
 
-    flipcard(card);
     await delay(800);
 
     // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
-    if (this.cardsflipped.length === 2) {
-      if (this.cardsflipped[0].letter === this.cardsflipped[1].letter) {
+    if (cardsflipped.length === 2) {
+      if (cardsflipped[0].ref.current.getLetter() === cardsflipped[1].ref.current.getLetter()) {
         // Found a match
-        this.cardsmatched = this.cardsmatched + 2;
-        this.score = this.score + 1;
-        this.updateScore();
+        setCardsMatched(cardsmatched + 2);
+        setScore(score + 1);
         await delay(400);
         this.cardsflipped[0].el.style.display = "none"; // Change to something more elegant later if time
         this.cardsflipped[1].el.style.display = "none";
