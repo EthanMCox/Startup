@@ -59,22 +59,22 @@ export function MakeAMatchGame(props) {
         cardsflipped[0].current.ref.updateAllowFlip(true);
         cardsflipped[1].current.ref.updateAllowFlip(true);
       }
-      this.cardsflipped = [];
+        setCardsFlipped([]);
     }
 
     // If all cards are matched, generate more cards and increment round
-    if (this.cardsmatched === 12) {
-      this.round = this.round + 1;
-      this.updateround();
-      await this.resetcards();
+    if (cardsmatched === 12) {
+        setRound(round + 1);
+    //   await this.resetcards(); // Uncomment this out when done
     }
     // If lives are 0, save the score and reset the game
-    if (this.lives === 0) {
-      this.saveScore(this.score);
-      this.allowPlayer = true; // so that restart can run
-      await this.restart();
+    if (lives === 0) {
+        // Uncomment this out when implemented
+    //   this.saveScore(this.score);
+    //   this.allowPlayer = true; // so that restart can run
+    //   await this.restart();
     }
-    this.allowPlayer = true;
+    setAllowPlayer(true);
   }
 
 
