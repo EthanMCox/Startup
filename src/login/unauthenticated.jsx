@@ -61,10 +61,10 @@ export function Unauthenticated(props) {
             placeholder="password"
           />
         </div>
-        <Button variant="primary" onClick={() => loginUser()}>
+        <Button variant="primary" style={{marginRight: '10px'}} onClick={() => loginUser()}>
           Login
         </Button>
-        <Button variant="primary" onClick={() => createUser()}>
+        <Button variant="secondary" onClick={() => createUser()}>
           Create
         </Button>
       </div>
