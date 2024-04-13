@@ -15,7 +15,7 @@ export const Card = React.forwardRef(({ clickCard }, ref) => {
     updateAllowFlip(bool) {
       setAllowflip(bool);
     },
-    AllowFlip() {
+    allowFlip() {
       return allowflip;
     },
     flipped() {
@@ -27,7 +27,7 @@ export const Card = React.forwardRef(({ clickCard }, ref) => {
   return (
     <div className="card-center">
       <div className="card">
-        <div className="card-inner" onClick={() => clickCard(key)}>
+        <div className={`card-inner ${flipped ? 'flipped' : ''}`} onClick={() => clickCard()}>
           <div className="transparent"> 
             <img className="card-img-top" src="/card.jpg" alt="playing_card" />
           </div>
