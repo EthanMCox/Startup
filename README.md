@@ -79,3 +79,9 @@ For this deliverable I added styling elements to my application using CSS.
 * Frontend makes WebSocket connection: done!
 * Data sent over WebSocket connection: done!
 * WebSocket Data displayed in application userface: when playing the game, WebSocket will display when other users connect, when they score, and when they start the game.
+
+# React Deliverable
+* Bundled using vite: done!
+* Multiple functional react components: components for login, game, about, and scores all work
+* React router: Router properly navigates between the login, game, scores, and about components
+* React hooks: useState, useEffect, and useRef hooks are all used in several places throughout the application
