@@ -52,15 +52,12 @@ export function MakeAMatchGame(props) {
         cardsflipped[1].ref.current.updateAllowFlip(true);
       } else {
         // No match
-        this.lives = this.lives - 1;
-        this.updatelives();
-        this.cardsflipped[0].flipped = false;
-        this.cardsflipped[1].flipped = false;
-        this.flipcard(this.cardsflipped[0]);
-        this.flipcard(this.cardsflipped[1]);
+        setLives(lives - 1);
+        cardsflipped[0].current.ref.updateFlipped(false);
+        cardsflipped[1].current.ref.updateFlipped(false);
         await delay(1000);
-        this.cardsflipped[0].allowFlip = true;
-        this.cardsflipped[1].allowFlip = true;
+        cardsflipped[0].current.ref.updateAllowFlip(true);
+        cardsflipped[1].current.ref.updateAllowFlip(true);
       }
       this.cardsflipped = [];
     }
