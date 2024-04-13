@@ -24,14 +24,18 @@ const backtexts = [
 let shuffled;
 
 function shufflealgorithm(array) {
-    let currentIndex = array.length, randomIndex;
-    while (currentIndex != 0) {
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
-    }
-    return array;
+  let currentIndex = array.length,
+    randomIndex;
+  while (currentIndex != 0) {
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+    [array[currentIndex], array[randomIndex]] = [
+      array[randomIndex],
+      array[currentIndex],
+    ];
   }
+  return array;
+}
 
 export function MakeAMatchGame(props) {
   const userName = props.userName;
@@ -77,7 +81,7 @@ export function MakeAMatchGame(props) {
         setScore(score + 1);
         await delay(400);
         cardsflipped[0].ref.current.matched(true); // Change to something more elegant later if time
-        cardsflipped[1].ref.current.match(true);
+        cardsflipped[1].ref.current.matched(true);
         cardsflipped[0].ref.current.updateAllowFlip(true);
         cardsflipped[1].ref.current.updateAllowFlip(true);
       } else {
@@ -108,7 +112,7 @@ export function MakeAMatchGame(props) {
   }
 
   function shuffle() {
-    shuffled = shufflealgorithm(backtexts)
+    shuffled = shufflealgorithm(backtexts);
   }
 
   for (let i = 0; i < 12; i++) {
@@ -124,6 +128,15 @@ export function MakeAMatchGame(props) {
       ></Card>
     );
   });
+
+  // Shuffle the letters when cards are rendered
+  React.useEffect(() => {
+      shuffle();
+      for (let i = 0; i < 12; i++) {
+        let card = cards.get(i);
+        card.ref.current.updateLetter(shuffled[i].letter);
+      }
+  }, []);
 
   return (
     <>

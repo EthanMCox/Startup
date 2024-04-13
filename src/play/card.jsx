@@ -10,7 +10,7 @@ export const Card = React.forwardRef(({ clickCard }, ref) => {
     updateFlipped(bool) {
       setFlipped(bool);
     },
-    updateBack(letter) {
+    updateLetter(letter) {
       setLetter(letter);
     },
     updateAllowFlip(bool) {
