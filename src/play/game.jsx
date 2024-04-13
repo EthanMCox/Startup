@@ -111,7 +111,7 @@ export function MakeAMatchGame(props) {
     if (lives === 0) {
         saveScore(score);
         this.allowPlayer = true; // so that restart can run
-      //   await this.restart();
+        await this.restart();
     }
     setAllowPlayer(true);
   }

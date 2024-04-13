@@ -28,16 +28,16 @@ export function Scores() {
     }
   } else {
         scoreRows.push(
-        <tr>
+        <tr key='0'>
             <td colSpan="4">Be the first to score</td>
         </tr>
         );
     }
 
   return (
-    <main class="container-fluid bg-secondary text-center">
-      <table class="table table-striped">
-        <thead class="table-dark">
+    <main className="container-fluid bg-secondary text-center">
+      <table className="table table-striped">
+        <thead className="table-dark">
           <tr>
             <th>#</th>
             <th>Name</th>
