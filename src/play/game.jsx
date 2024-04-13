@@ -247,6 +247,7 @@ export function MakeAMatchGame(props) {
             type="button"
             id="restart"
             value="Restart"
+            onClick={restart}
           />
         </div>
         <div>
