@@ -49,8 +49,9 @@ export function MakeAMatchGame(props) {
   const cardsFlipped = useRef([]);
   const cardsMatched = useRef(0);
   const [score, setScore] = React.useState(0);
-  const [lives, setLives] = React.useState(10);
+  const [lives, setLives] = React.useState(3);
   const [round, setRound] = React.useState(1);
+  const liveLives = useRef(3);
 
   async function clickCard(cardID) {
     // Only execute if the player is allowed to flip the card
@@ -90,6 +91,7 @@ export function MakeAMatchGame(props) {
       } else {
         // No match
         setLives(lives - 1);
+        liveLives.current = liveLives.current - 1;
         // Flip the cards back over
         cards.get(cardsFlipped.current[0]).ref.current.updateFlipped(false);
         cards.get(cardsFlipped.current[1]).ref.current.updateFlipped(false);
@@ -108,10 +110,10 @@ export function MakeAMatchGame(props) {
       await resetcards(); 
     }
     // If lives are 0, save the score and reset the game
-    if (lives === 0) {
+    if (liveLives.current === 0) {
         saveScore(score);
-        this.allowPlayer = true; // so that restart can run
-        await this.restart();
+        setAllowPlayer(true); // so that restart can run
+        await restart();
     }
     setAllowPlayer(true);
   }
@@ -144,10 +146,11 @@ export function MakeAMatchGame(props) {
     // Updates score to be "--"
     setScore(0);
     setLives(10);
+    liveLives.current = 10;
     setRound(1);
 
-    await this.resetcards();
-    this.broadcastEvent(this.getPlayerName(), GameStartEvent, {});
+    resetcards();
+    GameNotifier.broadcastEvent(userName, GameEvent.Start, {});
   }
 
   async function saveScore(score) {
