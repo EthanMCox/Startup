@@ -143,15 +143,8 @@ export function MakeAMatchGame(props) {
 
     // Updates score to be "--"
     setScore(0);
-    this.score = 0;
-    const scoreEl = document.querySelector('#score');
-    scoreEl.value = "--";
-
-    this.lives = 10;
-    this.updatelives();
-
-    this.round = 1;
-    this.updateround();
+    setLives(10);
+    setRound(1);
 
     await this.resetcards();
     this.broadcastEvent(this.getPlayerName(), GameStartEvent, {});
