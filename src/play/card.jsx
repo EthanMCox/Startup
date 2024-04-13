@@ -42,7 +42,7 @@ export const Card = React.forwardRef(({ clickCard }, ref) => {
           onClick={() => clickCard()}
         >
           <div className="transparent">
-            <img className="card-img-top" src="/card.jpg" alt="playing_card" />
+            <img className="card-img-top " src="/card.jpg" alt="playing_card" />
           </div>
           <div className="card-front">
             <img className="card-img-top" src="/card.jpg" alt="playing_card" />

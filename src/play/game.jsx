@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Card } from "./card";
 
-import { Button } from "react-bootstrap";
 import { delay } from "./delay";
 import { GameEvent, GameEventNotifier } from "./gameNotifier";
 import "./play.css";
@@ -49,9 +48,9 @@ export function MakeAMatchGame(props) {
   const cardsFlipped = useRef([]);
   const cardsMatched = useRef(0);
   const [score, setScore] = React.useState(0);
-  const [lives, setLives] = React.useState(3);
+  const [lives, setLives] = React.useState(10);
   const [round, setRound] = React.useState(1);
-  const liveLives = useRef(3);
+  const liveLives = useRef(10);
 
   async function clickCard(cardID) {
     // Only execute if the player is allowed to flip the card
