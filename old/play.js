@@ -46,10 +46,6 @@ class Card {
     cardBackText.textContent = this.letter;
   }
 
-  updateLetter() {
-    return; // Placeholder
-  }
-
 }
 
 class Game {

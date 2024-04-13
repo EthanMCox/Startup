@@ -18,7 +18,7 @@ export function About() {
 
     return (
         <main className="container-fluid bg-secondary text-center">
-        <div id="picture" className="picture-box"><img className="img-fluid" src="../../assets/aboutaltimg2.jpg" alt="Memory Game" /></div>
+        <div id="picture" className="picture-box"><img className="img-fluid" src="/aboutaltimg2.jpg" alt="Memory Game" /></div>
   
         <p className="text-box bg-light text-dark">Make a Match is a variant of the classic card matching memory game 
           in which you are presented with a set of cards and must 

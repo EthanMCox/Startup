@@ -8,6 +8,8 @@ import "./play.css";
 
 export function MakeAMatchGame(props) {
   const userName = props.userName;
+  const [GameNotifier, setGameNotifier] = React.useState(new GameEventNotifier(userName));
+
   const cards = new Map();
 
   const [allowPlayer, setAllowPlayer] = React.useState(true);
@@ -23,7 +25,7 @@ export function MakeAMatchGame(props) {
 
 
   for (let i = 0; i < 12; i++) {
-    cards.set(i, { letter: "A", flipped: false, allowFlip: true, ref: React.useRef() });
+    cards.set(i, { ref: React.useRef() });
   }
 
   const cardArray = Array.from(cards, (key, cardData)  => {
