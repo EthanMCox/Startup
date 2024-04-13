@@ -137,6 +137,26 @@ export function MakeAMatchGame(props) {
     setAllowPlayer(true);
   }
 
+  async function restart() {
+    if (allowPlayer === false) return;
+    setAllowPlayer(false);
+
+    // Updates score to be "--"
+    setScore(0);
+    this.score = 0;
+    const scoreEl = document.querySelector('#score');
+    scoreEl.value = "--";
+
+    this.lives = 10;
+    this.updatelives();
+
+    this.round = 1;
+    this.updateround();
+
+    await this.resetcards();
+    this.broadcastEvent(this.getPlayerName(), GameStartEvent, {});
+  }
+
   async function saveScore(score) {
     const date = new Date().toLocaleDateString();
     const newScore = { name: userName, score: score, date: date };
@@ -265,7 +285,7 @@ export function MakeAMatchGame(props) {
             className="bg-dark text-light"
             type="text"
             id="score"
-            value={score}
+            value={score === 0 ? "--" : score}
             readOnly
           />
         </div>
