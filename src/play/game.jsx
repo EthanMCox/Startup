@@ -47,7 +47,7 @@ export function MakeAMatchGame(props) {
   const [allowPlayer, setAllowPlayer] = React.useState(true);
 //   const [cardsFlipped, setCardsFlipped] = React.useState([]);
   const cardsFlipped = useRef([]);
-  const [cardsmatched, setCardsMatched] = React.useState(0);
+  const cardsMatched = useRef(0);
   const [score, setScore] = React.useState(0);
   const [lives, setLives] = React.useState(10);
   const [round, setRound] = React.useState(1);
@@ -79,7 +79,7 @@ export function MakeAMatchGame(props) {
         cards.get(cardsFlipped.current[1]).ref.current.getLetter()
       ) {
         // Found a match
-        setCardsMatched(cardsmatched + 2);
+        cardsMatched.current = cardsMatched.current + 2;
         setScore(score + 1);
         await delay(400);
         // Show that cards match so that they display none
@@ -104,7 +104,7 @@ export function MakeAMatchGame(props) {
     }
 
     // If all cards are matched, generate more cards and increment round
-    if (cardsmatched === 12) {
+    if (cardsMatched.current === 12) {
       setRound(round + 1);
       //   await this.resetcards(); // Uncomment this out when done
     }
