@@ -52,6 +52,7 @@ export function MakeAMatchGame(props) {
   const [round, setRound] = React.useState(1);
 
   async function clickCard(cardID) {
+    console.log(cardsflipped.length);
     // Only execute if the player is allowed to flip the card
     console.log(cards.get(cardID));
     if (
@@ -66,32 +67,36 @@ export function MakeAMatchGame(props) {
 
     // Flip the card and add to cardsflipped array
     card.ref.current.updateFlipped(true);
-    setCardsFlipped([...cardsflipped, card]);
+    setCardsFlipped([...cardsflipped, cardID]);
 
     await delay(800);
 
     // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
     if (cardsflipped.length === 2) {
-      if (
-        cardsflipped[0].ref.current.getLetter() ===
-        cardsflipped[1].ref.current.getLetter()
+      if ( // Check if letters match
+        cards.get(cardsflipped[0]).ref.current.getLetter() ===
+        cards.get(cardsflipped[1]).ref.current.getLetter()
       ) {
         // Found a match
         setCardsMatched(cardsmatched + 2);
         setScore(score + 1);
         await delay(400);
-        cardsflipped[0].ref.current.matched(true); // Change to something more elegant later if time
-        cardsflipped[1].ref.current.matched(true);
-        cardsflipped[0].ref.current.updateAllowFlip(true);
-        cardsflipped[1].ref.current.updateAllowFlip(true);
+        // Show that cards match so that they display none
+        cards.get(cardsflipped[0]).ref.current.matched(true); // Change to something more elegant later if time
+        cards.get(cardsflipped[1]).ref.current.matched(true);
+        // Allow the cards to be flipped again
+        cards.get(cardsflipped[0]).ref.current.updateAllowFlip(true);
+        cards.get(cardsflipped[1]).ref.current.updateAllowFlip(true);
       } else {
         // No match
         setLives(lives - 1);
-        cardsflipped[0].current.ref.updateFlipped(false);
-        cardsflipped[1].current.ref.updateFlipped(false);
+        // Flip the cards back over
+        cards.get(cardsflipped[0]).ref.current.updateFlipped(false);
+        cards.get(cardsflipped[1]).ref.current.updateFlipped(false);
         await delay(1000);
-        cardsflipped[0].current.ref.updateAllowFlip(true);
-        cardsflipped[1].current.ref.updateAllowFlip(true);
+        // Allow the cards to be flipped again
+        cards.get(cardsflipped[0]).ref.current.updateAllowFlip(true);
+        cards.get(cardsflipped[1]).ref.current.updateAllowFlip(true);
       }
       setCardsFlipped([]);
     }
@@ -109,6 +114,7 @@ export function MakeAMatchGame(props) {
       //   await this.restart();
     }
     setAllowPlayer(true);
+    console.log(cardsflipped.length);
   }
 
   function shuffle() {
@@ -137,6 +143,7 @@ export function MakeAMatchGame(props) {
         card.ref.current.updateLetter(shuffled[i].letter);
       }
   }, []);
+  
 
   return (
     <>
