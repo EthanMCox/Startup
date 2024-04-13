@@ -105,7 +105,7 @@ export function MakeAMatchGame(props) {
     // If all cards are matched, generate more cards and increment round
     if (cardsMatched.current === 12) {
       setRound(round + 1);
-      //   await this.resetcards(); // Uncomment this out when done
+      await resetcards(); 
     }
     // If lives are 0, save the score and reset the game
     if (lives === 0) {
@@ -122,6 +122,7 @@ export function MakeAMatchGame(props) {
     cards.forEach((cardData) => {
       cardData.ref.current.matched(true);
       cardData.ref.current.updateAllowFlip(false);
+      cardData.ref.current.updateFlipped(false);
     });
     await delay(800);
 
