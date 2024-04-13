@@ -69,6 +69,7 @@
   padding: 0;
   flex-grow: 1;
   background: transparent;
+  background-color: transparent;
 }
 .card:hover {
   cursor: pointer;
@@ -82,7 +83,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
 
 

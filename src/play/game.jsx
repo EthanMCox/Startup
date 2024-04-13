@@ -45,7 +45,7 @@ export function MakeAMatchGame(props) {
     new GameEventNotifier(userName)
   );
   const [allowPlayer, setAllowPlayer] = React.useState(true);
-//   const [cardsFlipped, setCardsFlipped] = React.useState([]);
+  //   const [cardsFlipped, setCardsFlipped] = React.useState([]);
   const cardsFlipped = useRef([]);
   const cardsMatched = useRef(0);
   const [score, setScore] = React.useState(0);
@@ -53,9 +53,7 @@ export function MakeAMatchGame(props) {
   const [round, setRound] = React.useState(1);
 
   async function clickCard(cardID) {
-    console.log(cardsFlipped.current.length);
     // Only execute if the player is allowed to flip the card
-    console.log(cards.get(cardID));
     if (
       allowPlayer === false ||
       cards.get(cardID).ref.current.allowFlip() === false
@@ -74,7 +72,8 @@ export function MakeAMatchGame(props) {
 
     // If two cards are flipped, check if they match. Flip them back and set lives to 1 less if they don't match. Otherwise, update the score and set cards to display none
     if (cardsFlipped.current.length === 2) {
-      if ( // Check if letters match
+      if (
+        // Check if letters match
         cards.get(cardsFlipped.current[0]).ref.current.getLetter() ===
         cards.get(cardsFlipped.current[1]).ref.current.getLetter()
       ) {
@@ -99,8 +98,8 @@ export function MakeAMatchGame(props) {
         cards.get(cardsFlipped.current[0]).ref.current.updateAllowFlip(true);
         cards.get(cardsFlipped.current[1]).ref.current.updateAllowFlip(true);
       }
-        // Reset the cardsFlipped array
-        cardsFlipped.current = [];
+      // Reset the cardsFlipped array
+      cardsFlipped.current = [];
     }
 
     // If all cards are matched, generate more cards and increment round
@@ -116,13 +115,33 @@ export function MakeAMatchGame(props) {
       //   await this.restart();
     }
     setAllowPlayer(true);
-    console.log(cardsFlipped.current.length);
+  }
+
+  async function resetcards() {
+    setAllowPlayer(false);
+    cards.forEach((cardData) => {
+      cardData.ref.current.matched(true);
+      cardData.ref.current.updateAllowFlip(false);
+    });
+    await delay(800);
+
+    shuffle();
+    for (let i = 0; i < 12; i++) {
+      let card = cards.get(i);
+      card.ref.current.updateLetter(shuffled[i].letter);
+      card.ref.current.matched(false);
+      card.ref.current.updateAllowFlip(true);
+    }
+    cardsFlipped.current = [];
+    cardsMatched.current = 0;
+    setAllowPlayer(true);
   }
 
   function shuffle() {
     shuffled = shufflealgorithm(backtexts);
   }
 
+  // Create and map the cards
   for (let i = 0; i < 12; i++) {
     cards.set(i, { ref: React.useRef() });
   }
@@ -139,11 +158,11 @@ export function MakeAMatchGame(props) {
 
   // Shuffle the letters when cards are rendered
   React.useEffect(() => {
-      shuffle();
-      for (let i = 0; i < 12; i++) {
-        let card = cards.get(i);
-        card.ref.current.updateLetter(shuffled[i].letter);
-      }
+    shuffle();
+    for (let i = 0; i < 12; i++) {
+      let card = cards.get(i);
+      card.ref.current.updateLetter(shuffled[i].letter);
+    }
   }, []);
 
   return (

@@ -1,4 +1,5 @@
 import React from "react";
+import "./play.css";
 
 export const Card = React.forwardRef(({ clickCard }, ref) => {
   const [letter, setLetter] = React.useState("A");
@@ -25,6 +26,7 @@ export const Card = React.forwardRef(({ clickCard }, ref) => {
     getLetter() {
       return letter;
     },
+    // If time, change matched to visible and switch functionality
     matched(bool) {
       setMatched(bool);
     },
