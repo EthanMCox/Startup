@@ -1084,7 +1084,8 @@ Many layers to networks
 
 * URL = uniform resource locator
 * https://(scheme)byu.edu(domain):443(port)/api/city(path)?q=pro(parameters)#3(anchor)
-* if you are using https://, then you should use port 80.
+* if you are using http://, then you should use port 80.
+* https: port 443
 * I will need to specify the path/endpoints.
 * API stands for application programming interface
 * Parameters go to the resource.
@@ -2221,6 +2222,28 @@ Class style components are also supported, but react is moving away from that to
   * Offline fallbacks
  
 * Can grab boilerplate code for serviceWorker registration
-* Have to write service-worker itself. Bring in images, sounds, etc. 
+* Have to write service-worker itself. Bring in images, sounds, etc.
+
+# Lecture 4/15/2024: Final Review
+* NavLink to='/burger'
+* <Route path='/burger' element={<B />} routes to B
+* HTTP header types:
+  * Cookie, content-type, and host are all used
+  * Host: domain that is hosting the request. Domain that is sending the request
+  * cookie specifies what the cookie is
+  * Language is not an HTTP header
+* Composability: You can compose it from other things
+* Daemon: can run a service without needing a user, will restart on reboot, can fork other processes, PM2 is a daemon.
+* npm install ws locks the version of the websocket package for application, adds a dependency to package.json file, and addes websocket source code to the node_modules directory.
+* app.use runs first, then app.get /fav/:person, then runs next, which is app.get...
+* Express requires you to send once you are done with middleware
+* Cookies allow a server to store data on the client
+* 300 code: cntebnt redirects or caching
+* 500: server errors
+* client errors: 400 errors
+* 200: success
+* 
+
+
 
 
